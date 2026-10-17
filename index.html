@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>東莞市嘉訊科電子科技有限公司 | 高精密微距 BTB 板對板連接器專業製造</title>
+  <meta name="description" content="東莞市嘉訊科電子深耕精密連接器產業超過 25 年，專注 0.5mm / 0.8mm 單槽與雙槽 BTB 板對板連接器研發製造。提供精密模具自主開發、100% CCD 全檢與 24 小時快速打樣服務。">
+  <meta name="keywords" content="嘉訊科, BTB連接器, 板對板連接器, 0.5mm BTB, 0.8mm BTB, 微距連接器, 東莞連接器廠, 精密模具開發">
+  <meta name="author" content="東莞市嘉訊科電子科技有限公司">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="東莞市嘉訊科電子科技有限公司 | 高精密微距 BTB 板對板連接器專業製造">
+  <meta property="og:description" content="深耕 0.5/0.8mm BTB 板對板連接器，提供精密模具自主開發、全自動組裝與 24h 樣品響應。">
+  <meta property="og:locale" content="zh_TW">
+  
+  <style>
+    :root {
+      --bg-main: #0B0F19;
+      --bg-card: #111827;
+      --bg-elevated: #1A2332;
+      --accent: #00F2FE;
+      --accent-blue: #4FACFE;
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --border: #1F2937;
+      --border-hover: #374151;
+      --radius: 12px;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0B0F19;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      font-family: "Microsoft YaHei", "微软雅黑", "PingFang TC", "Segoe UI", "Noto Sans TC", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ========== Header ========== */
+    header {
+      background-color: #0B0F19;
+      background: rgba(11, 15, 25, 0.95);
+      
+      -webkit-
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 2rem;
+    }
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #FFF;
+      letter-spacing: 0.5px;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--accent); }
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+
+    /* Hamburger */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+    .menu-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ========== Hero ========== */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8.5rem 2rem 5rem;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0, 242, 254, 0.12) 0%, transparent 60%);
+      position: relative;
+    }
+    .hero-content { max-width: 920px; }
+    .hero-tag {
+      display: inline-block;
+      padding: 0.35rem 1.1rem;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      color: var(--accent);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      margin-bottom: 1.6rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 2.9rem);
+      font-weight: 800;
+      color: #FFF;
+      line-height: 1.25;
+      margin-bottom: 1.3rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2.4rem;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent));
+      color: #000;
+      font-weight: 600;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 18px rgba(0, 242, 254, 0.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 242, 254, 0.4);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2rem;
+      background: transparent;
+      border: 1px solid var(--border-hover);
+      color: #FFF;
+      font-weight: 600;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ========== Stats ========== */
+    .hero-stats {
+      max-width: 1280px;
+      margin: -3rem auto 0;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      position: relative;
+      z-index: 10;
+    }
+    .stat-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.2rem;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .stat-item:hover {
+      border-color: rgba(0, 242, 254, 0.35);
+      transform: translateY(-3px);
+    }
+    .stat-num {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .stat-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== Sections ========== */
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-title h2 {
+      font-size: 1.9rem;
+      color: #FFF;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .product-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+    .product-tag {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      background: rgba(0, 242, 254, 0.1);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      border-radius: 4px;
+      margin-bottom: 0.7rem;
+    }
+    .product-card h3 {
+      color: #FFF;
+      font-size: 1.15rem;
+      margin-bottom: 1rem;
+      line-height: 1.35;
+    }
+    .spec-list {
+      list-style: none;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+      font-size: 0.88rem;
+    }
+    .spec-list li {
+      margin-bottom: 0.4rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .spec-list li::before {
+      content: "▪";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+    }
+    .spec-highlight {
+      color: #FFF;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .product-link {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: gap 0.25s;
+    }
+    .product-card:hover .product-link { gap: 0.6rem; }
+
+    /* Features */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      transition: border-color 0.3s;
+    }
+    .feature-card:hover { border-color: rgba(0, 242, 254, 0.35); }
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 0.9rem;
+    }
+    .feature-card h3 {
+      color: #FFF;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    /* CTA */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 242, 254, 0.05));
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 16px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+    .cta-banner h2 {
+      color: #FFF;
+      font-size: 1.8rem;
+      margin-bottom: 0.9rem;
+    }
+    .cta-banner p {
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      background: #080B12;
+      padding: 3.5rem 2rem 2rem;
+      margin-top: 4rem;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-brand .logo { margin-bottom: 0.8rem; display: inline-block; }
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      color: #FFF;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.55rem; }
+    .footer-col a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: color 0.25s;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 78%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--bg-card);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 5.5rem 2rem 2rem;
+        transition: right 0.3s ease;
+        border-left: 1px solid var(--border);
+        gap: 0;
+      }
+      .nav-links.active { right: 0; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        font-size: 1.1rem;
+        padding: 0.85rem 0;
+        width: 100%;
+      }
+      .nav-links a.active::after { display: none; }
+      .hero h1 { font-size: 1.85rem; }
+      .btn-group { flex-direction: column; width: 100%; }
+      .btn-primary, .btn-secondary { width: 100%; }
+      .hero-stats { margin-top: -2rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* Floating QQ Sidebar */
+    .float-sidebar {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .float-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-right: none;
+      border-radius: 10px 0 0 10px;
+      padding: 14px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      min-width: 70px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    .float-item:hover {
+      background: rgba(0, 242, 254, 0.08);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .float-item .icon {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .float-item.qq-float {
+      background: linear-gradient(135deg, #12B7F5, #0D8ECF);
+      color: #FFF;
+      border-color: transparent;
+    }
+    .float-item.qq-float:hover {
+      background: linear-gradient(135deg, #0D8ECF, #0A7AB8);
+      color: #FFF;
+    }
+
+    .float-item.wx-float {
+      background: linear-gradient(135deg, #07C160, #06AD56);
+      color: #FFF;
+      border-color: transparent;
+    }
+    .float-item.wx-float:hover {
+      background: linear-gradient(135deg, #06AD56, #05964B);
+      color: #FFF;
+    }
+
+    @media (max-width: 768px) {
+      .float-sidebar {
+        top: auto;
+        bottom: 20px;
+        transform: none;
+        right: 12px;
+        flex-direction: row;
+      }
+      .float-item {
+        border-radius: 50%;
+        min-width: 52px;
+        padding: 12px 10px;
+        border: 1px solid var(--border);
+      }
+      .float-item span:not(.icon) { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+      <button class="menu-toggle" id="mobile-menu" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="active">首頁</a></li>
+        <li><a href="products.html">產品中心</a></li>
+        <li><a href="about.html">關於我們</a></li>
+        <li><a href="contact.html">聯絡我們</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">JIAXUNKE CONNECTORS</span>
+      <h1>高精密微距 <span>BTB 板對板連接器</span><br>專業製造</h1>
+      <p>東莞市嘉訊科電子深耕精密連接器製造超過 25 年，專注 0.5 / 0.8mm 單槽與雙槽板對板連接器。提供精密模具自主開發、全自動化 CCD 檢測與 24 小時快速打樣服務。</p>
+      <div class="btn-group">
+        <a href="products.html" class="btn-primary">瀏覽產品中心</a>
+        <a href="contact.html" class="btn-secondary">線上詢價 / 索取樣品</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">25+ 年</div>
+      <div class="stat-desc">連接器製造與技術沉澱</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">±0.01mm</div>
+      <div class="stat-desc">精密模具與沖壓精度</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-desc">CCD 光學全自動全檢</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">24h</div>
+      <div class="stat-desc">工程技術與樣品快速響應</div>
+    </div>
+  </div>
+
+  <!-- Core Products -->
+  <section class="section">
+    <div class="section-title">
+      <h2>核心產品矩陣</h2>
+      <p>涵蓋微型化高密度連接規格，支援多種高度與 Pin 數組合</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div>
+          <span class="product-tag">雙槽 0.5 BTB</span>
+          <h3>雙槽 0.5 BTB（合高 H3.0 / H3.5）</h3>
+          <ul class="spec-list">
+            <li><strong>Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
+            <li><strong>公座高度：</strong> <span class="spec-highlight">H0.8 / H1.3</span></li>
+            <li><strong>母座高度：</strong> <span class="spec-highlight">H2.2</span></li>
+            <li><strong>組合合高：</strong> <span class="spec-highlight">H3.0 / H3.5</span></li>
+          </ul>
+        </div>
+        <a href="products.html" class="product-link">查看完整規格與圖紙 →</a>
+      </div>
+      <div class="product-card">
+        <div>
+          <span class="product-tag">雙槽 0.8 BTB</span>
+          <h3>雙槽 0.8 BTB 連接器系列</h3>
+          <ul class="spec-list">
+            <li><strong>Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
+            <li><strong>公座高度：</strong> <span class="spec-highlight">H1.0 / H2.0 / H4.0</span></li>
+            <li><strong>母座高度：</strong> <span class="spec-highlight">H3.0 / H3.5 / H4.0 / H4.5</span></li>
+            <li><strong>結構特點：</strong> <span class="spec-highlight">0.8mm 雙槽高穩定結構</span></li>
+          </ul>
+        </div>
+        <a href="products.html" class="product-link">查看完整規格與圖紙 →</a>
+      </div>
+      <div class="product-card">
+        <div>
+          <span class="product-tag">單槽 0.5 BTB</span>
+          <h3>單槽 0.5 BTB（多合高組合）</h3>
+          <ul class="spec-list">
+            <li><strong>Pin 數：</strong> <span class="spec-highlight">2×5 ~ 2×40 Pin</span></li>
+            <li><strong>合高 3.0：</strong> <span class="spec-highlight">公 H2.2 + 母 H2.3</span></li>
+            <li><strong>合高 5.0：</strong> <span class="spec-highlight">公 H2.7 + 母 H4.3</span></li>
+            <li><strong>合高 3.5：</strong> <span class="spec-highlight">公 H2.7 + 母 H2.8</span></li>
+          </ul>
+        </div>
+        <a href="products.html" class="product-link">查看完整規格與圖紙 →</a>
+      </div>
+      <div class="product-card">
+        <div>
+          <span class="product-tag">單槽 0.8 BTB</span>
+          <h3>單槽 0.8 BTB（合高 5.0）</h3>
+          <ul class="spec-list">
+            <li><strong>Pin 數：</strong> <span class="spec-highlight">2×20 ~ 2×60 Pin</span></li>
+            <li><strong>公座高度：</strong> <span class="spec-highlight">H4.6</span></li>
+            <li><strong>母座高度：</strong> <span class="spec-highlight">H3.8</span></li>
+            <li><strong>組合合高：</strong> <span class="spec-highlight">H5.0</span></li>
+          </ul>
+        </div>
+        <a href="products.html" class="product-link">查看完整規格與圖紙 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="section" style="padding-top: 1rem;">
+    <div class="section-title">
+      <h2>為什麼選擇嘉訊科？</h2>
+      <p>專業研發、精密製造與高品質交付保障</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📐</div>
+        <h3>±0.01mm 精密模具</h3>
+        <p>自主精密模具研發與高速沖壓，精準控制端子 Pitch 間距與共面度，有效避免虛焊問題。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👁️</div>
+        <h3>100% CCD 全自動光學檢測</h3>
+        <p>出廠前全自動視覺檢測 Pin 腳平整度、正向力與微小瑕疵，打造零缺陷交付標準。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>工程 2D 圖紙支援</h3>
+        <p>提供完整 CAD 圖紙檔案，協助工程師於機構設計階段快速對接與驗證，縮短開發週期。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>24 小時極速打樣</h3>
+        <p>充裕端子備料與快速排產機制，為研發團隊提供 24 小時內快速反應與樣品寄送服務。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="cta-banner">
+      <h2>需要微距 BTB 連接器選型、客製化開發或樣品索取？</h2>
+      <p>我們的工程與業務團隊隨時準備為您提供專業服務，包含 2D 圖紙精準對接、極速樣品寄送、高可靠度品質驗證以及極具競爭力的原廠直營報價。</p>
+      <a href="contact.html" class="btn-primary">立即聯繫我們索取樣品與報價</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+        <p>東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
+      </div>
+      <div class="footer-col">
+        <h4>快速導覽</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="products.html">產品中心</a></li>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>聯絡資訊</h4>
+        <ul>
+          <li><a href="tel:076985410081">電話：0769-85410081</a></li>
+          <li><a href="tel:076985410082">電話：0769-85410082</a></li>
+          <li><a href="tel:18929444965">手機 / 微信：18929444965</a></li>
+          <li>地址：廣東省東莞市長安鎮上角區螢光路15號</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 東莞市嘉訊科電子科技有限公司 版權所有
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    mobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        navLinks.classList.remove('active');
+      });
+    });
+
+  </script>
+
+  <!-- 右側浮動客服 -->
+  <!-- 右側浮動客服 -->
+  
+
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聯絡我們 | 東莞市嘉訊科電子科技有限公司</title>
+  <meta name="description" content="歡迎聯繫東莞市嘉訊科電子業務團隊，提供 BTB 板對板連接器產品諮詢、圖紙評估、樣品索取與客製化開發服務。">
+  
+  <style type="text/css">
+    html { scroll-behavior: auto; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #0B0F19;
+      color: #F3F4F6;
+      line-height: 1.6;
+      font-family: "Microsoft YaHei", "微软雅黑", "PingFang TC", "Segoe UI", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { border: 0; max-width: 100%; }
+
+    header {
+      background-color: #0B0F19;
+      background-color: rgba(11, 15, 25, 0.95);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 1px solid #1F2937;
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      *zoom: 1;
+    }
+    .nav-container:after { content: ""; display: table; clear: both; }
+    .logo {
+      float: left;
+      font-size: 22px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.5px;
+      line-height: 40px;
+    }
+    .logo span { color: #00F2FE; }
+    .nav-links {
+      float: right;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links li {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      margin-left: 28px;
+    }
+    .nav-links a {
+      color: #9CA3AF;
+      font-size: 15px;
+      line-height: 40px;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: #00F2FE; }
+    .menu-toggle { display: none; }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 100px 24px 40px;
+    }
+    .page-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .page-title h1 {
+      font-size: 28px;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .page-title p {
+      color: #9CA3AF;
+      font-size: 16px;
+    }
+
+    .contact-grid {
+      *zoom: 1;
+      margin-bottom: 40px;
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+      border-spacing: 0;
+    }
+    .contact-grid:after { content: ""; display: none; }
+    .contact-info {
+      background-color: #111827;
+      border: 1px solid #1F2937;
+      border-radius: 12px;
+      padding: 32px;
+      width: 42%;
+      display: table-cell;
+      vertical-align: top;
+      box-sizing: border-box;
+    }
+    .service-panel {
+      width: 55%;
+      display: table-cell;
+      vertical-align: top;
+      box-sizing: border-box;
+      padding-left: 3%;
+    }
+    .contact-info h2 {
+      color: #00F2FE;
+      font-size: 22px;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .info-item { margin-bottom: 22px; }
+    .info-item h3 {
+      color: #FFFFFF;
+      font-size: 16px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .info-item p, .info-item a {
+      color: #9CA3AF;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .info-item a:hover { color: #00F2FE; }
+    .service-list {
+      list-style: none;
+      color: #9CA3AF;
+      font-size: 15px;
+    }
+    .service-list li {
+      margin-bottom: 6px;
+      padding-left: 14px;
+      position: relative;
+    }
+    .service-list li:before {
+      content: "•";
+      color: #00F2FE;
+      position: absolute;
+      left: 0;
+    }
+
+    /* QQ + WeChat cards */
+    .cs-card {
+      background-color: #111827;
+      border: 1px solid #1F2937;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .cs-card h2 {
+      color: #00F2FE;
+      font-size: 20px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    .cs-card p {
+      color: #9CA3AF;
+      font-size: 14px;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+    .cs-number {
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin: 8px 0 16px;
+      letter-spacing: 0.5px;
+    }
+    .btn-qq {
+      display: inline-block;
+      width: 100%;
+      max-width: 260px;
+      padding: 12px 18px;
+      background-color: #12B7F5;
+      color: #FFFFFF !important;
+      font-weight: 600;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-qq:hover { background-color: #0D8ECF; }
+    .cs-tip {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #9CA3AF;
+    }
+
+    /* WeChat QR */
+    .wx-qr-box {
+      width: 180px;
+      height: 180px;
+      margin: 12px auto 16px;
+      background-color: #FFFFFF;
+      border: 1px solid #374151;
+      border-radius: 10px;
+      overflow: hidden;
+      padding: 8px;
+      box-sizing: border-box;
+    }
+    .wx-qr-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      border-radius: 4px;
+    }
+
+    /* Map */
+    .map-section {
+      background-color: #111827;
+      border: 1px solid #1F2937;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      clear: both;
+    }
+    .map-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #1F2937;
+      *zoom: 1;
+    }
+    .map-header:after { content: ""; display: table; clear: both; }
+    .map-header h2 {
+      float: left;
+      color: #FFFFFF;
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 28px;
+    }
+    .map-header a {
+      float: right;
+      color: #00F2FE;
+      font-size: 14px;
+      line-height: 28px;
+    }
+    .map-embed {
+      width: 100%;
+      height: 380px;
+      overflow: hidden;
+    }
+    .map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    footer {
+      border-top: 1px solid #1F2937;
+      background-color: #080B12;
+      padding: 40px 24px 24px;
+      margin-top: 40px;
+      clear: both;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto 30px;
+      *zoom: 1;
+    }
+    .footer-inner:after { content: ""; display: table; clear: both; }
+    .footer-brand, .footer-col {
+      float: left;
+      width: 33%;
+      padding-right: 20px;
+      box-sizing: border-box;
+    }
+    .footer-brand .logo {
+      float: none;
+      display: block;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .footer-brand p {
+      color: #9CA3AF;
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      color: #FFFFFF;
+      font-size: 15px;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a {
+      color: #9CA3AF;
+      font-size: 14px;
+    }
+    .footer-col a:hover { color: #00F2FE; }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 20px;
+      border-top: 1px solid #1F2937;
+      text-align: center;
+      color: #9CA3AF;
+      font-size: 13px;
+      clear: both;
+    }
+
+    @media screen and (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+        float: right;
+        width: 28px;
+        height: 28px;
+        margin-top: 6px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        padding: 0;
+      }
+      .menu-toggle span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #F3F4F6;
+        margin: 5px auto;
+      }
+      .nav-links {
+        display: none;
+        float: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 75%;
+        max-width: 280px;
+        height: 100%;
+        background-color: #111827;
+        padding: 70px 24px 20px;
+        border-left: 1px solid #1F2937;
+        z-index: 1001;
+      }
+      .nav-links.active { display: block; }
+      .nav-links li { display: block; margin: 0; }
+      .nav-links a {
+        display: block;
+        font-size: 16px;
+        padding: 12px 0;
+        line-height: 1.4;
+      }
+      .contact-grid {
+        display: block;
+      }
+      .contact-info, .service-panel {
+        width: 100%;
+        display: block;
+        float: none;
+        margin-bottom: 20px;
+        padding-left: 0;
+      }
+      .footer-brand, .footer-col {
+        width: 100%;
+        float: none;
+        margin-bottom: 24px;
+      }
+      .map-embed { height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+      <button type="button" class="menu-toggle" id="mobile-menu" aria-label="選單">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="products.html">產品中心</a></li>
+        <li><a href="about.html">關於我們</a></li>
+        <li><a href="contact.html" class="active">聯絡我們</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-title">
+      <h1>聯絡我們與線上諮詢</h1>
+      <p>歡迎通過 QQ / 微信與我們聯繫，獲取產品諮詢、圖紙評估與樣品服務</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- 左側聯繫資訊 -->
+      <div class="contact-info">
+        <h2>聯繫方式</h2>
+        <div class="info-item">
+          <h3>公司名稱</h3>
+          <p>嘉普塑膠五金電子有限公司</p>
+          <p>東莞市嘉訊科電子科技有限公司</p>
+        </div>
+        <div class="info-item">
+          <h3>公司地址</h3>
+          <p>廣東省東莞市長安鎮上角區螢光路15號</p>
+        </div>
+        <div class="info-item">
+          <h3>聯繫電話</h3>
+          <p>
+            <a href="tel:076985410081">公司電話：0769-85410081</a><br>
+            <a href="tel:076985410082">公司電話：0769-85410082</a><br>
+            <a href="tel:18929444965">黃先生手機：18929444965</a>
+          </p>
+        </div>
+        <div class="info-item">
+          <h3>技術支援與服務</h3>
+          <ul class="service-list">
+            <li>2D CAD 工程圖紙快速對接與下載</li>
+            <li>樣品索取、小批量試產與客製化開發諮詢</li>
+            <li>精密 BTB 板對板連接器選型與合高匹配評估</li>
+            <li>交期、MOQ 與量產供貨能力確認</li>
+            <li>技術問題 24 小時內工程快速響應</li>
+            <li>歡迎來電或線上諮詢，業務即時回覆</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 右側 QQ + 微信客服 -->
+      <div class="service-panel">
+        <!-- QQ -->
+        <div class="cs-card">
+          <h2>QQ 線上客服</h2>
+          <p>點擊下方按鈕，直接與我們的業務人員對話</p>
+          <div class="cs-number">QQ：2190343453</div>
+          <a target="_blank"
+             href="http://wpa.qq.com/msgrd?v=3&amp;uin=2190343453&amp;site=qq&amp;menu=yes"
+             class="btn-qq">
+            點擊這裡給我發消息
+          </a>
+          <p class="cs-tip">若無法自動開啟，請手動添加 QQ：2190343453</p>
+        </div>
+
+        <!-- 微信 + QR CODE -->
+        <div class="cs-card">
+          <h2>微信客服</h2>
+          <p>掃描下方二維碼，或搜尋微信號添加好友</p>
+          <div class="cs-number">微信：18929444965</div>
+          <div class="wx-qr-box">
+            <img src="images/wechat-qr.png" alt="微信二維碼">
+          </div>
+          <p class="cs-tip">請使用手機微信掃碼添加，或搜尋：18929444965</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 高德地图 -->
+    <div class="map-section">
+      <div class="map-header">
+        <h2>公司位置</h2>
+        <a href="https://www.amap.com/place/B0FFG1XMAP" target="_blank">在高德地圖中開啟 →</a>
+      </div>
+      <div class="map-embed">
+        <iframe 
+          src="https://www.amap.com/ssr/embed/place?id=B0FFG1XMAP&name=%E5%98%89%E6%99%AE%E5%A1%91%E8%83%B6%E4%BA%94%E9%87%91%E7%94%B5%E5%AD%90%E5%8E%82&lng=113.722042&lat=22.798411&address=%E8%8E%B9%E5%85%89%E8%B7%AF15%E5%8F%B7&zoom=16&source=poi_detail&platform=pc"
+          width="100%"
+          height="380"
+          frameborder="0"
+          scrolling="no"
+          loading="lazy"
+          allowfullscreen="allowfullscreen"
+          title="公司位置地图">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+        <p>東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
+      </div>
+      <div class="footer-col">
+        <h4>快速導覽</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="products.html">產品中心</a></li>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>聯絡資訊</h4>
+        <ul>
+          <li><a href="tel:076985410081">電話：0769-85410081</a></li>
+          <li><a href="tel:076985410082">電話：0769-85410082</a></li>
+          <li>手機 / 微信：18929444965</li>
+          <li>QQ：2190343453</li>
+          <li>地址：廣東省東莞市長安鎮上角區螢光路15號</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 東莞市嘉訊科電子科技有限公司 版權所有
+    </div>
+  </footer>
+
+  <script type="text/javascript">
+    var mobileMenu = document.getElementById('mobile-menu');
+    var navLinks = document.getElementById('nav-links');
+    if (mobileMenu) {
+      mobileMenu.onclick = function() {
+        if (navLinks.className.indexOf('active') >= 0) {
+          navLinks.className = 'nav-links';
+        } else {
+          navLinks.className = 'nav-links active';
+        }
+      };
+    }
+  </script>
+</body>
+</html>

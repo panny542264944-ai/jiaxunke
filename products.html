@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>產品中心 | 東莞市嘉訊科電子科技有限公司</title>
+  
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <meta name="description" content="嘉訊科精密 BTB 板對板連接器產品目錄，涵蓋雙槽/單槽 0.5mm、0.8mm 系列及 SATA 連接器，提供完整規格與 CAD 圖紙支援。">
+  
+  <style>
+    :root {
+      --bg-main: #0B0F19;
+      --bg-card: #111827;
+      --accent: #00F2FE;
+      --accent-blue: #4FACFE;
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --border: #1F2937;
+      --border-hover: #374151;
+      --radius: 12px;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0B0F19;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      font-family: "Microsoft YaHei", "微软雅黑", "PingFang TC", "Segoe UI", "Noto Sans TC", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
+    header {
+      background-color: #0B0F19;
+      background: rgba(11, 15, 25, 0.95);
+      
+      -webkit-
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 2rem;
+    }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #FFF; letter-spacing: 0.5px; }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+    .menu-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Banner */
+    .page-banner {
+      padding: 7.8rem 2rem 2.8rem;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0, 242, 254, 0.1) 0%, transparent 60%);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .page-banner h1 {
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      color: #FFF;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .page-banner p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Layout */
+    .catalog-layout {
+      max-width: 1280px;
+      margin: 2.5rem auto 4rem;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 2.2rem;
+    }
+
+    /* Sidebar */
+    .category-sidebar {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      height: fit-content;
+      position: sticky;
+      top: 90px;
+    }
+    .sidebar-title {
+      font-size: 1.05rem;
+      color: #FFF;
+      font-weight: 700;
+      padding-bottom: 0.8rem;
+      margin-bottom: 0.9rem;
+      border-bottom: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .category-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .category-item {
+      padding: 0.75rem 0.9rem;
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 3px solid transparent;
+    }
+    .category-item:hover,
+    .category-item.active {
+      background: rgba(0, 242, 254, 0.1);
+      color: var(--accent);
+      border-left-color: var(--accent);
+    }
+    .category-count {
+      font-size: 0.78rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
+      min-width: 24px;
+      text-align: center;
+    }
+    .category-item.active .category-count {
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+    }
+
+    /* Content Header */
+    .content-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.4rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .content-header h2 {
+      font-size: 1.3rem;
+      color: #FFF;
+      font-weight: 700;
+    }
+    .product-counter {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+    .product-card {
+      background: #111827;
+      border: 1px solid #1F2937;
+      border-radius: 12px;
+      padding: 1.4rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      min-height: 420px;
+    }
+    .product-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .product-tag {
+      display: inline-block;
+      padding: 0.22rem 0.55rem;
+      background: rgba(0, 242, 254, 0.1);
+      color: #00F2FE;
+      font-size: 0.78rem;
+      border-radius: 4px;
+      margin-bottom: 0.7rem;
+      font-weight: 600;
+      width: fit-content;
+      min-height: 1.4em;
+    }
+    .product-card h3 {
+      color: #FFF;
+      font-size: 1.12rem;
+      margin-bottom: 0.9rem;
+      line-height: 1.35;
+      min-height: 2.7em;   /* 固定约两行高度，让下方图片框对齐 */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .product-img-container {
+      width: 100%;
+      height: 160px;
+      min-height: 160px;
+      max-height: 160px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed #1F2937;
+      border-radius: 8px;
+      margin-bottom: 1.1rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .product-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .product-img-container svg {
+      width: 30px;
+      height: 30px;
+      stroke: var(--accent);
+      opacity: 0.55;
+    }
+    .img-placeholder-text {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      text-align: center;
+      padding: 0 0.8rem;
+    }
+    .spec-list {
+      list-style: none;
+      color: var(--text-muted);
+      margin-bottom: 1.3rem;
+      font-size: 0.87rem;
+    }
+    .spec-list li {
+      margin-bottom: 0.38rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .spec-list li::before {
+      content: "▪";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+    }
+    .spec-highlight {
+      color: #FFF;
+      font-weight: 500;
+    }
+    .btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 0.75rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent));
+      color: #000;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      opacity: 0.92;
+      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+    }
+    a.btn {
+      display: block;
+      text-decoration: none;
+      box-sizing: border-box;
+    }
+
+    /* Tech Section */
+    .tech-section {
+      background: #080B12;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 4rem 2rem;
+    }
+    .tech-container { max-width: 1280px; margin: 0 auto; }
+    .section-title {
+      text-align: center;
+      margin-bottom: 2.8rem;
+    }
+    .section-title h2 {
+      font-size: 1.7rem;
+      color: #FFF;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.4rem;
+    }
+    .tech-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+    }
+    .tech-icon { font-size: 1.9rem; margin-bottom: 0.7rem; }
+    .tech-card h4 {
+      color: #FFF;
+      font-size: 1.05rem;
+      margin-bottom: 0.45rem;
+    }
+    .tech-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 1.5rem;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--accent);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 480px;
+      padding: 2rem;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+      box-shadow: 0 20px 50px rgba(0, 242, 254, 0.15);
+    }
+    .modal-overlay.active .modal-box { transform: translateY(0); }
+    .modal-close {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.1rem;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #FFF; }
+    .modal-box h3 {
+      font-size: 1.3rem;
+      color: #FFF;
+      margin-bottom: 0.4rem;
+    }
+    .modal-box > p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.3rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--bg-main);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #FFF;
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--accent); }
+    .btn-card-primary {
+      width: 100%;
+      padding: 0.85rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent));
+      color: #000;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 0.3rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      background: #080B12;
+      padding: 3.5rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-brand .logo { margin-bottom: 0.8rem; display: inline-block; }
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      color: #FFF;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.55rem; }
+    .footer-col a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: color 0.25s;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 992px) {
+      .catalog-layout { grid-template-columns: 1fr; }
+      .category-sidebar { position: static; }
+    }
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 78%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--bg-card);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 5.5rem 2rem 2rem;
+        transition: right 0.3s ease;
+        border-left: 1px solid var(--border);
+        gap: 0;
+      }
+      .nav-links.active { right: 0; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        font-size: 1.1rem;
+        padding: 0.85rem 0;
+        width: 100%;
+      }
+      .nav-links a.active::after { display: none; }
+      .page-banner h1 { font-size: 1.6rem; }
+      .product-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* Floating QQ Sidebar */
+    .float-sidebar {
+      position: fixed;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .float-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-right: none;
+      border-radius: 10px 0 0 10px;
+      padding: 14px 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      min-width: 70px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+    .float-item:hover {
+      background: rgba(0, 242, 254, 0.08);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+    .float-item .icon {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .float-item.qq-float {
+      background: linear-gradient(135deg, #12B7F5, #0D8ECF);
+      color: #FFF;
+      border-color: transparent;
+    }
+    .float-item.qq-float:hover {
+      background: linear-gradient(135deg, #0D8ECF, #0A7AB8);
+      color: #FFF;
+    }
+
+    .float-item.wx-float {
+      background: linear-gradient(135deg, #07C160, #06AD56);
+      color: #FFF;
+      border-color: transparent;
+    }
+    .float-item.wx-float:hover {
+      background: linear-gradient(135deg, #06AD56, #05964B);
+      color: #FFF;
+    }
+
+    @media (max-width: 768px) {
+      .float-sidebar {
+        top: auto;
+        bottom: 20px;
+        transform: none;
+        right: 12px;
+        flex-direction: row;
+      }
+      .float-item {
+        border-radius: 50%;
+        min-width: 52px;
+        padding: 12px 10px;
+        border: 1px solid var(--border);
+      }
+      .float-item span:not(.icon) { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+      <button class="menu-toggle" id="mobile-menu" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="products.html" class="active">產品中心</a></li>
+        <li><a href="about.html">關於我們</a></li>
+        <li><a href="contact.html">聯絡我們</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="page-banner">
+    <h1>BTB 板對板與連接器產品目錄</h1>
+    <p>東莞市嘉訊科電子 — 精密單槽 / 雙槽板對板與 SATA 連接器研發製造</p>
+  </div>
+
+  <div class="catalog-layout">
+    <!-- Sidebar -->
+    <aside class="category-sidebar">
+      <div class="sidebar-title">📂 產品分類目錄</div>
+      <ul class="category-list">
+        <li class="category-item active" onclick="filterCategory('all', this)">
+          <span>全部產品展示</span>
+          <span class="category-count" data-target="all">11</span>
+        </li>
+        <li class="category-item" onclick="filterCategory('double-05', this)">
+          <span>雙槽 0.5 BTB 系列</span>
+          <span class="category-count" data-target="double-05">3</span>
+        </li>
+        <li class="category-item" onclick="filterCategory('double-08', this)">
+          <span>雙槽 0.8 BTB 系列</span>
+          <span class="category-count" data-target="double-08">1</span>
+        </li>
+        <li class="category-item" onclick="filterCategory('single-05', this)">
+          <span>單槽 0.5 BTB 系列</span>
+          <span class="category-count" data-target="single-05">2</span>
+        </li>
+        <li class="category-item" onclick="filterCategory('single-08', this)">
+          <span>單槽 0.8 BTB 系列</span>
+          <span class="category-count" data-target="single-08">3</span>
+        </li>
+        <li class="category-item" onclick="filterCategory('sata', this)">
+          <span>SATA 連接器系列</span>
+          <span class="category-count" data-target="sata">1</span>
+        </li>
+        <li class="category-item" onclick="filterCategory('0.8', this)">
+          <span>0.8 BTB 雙排系列</span>
+          <span class="category-count" data-target="0.8">1</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Product List -->
+    <main>
+      <div class="content-header">
+        <h2 id="current-category-name">全部產品展示</h2>
+        <span class="product-counter" id="visible-counter">共顯示 11 個產品</span>
+      </div>
+
+      <div class="product-grid">
+
+        <!-- 雙槽 0.5 -->
+        <div class="product-card" data-cat="double-05">
+          <div>
+            <span class="product-tag">雙槽 0.5 BTB</span>
+            <h3>雙槽 0.5 BTB（合高 H3.0 / H3.5）</h3>
+            <div class="product-img-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+              <span class="img-placeholder-text">2D / 3D 圖紙渲染中</span>
+            </div>
+            <ul class="spec-list">
+              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
+              <li><strong>公座高度：</strong> <span class="spec-highlight">H0.8 / H1.3</span></li>
+              <li><strong>母座高度：</strong> <span class="spec-highlight">H2.2</span></li>
+              <li><strong>組合合高：</strong> <span class="spec-highlight">H3.0 / H3.5</span></li>
+            </ul>
+          </div>
+          <a href="cad/double-05-h3.0-h3.5.pdf" class="btn" target="_blank" title="下載 CAD 圖紙：雙槽 0.5 BTB（合高 H3.0 / H3.5）">產品CAD圖紙</a>
+        </div>
+
+        <div class="product-card" data-cat="double-05">
+          <div>
+            <span class="product-tag">雙槽 0.5 BTB</span>
+            <h3>雙槽 0.5 BTB（最高合高 H8.5）</h3>
+            <div class="product-img-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+              <span class="img-placeholder-text">2D / 3D 圖紙渲染中</span>
+            </div>
+            <ul class="spec-list">
+              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
+              <li><strong>公座高度：</strong> <span class="spec-highlight">H1.0 / H2.0 / H4.0</span></li>
+              <li><strong>母座高度：</strong> <span class="spec-highlight">H3.0 / H3.5 / H4.0 / H4.5</span></li>
+              <li><strong>最高合高：</strong> <span class="spec-highlight">最高可達 H8.5</span></li>
+            </ul>
+          </div>
+          <a href="cad/double-05-h8.5.pdf" class="btn" target="_blank" title="下載 CAD 圖紙：雙槽 0.5 BTB（最高合高 H8.5）">產品CAD圖紙</a>
+        </div>
+
+        <div class="product-card" data-cat="double-05">
+          <div>
+            <span class="product-tag">雙槽 0.5 BTB</span>
+            <h3>雙槽 0.5 BTB（單獨規格）</h3>
+            <div class="product-img-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+              <span class="img-placeholder-text">2D / 3D 圖紙渲染中</span>
+            </div>
+            <ul class="spec-list">
+              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×30 Pin</span></li>
+              <li><strong>公座高度：</strong> <span class="spec-highlight">H3.5</span></li>
+              <li><strong>母座高度：</strong> <span class="spec-highlight">H3.0 / H3.5 / H4.0 / H4.5</span></li>
+              <li><strong>最高合高：</strong> <span class="spec-highlight">最高可達 H8.0</span></li>
+            </ul>
+          </div>
+          <a href="cad/double-05-h8.0.pdf" class="btn" target="_blank" title="下載 CAD 圖紙：雙槽 0.5 BTB（最高合高 H8.0）">產品CAD圖紙</a>
+        </div>
+
+        <!-- 雙槽 0.8 -->
+        <div class="product-card" data-cat="double-08">
+          <div>
+            <span class="product-tag">雙槽 0.8 BTB</span>
+            <h3>雙槽 0.8 BTB 連接器系列</h3>
+            <div class="product-img-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+              <span class="img-placeholder-text">2D / 3D 圖紙渲染中</span>
+            </div>
+            <ul class="spec-list">
+              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
+              <li><strong>公座高度：</strong> <span class="spec-highlight">H1.0 / H2.0 / H4.0</span></li>
+              <li><strong>母座高度：</strong> <span class="spec-highlight">H3.0 / H3.5 / H4.0 / H4.5</span></li>
+              <li><strong>最高合高：</strong> <span class="spec-highlight">最高可達 H8.5</span></li>
+            </ul>
+          </div>
+          <a href="cad/double-08-series.pdf" class="btn" target="_blank" title="下載 CAD 圖紙：雙槽 0.8 BTB 連接器系列">產品CAD圖紙</a>
+        </div>
+
+        <!-- 單槽 0.5 -->
+        <div class="product-card" data-cat="single-05">
+          <div>
+            <span class="product-tag">單槽 0.5 BTB</span>
+            <h3>單槽 0.5 BTB（2×5~2×40 Pin 多合高）</h3>
+            <div class="product-img-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+              <span class="img-placeholder-text">2D / 3D 圖紙渲染中</span>
+            </div>
+            <ul class="spec-list">
+              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×5 / 10 / 15 / 20 / 25 / 30 / 40</span></li>
+              <li><strong>合高 3.0：</strong> 公 H2.2 + 母 H2.3</li>
+              <li><strong>合高 5.0：</strong> 公 H2.7 + 母 H4.3</li>
+              <li><strong>合高 3.5：</strong> 公 H2.7 + 母 H2.8</li>
+            </ul>
+          </div>
+          <a href="cad/single-05-multi-height.pdf" class="btn" target="_blank" title="下載 CAD 圖紙：單槽 0.5 BTB（2×5~2×40 Pin 多合高）">產品CAD圖紙</a>
+        </div>
+
+        <div class="product-card" data-cat="single-05">
+          <div>
+            <span class="product-tag">單槽 0.5 BTB</span>
+            <h3>單槽 0.5 BTB 2×12 Pin（合高 3.0）</h3>
+            <div class="product-img-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+              <span class="img-placeholder-text">2D / 3D 圖紙渲染中</span>
+            </div>
+            <ul class="spec-list">
+              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×12 Pin</span></li>
+              <li><strong>公座高度：</strong> <span class="spec-highlight">H1.28</span></li>
+              <li><strong>母座高度：</strong> <span class="spec-highlight">H1.85</span></li>
+              <li><strong>組合合高：</strong> <span class="spec-highlight">H3.0</span></li>
+            </ul>
+          </div>
+          <a href="cad/single-05-2x12.pdf" class="btn" target="_blank" title="下載 CAD 圖紙：單槽 0.5 BTB 2×12 Pin">產品CAD圖紙</a>
+        </div>
+
+        <!-- 單槽 0.8 -->
+        <div class="product-card" data-cat="single-08">
+          <div>
+            <span class="product-tag">單槽 0.8 BTB</span>
+            <h3>單槽 0.8 BTB（2×20~2×60 Pin 合高 5.0）</h3>
+            <div class="product-img-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+              <span class="img-placeholder-text">2D / 3D 圖紙渲染中</span>
+            </div>
+            <ul class="spec-list">
+              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×20 / 30 / 40 / 50 / 60 Pin</span></li>
+              <li><strong>公座高度：</strong> <span class="spec-highlight">H4.6</span></li>
+              <li><strong>母座高度：</strong> <span class="spec-highlight">H3.8</span></li>
+              <li><strong>組合合高：</strong> <span class="spec-highlight">H5.0</span></li>
+            </ul>
+          </div>
+          <a href="cad/single-08-2x20-60.pdf" class="btn" target="_blank" title="下載 CAD 圖紙：單槽 0.8 BTB（2×20~2×60 Pin）">產品CAD圖紙</a>
+        </div>
+
+        <div class="product-card" data-cat="single-08">
+          <div>
+            <span class="product-tag">單槽 0.8 BTB</span>
+            <h3>單槽 0.8 BTB 2×50 Pin（合高 5.0）</h3>
+            <div class="product-img-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+              <span class="img-placeholder-text">2D / 3D 圖紙渲染中</span>
+            </div>
+            <ul class="spec-list">
+              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×50 Pin</span></li>
+              <li><strong>公座高度：</strong> <span class="spec-highlight">H3.55</span></li>
+              <li><strong>母座高度：</strong> <span class="spec-highlight">H4.2</span></li>
+              <li><strong>組合合高：</strong> <span class="spec-highlight">H5.0</span></li>
+            </ul>
+          </div>
+          <a href="cad/single-08-2x50.pdf" class="btn" target="_blank" title="下載 CAD 圖紙：單槽 0.8 BTB 2×50 Pin">產品CAD圖紙</a>
+        </div>
+
+        <div class="product-card" data-cat="single-08">
+          <div>
+            <span class="product-tag">單槽 0.8 BTB</span>
+            <h3>單槽 0.8 BTB 2×6 Pin（合高 7.0）</h3>
+            <div class="product-img-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+              <span class="img-placeholder-text">2D / 3D 圖紙渲染中</span>
+            </div>
+            <ul class="spec-list">
+              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×6 Pin</span></li>
+              <li><strong>公座高度：</strong> <span class="spec-highlight">H3.55</span></li>
+              <li><strong>母座高度：</strong> <span class="spec-highlight">H6.2</span></li>
+              <li><strong>組合合高：</strong> <span class="spec-highlight">H7.0</span></li>
+            </ul>
+          </div>
+          <a href="cad/single-08-2x6.pdf" class="btn" target="_blank" title="下載 CAD 圖紙：單槽 0.8 BTB 2×6 Pin">產品CAD圖紙</a>
+        </div>
+
+        <!-- SATA -->
+        <div class="product-card" data-cat="sata">
+          <div>
+            <span class="product-tag">SATA 系列</span>
+            <h3>SATA 7+6 DIP 母座</h3>
+            <div class="product-img-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+              <span class="img-placeholder-text">2D / 3D 圖紙渲染中</span>
+            </div>
+            <ul class="spec-list">
+              <li><strong>針腳規格：</strong> <span class="spec-highlight">SATA 7+6 Pin</span></li>
+              <li><strong>安裝方式：</strong> <span class="spec-highlight">DIP 直插式母座</span></li>
+              <li><strong>高度規格：</strong> <span class="spec-highlight">H7.2</span></li>
+              <li><strong>Pitch 間距：</strong> <span class="spec-highlight">PC2.0</span></li>
+            </ul>
+          </div>
+          <a href="cad/sata-7-6-dip.pdf" class="btn" target="_blank" title="下載 CAD 圖紙：SATA 7+6 DIP 母座">產品CAD圖紙</a>
+        </div>
+
+        <!-- 0.8 雙排 -->
+        <div class="product-card" data-cat="0.8">
+          <div>
+            <span class="product-tag">0.8 BTB 雙排</span>
+            <h3>0.8×6.4 2×25 公座</h3>
+            <div class="product-img-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+              <span class="img-placeholder-text">2D / 3D 圖紙渲染中</span>
+            </div>
+            <ul class="spec-list">
+              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×25 Pin</span></li>
+              <li><strong>高度規格：</strong> <span class="spec-highlight">H6.4</span></li>
+              <li><strong>定位片：</strong> <span class="spec-highlight">有 / 無</span></li>
+            </ul>
+          </div>
+          <a href="cad/0.8x6.4-2x25.pdf" class="btn" target="_blank" title="下載 CAD 圖紙：0.8×6.4 2×25 公座">產品CAD圖紙</a>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Tech Standards -->
+  <section class="tech-section">
+    <div class="tech-container">
+      <div class="section-title">
+        <h2>嘉訊科品質與技術標準</h2>
+        <p>嚴格管控每一道生產工序，確保高密合度與穩定導電能力</p>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-icon">🔬</div>
+          <h4>±0.01mm 精密模具</h4>
+          <p>自主精密模具研發與高速沖壓，控制端子 Pitch 間距與共面度，避免虛焊。</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">👁️</div>
+          <h4>100% CCD 全自動光學檢測</h4>
+          <p>出廠前全自動視覺檢測 Pin 腳平整度、正向力與微小瑕疵，打造零缺陷交付。</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">📐</div>
+          <h4>工程 2D 圖紙支援</h4>
+          <p>提供完整 CAD 圖紙檔案，協助工程師於機構設計階段快速對接與驗證。</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">⚡</div>
+          <h4>24 小時極速打樣</h4>
+          <p>擁有充裕端子備料與快速排產機制，提供研發團隊 24 小時內快速反應與寄樣。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="sample-modal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()" aria-label="關閉">&times;</button>
+      <h3>索取樣品 / CAD 圖紙</h3>
+      <p id="modal-product-title">請填寫您的產品需求資訊，工程團隊將於 24 小時內回覆。</p>
+      <form onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label>需求 Pin 數與合高</label>
+          <input type="text" placeholder="例如：2×20 Pin，合高 3.0mm" required>
+        </div>
+        <div class="form-group">
+          <label>貴公司名稱 / 聯絡人</label>
+          <input type="text" placeholder="例如：張先生 / 某某科技有限公司" required>
+        </div>
+        <div class="form-group">
+          <label>聯絡電話 / 電子郵件</label>
+          <input type="text" placeholder="例如：138-xxxx-xxxx 或 example@domain.com" required>
+        </div>
+        <div class="form-group">
+          <label>具體需求備註（選填）</label>
+          <textarea rows="3" placeholder="例如：需要提供 2D CAD 圖紙與 5pcs 樣品測試"></textarea>
+        </div>
+        <button type="submit" class="btn-card-primary">立即送出申請</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+        <p>東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
+      </div>
+      <div class="footer-col">
+        <h4>快速導覽</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="products.html">產品中心</a></li>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>聯絡資訊</h4>
+        <ul>
+          <li><a href="tel:076985410081">電話：0769-85410081</a></li>
+          <li><a href="tel:076985410082">電話：0769-85410082</a></li>
+          <li><a href="tel:18929444965">手機 / 微信：18929444965</a></li>
+          <li>地址：廣東省東莞市長安鎮上角區螢光路15號</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 東莞市嘉訊科電子科技有限公司 版權所有
+    </div>
+  </footer>
+
+  <script>
+    /* ============================================================
+       EmailJS 設定說明（與 contact.html 使用相同設定）：
+       
+       1. 前往 https://www.emailjs.com/ 註冊免費帳號
+       2. 新增 Email Service → 選擇 Gmail → 連結 Gmail
+       3. 新增 Email Template（可與聯絡表單共用同一個 Template）
+       4. 把下面三個變數改成你的實際值（與 contact.html 相同）
+       ============================================================ */
+
+    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+
+    // 載入 EmailJS（如果尚未載入）
+    if (typeof emailjs === 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+      script.onload = function() {
+        if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+          emailjs.init(EMAILJS_PUBLIC_KEY);
+        }
+      };
+      document.head.appendChild(script);
+    } else if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+    }
+
+    // Mobile menu
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    mobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Auto count categories
+    window.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.product-card');
+      const counts = document.querySelectorAll('.category-count');
+      counts.forEach(counter => {
+        const targetCat = counter.getAttribute('data-target');
+        if (targetCat === 'all') {
+          counter.innerText = cards.length;
+        } else {
+          let matched = 0;
+          cards.forEach(card => {
+            if (card.getAttribute('data-cat') === targetCat) matched++;
+          });
+          counter.innerText = matched;
+        }
+      });
+    });
+
+    // Filter
+    function filterCategory(catKey, element) {
+      document.querySelectorAll('.category-item').forEach(item => item.classList.remove('active'));
+      element.classList.add('active');
+      const categoryName = element.querySelector('span').innerText;
+      document.getElementById('current-category-name').innerText = categoryName;
+
+      const cards = document.querySelectorAll('.product-card');
+      let visibleCount = 0;
+      cards.forEach(card => {
+        if (catKey === 'all' || card.getAttribute('data-cat') === catKey) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      document.getElementById('visible-counter').innerText = `共顯示 ${visibleCount} 個產品`;
+    }
+
+    // Modal
+    const modal = document.getElementById('sample-modal');
+    const modalTitle = document.getElementById('modal-product-title');
+    let currentProductName = '';
+
+    function openModal(productName) {
+      currentProductName = productName;
+      modalTitle.innerText = `您正在諮詢：${productName}。請填寫您的需求資訊：`;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const inputs = form.querySelectorAll('input, textarea');
+      const pinSpec = inputs[0].value.trim();
+      const companyContact = inputs[1].value.trim();
+      const phoneEmail = inputs[2].value.trim();
+      const remark = inputs[3].value.trim() || '無';
+
+      if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+        alert('請先完成 EmailJS 設定（見 products.html 腳本上方說明）');
+        return;
+      }
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '提交中...';
+
+      const templateParams = {
+        from_name: companyContact,
+        company: companyContact,
+        contact: phoneEmail,
+        product: currentProductName + ' | ' + pinSpec,
+        detail: remark,
+        time: new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' }),
+        to_email: 'alan.project.research@gmail.com'
+      };
+
+      try {
+        // 確保 emailjs 已載入
+        if (typeof emailjs === 'undefined') {
+          throw new Error('EmailJS 尚未載入');
+        }
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+        alert('感謝您的申請！我們的工程專員將於 24 小時內與您聯繫並寄送相關資料。');
+        closeModal();
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        alert('提交失敗，請稍後重試，或直接撥打 0769-85410081 / 微信 18929444965 聯繫我們。');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '立即送出申請';
+      }
+    }
+
+  </script>
+
+  <!-- 右側浮動客服 -->
+  
+
+</body>
+</html>

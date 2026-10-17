@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>關於我們 | 東莞市嘉訊科電子科技有限公司</title>
+  <meta name="description" content="東莞市嘉訊科電子科技有限公司深耕精密連接器產業 25 年以上，專注於 0.5/0.8mm 微距 BTB 板對板連接器研發與自主製造，提供高品質與快速打樣服務。">
+  <meta name="keywords" content="嘉訊科, 關於嘉訊科, 嘉普歷史, 連接器廠, BTB板對板, 東莞長安鎮連接器">
+  
+  <style>
+    :root {
+      --bg-main: #0B0F19;
+      --bg-card: #111827;
+      --accent: #00F2FE;
+      --accent-blue: #4FACFE;
+      --text-main: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --border: #1F2937;
+      --border-hover: #374151;
+      --radius: 12px;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0B0F19;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      font-family: "Microsoft YaHei", "微软雅黑", "PingFang TC", "Segoe UI", "Noto Sans TC", Arial, sans-serif;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { border: 0; max-width: 100%; display: block; }
+
+    /* Header */
+    header {
+      background-color: #0B0F19;
+      background: rgba(11, 15, 25, 0.95);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 2rem;
+    }
+    .logo { font-size: 1.35rem; font-weight: 700; color: #FFF; letter-spacing: 0.5px; }
+    .logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 1px;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+    .menu-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Hero */
+    .about-hero {
+      padding: 8.5rem 2rem 3.5rem;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0, 242, 254, 0.1) 0%, transparent 60%);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .about-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      color: #FFF;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .about-hero p {
+      color: var(--text-muted);
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* Metrics */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.3rem;
+      margin-bottom: 4rem;
+    }
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .metric-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+    .metric-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent));
+    }
+    .metric-num {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .metric-label {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* Section Title */
+    .section-title {
+      font-size: 1.7rem;
+      color: #FFF;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      font-weight: 700;
+    }
+
+    /* Intro */
+    .intro-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.4rem;
+      margin-bottom: 4rem;
+    }
+    .intro-block p {
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      font-size: 1.02rem;
+      line-height: 1.85;
+    }
+    .intro-block p:last-child { margin-bottom: 0; }
+    .intro-block strong { color: #FFF; }
+
+    /* ===== 厂区照片 3x2 ===== */
+    .gallery-section {
+      margin-bottom: 4rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.3rem;
+    }
+    .gallery-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .gallery-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+    .gallery-img-wrap {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background: #1A2332;
+    }
+    .gallery-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-caption {
+      padding: 0.75rem 1rem;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+
+    /* Advantages */
+    .adv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .adv-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.8rem;
+      transition: all 0.3s;
+    }
+    .adv-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .adv-icon {
+      font-size: 2rem;
+      margin-bottom: 0.9rem;
+    }
+    .adv-card h3 {
+      color: #FFF;
+      font-size: 1.15rem;
+      margin-bottom: 0.7rem;
+    }
+    .adv-card p {
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      border-left: 2px solid var(--border);
+      margin: 2rem 0 1rem 0.8rem;
+    }
+    .time-item {
+      position: relative;
+      margin-bottom: 2.2rem;
+    }
+    .time-item:last-child { margin-bottom: 0; }
+    .time-dot {
+      position: absolute;
+      left: -2.55rem;
+      top: 0.3rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg-main);
+      box-shadow: 0 0 10px var(--accent);
+    }
+    .time-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+    }
+    .time-content h4 {
+      color: #FFF;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+    .time-content p {
+      color: var(--text-muted);
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      background: #080B12;
+      padding: 3.5rem 2rem 2rem;
+      margin-top: 4rem;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-brand .logo { margin-bottom: 0.8rem; display: inline-block; }
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      color: #FFF;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.55rem; }
+    .footer-col a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: color 0.25s;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery-img-wrap { height: 180px; }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; }
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 78%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--bg-card);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 5.5rem 2rem 2rem;
+        transition: right 0.3s ease;
+        border-left: 1px solid var(--border);
+        gap: 0;
+      }
+      .nav-links.active { right: 0; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        font-size: 1.1rem;
+        padding: 0.85rem 0;
+        width: 100%;
+      }
+      .nav-links a.active::after { display: none; }
+      .about-hero h1 { font-size: 1.7rem; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-img-wrap { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+      <button class="menu-toggle" id="mobile-menu" aria-label="開啟選單">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">首頁</a></li>
+        <li><a href="products.html">產品中心</a></li>
+        <li><a href="about.html" class="active">關於我們</a></li>
+        <li><a href="contact.html">聯絡我們</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="about-hero">
+    <h1>聚焦高精密 BTB 連接器研發與製造</h1>
+    <p>東莞市嘉訊科電子科技有限公司，致力於為全球電子製造業提供超高傳輸效率、高可靠性的微型化板對板連接解決方案。</p>
+  </div>
+
+  <div class="container">
+    <!-- Metrics -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-num">±0.01<span style="font-size:1.1rem">mm</span></div>
+        <div class="metric-label">精密模具與衝壓精度</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">0.5 / 0.8<span style="font-size:1.1rem">mm</span></div>
+        <div class="metric-label">主力微距 BTB 間距規格</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">100<span style="font-size:1.1rem">%</span></div>
+        <div class="metric-label">全自動化 CCD 光學檢測</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">24<span style="font-size:1.1rem">h</span></div>
+        <div class="metric-label">快速工程樣品響應</div>
+      </div>
+    </div>
+
+    <!-- Company Intro -->
+    <h2 class="section-title">公司簡介</h2>
+    <div class="intro-block">
+      <p><strong>東莞市嘉訊科電子科技有限公司</strong>位於電子製造重鎮廣東省東莞市長安鎮，深耕精密電子連接器產業超過 <strong>25 年</strong>。公司前身為「嘉普」，歷經多年產業發展與技術累積，現以「嘉訊科」品牌持續投入電子連接器的研發、製造與銷售，憑藉長期累積的製造經驗與完整的生產能力，為客戶提供高品質、高可靠度的連接器產品與專業服務。</p>
+
+      <p>嘉訊科專注於 <strong>BTB（Board-to-Board，板對板）連接器</strong> 的研發與製造，主力產品涵蓋單槽、雙槽及 <strong>0.5mm、0.8mm 間距</strong> 等高密度板對板連接器，產品廣泛應用於智慧終端、工業控制、消費電子、車載電子及通訊設備等領域。</p>
+
+      <p>公司具備完整的<strong>自主製造能力</strong>，從精密金屬端子、塑膠射出成型，到連接器成品組裝，主要生產製程均由公司自主完成。透過端子沖壓、塑膠成型、產品組裝及自動化生產等完整製程，公司能有效掌握產品品質與生產效率，並快速配合客戶進行產品開發、規格調整及量產需求。</p>
+
+      <p>自嘉普時期開始，公司已累積超過 <strong>25 年的連接器製造經驗</strong>，在產品結構、生產工藝、模具配合、材料應用及量產管理等方面建立深厚的技術基礎。面對電子產品輕薄化、高密度及高可靠度的發展趨勢，嘉訊科持續投入自動化設備、製程改善與產品技術開發，不斷提升產品品質與製造效率。</p>
+
+      <p>嘉訊科始終以<strong>「高精度、高穩定、高效率、快速響應」</strong>為核心，從產品設計、生產製造到品質管理，嚴格控制各項製程品質，致力於提供穩定可靠的電子連接器產品，並以專業技術、完整製造能力及快速服務，與客戶建立長期穩定的合作關係。</p>
+
+      <p>未來，嘉訊科將持續深耕精密電子連接器領域，以超過 25 年的產業經驗與自主製造能力為基礎，持續拓展高密度、高精度及高可靠度連接器產品，提升研發與製造能力，為全球客戶提供更具競爭力的產品與服務。</p>
+    </div>
+
+    <!-- 厂区与生产实景 6张 -->
+    <div class="gallery-section">
+      <h2 class="section-title">廠區與生產實景</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/factory-01.jpg" alt="廠區實景">
+          </div>
+          <div class="gallery-caption">廠區實景</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/factory-02.jpg" alt="生產車間">
+          </div>
+          <div class="gallery-caption">生產車間</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/factory-03.jpg" alt="精密沖壓製程">
+          </div>
+          <div class="gallery-caption">精密沖壓製程</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/factory-04.jpg" alt="注塑成型製程">
+          </div>
+          <div class="gallery-caption">注塑成型製程</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/factory-05.jpg" alt="自動化生產線">
+          </div>
+          <div class="gallery-caption">自動化生產線</div>
+        </div>
+        <div class="gallery-item">
+          <div class="gallery-img-wrap">
+            <img src="images/factory-06.jpg" alt="自動化生產與CCD 品質檢測包裝">
+          </div>
+          <div class="gallery-caption">自動化生產與CCD 品質檢測包裝</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Advantages -->
+    <h2 class="section-title">核心競爭優勢</h2>
+    <div class="adv-grid">
+      <div class="adv-card">
+        <div class="adv-icon">⚙️</div>
+        <h3>精密模具自主開發</h3>
+        <p>擁有高精密的模具加工設備與頂尖工程團隊，實現從模具設計、加工到組裝的全流程自主控管，確保產品高重複精度。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">🤖</div>
+        <h3>自動化高效生產</h3>
+        <p>全面導入自動化插針與組裝設備，結合高精度 CCD 自動光學檢測，嚴格把關 Pin 數平整度與接觸穩定性，產能穩定充足。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">🛡️</div>
+        <h3>嚴格品質管理</h3>
+        <p>建立完善的品質管理體系，從進料檢驗（IQC）、製程檢驗（IPQC）到成品出貨檢驗（OQC），實施全程嚴格把關。</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">⚡</div>
+        <h3>靈活客製與快速打樣</h3>
+        <p>針對客戶不同的 PCB 佈局與合高需求，提供豐富的端子組合與客製化開模能力，大幅縮短客戶產品研發週期。</p>
+      </div>
+    </div>
+
+    <!-- Process Timeline -->
+    <h2 class="section-title">嚴謹的研發與生產管控流程</h2>
+    <div class="timeline">
+      <div class="time-item">
+        <div class="time-dot"></div>
+        <div class="time-content">
+          <h4>1. 需求評估與 2D 圖紙評估</h4>
+          <p>根據客戶的電氣性能、Pin 數、間距與合高需求，進行精準的結構模擬與圖紙確認。</p>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time-dot"></div>
+        <div class="time-content">
+          <h4>2. 精密模具開發與試模打樣</h4>
+          <p>採用高精度加工設備開發沖壓與注塑模具，快速提供初版樣品供客戶進行 PCB 板級測試。</p>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time-dot"></div>
+        <div class="time-content">
+          <h4>3. 高速沖壓與精密注塑</h4>
+          <p>採用高品質銅合金與耐高溫工程塑料，經高速沖壓與精密注塑成型，確保端子導電性與塑膠件耐熱性。</p>
+        </div>
+      </div>
+      <div class="time-item">
+        <div class="time-dot"></div>
+        <div class="time-content">
+          <h4>4. 自動化組裝與 CCD 全檢</h4>
+          <p>全自動組裝線搭配 CCD 影像檢測系統，100% 檢查腳位共面度（Coplanarity）與外觀缺陷，確保零瑕疵出廠。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+        <p>東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
+      </div>
+      <div class="footer-col">
+        <h4>快速導覽</h4>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="products.html">產品中心</a></li>
+          <li><a href="about.html">關於我們</a></li>
+          <li><a href="contact.html">聯絡我們</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>聯絡資訊</h4>
+        <ul>
+          <li><a href="tel:076985410081">電話：0769-85410081</a></li>
+          <li><a href="tel:076985410082">電話：0769-85410082</a></li>
+          <li><a href="tel:18929444965">手機 / 微信：18929444965</a></li>
+          <li>地址：廣東省東莞市長安鎮上角區螢光路15號</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 東莞市嘉訊科電子科技有限公司 版權所有
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    mobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        navLinks.classList.remove('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
