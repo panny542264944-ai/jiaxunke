@@ -276,6 +276,11 @@
       height: 100%;
       object-fit: contain;
       display: block;
+      cursor: zoom-in;
+      transition: opacity 0.2s;
+    }
+    .product-img-container img:hover {
+      opacity: 0.9;
     }
     .product-img-container svg {
       width: 30px;
@@ -332,6 +337,75 @@
       display: block;
       text-decoration: none;
       box-sizing: border-box;
+    }
+
+
+    /* Product image clickable */
+    .product-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      cursor: zoom-in;
+      transition: opacity 0.2s;
+    }
+    .product-img-container img:hover {
+      opacity: 0.9;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      padding: 1.5rem;
+      box-sizing: border-box;
+    }
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox img {
+      max-width: 92%;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      background: #111;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      z-index: 3001;
+      opacity: 0.85;
+    }
+    .lightbox-close:hover { opacity: 1; }
+    .lightbox-caption {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #9CA3AF;
+      font-size: 0.9rem;
+      text-align: center;
+      max-width: 90%;
     }
 
     /* Tech Section */
@@ -1020,6 +1094,14 @@
     </div>
   </footer>
 
+
+  <!-- Image Lightbox -->
+  <div class="lightbox" id="img-lightbox" onclick="closeLightbox(event)">
+    <button type="button" class="lightbox-close" onclick="closeLightbox(event)" aria-label="關閉">&times;</button>
+    <img id="lightbox-img" src="" alt="產品大圖">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
   <script>
     /* ============================================================
        EmailJS 設定說明（與 contact.html 使用相同設定）：
@@ -1167,6 +1249,47 @@
         submitBtn.textContent = '立即送出申請';
       }
     }
+
+
+    // Image lightbox
+    function openLightbox(src, caption) {
+      var lb = document.getElementById('img-lightbox');
+      var img = document.getElementById('lightbox-img');
+      var cap = document.getElementById('lightbox-caption');
+      if (!lb || !img) return;
+      img.src = src;
+      img.alt = caption || '產品大圖';
+      if (cap) cap.textContent = caption || '';
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(e) {
+      // close when clicking backdrop, close button, or Escape (handled below)
+      if (e && e.target && e.target.id === 'lightbox-img') return;
+      var lb = document.getElementById('img-lightbox');
+      if (lb) lb.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        var lb = document.getElementById('img-lightbox');
+        if (lb && lb.classList.contains('active')) {
+          lb.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      }
+    });
+    // Bind click on product images
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.product-img-container img').forEach(function(img) {
+        img.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (img.style.display === 'none') return;
+          openLightbox(img.src, img.alt || '');
+        });
+      });
+    });
 
   </script>
 
