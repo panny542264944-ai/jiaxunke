@@ -967,31 +967,31 @@
       <ul class="category-list">
         <li class="category-item active" onclick="filterCategory('all', this)">
           <span data-i18n="cat_all">全部產品展示</span>
-          <span class="category-count" data-target="all">11</span>
+          <span class="category-count" data-target="all">0</span>
         </li>
         <li class="category-item" onclick="filterCategory('double-05', this)">
           <span data-i18n="cat_d05">雙槽 0.5 BTB 系列</span>
-          <span class="category-count" data-target="double-05">3</span>
+          <span class="category-count" data-target="double-05">0</span>
         </li>
         <li class="category-item" onclick="filterCategory('double-08', this)">
           <span data-i18n="cat_d08">雙槽 0.8 BTB 系列</span>
-          <span class="category-count" data-target="double-08">1</span>
+          <span class="category-count" data-target="double-08">0</span>
         </li>
         <li class="category-item" onclick="filterCategory('single-05', this)">
           <span data-i18n="cat_s05">單槽 0.5 BTB 系列</span>
-          <span class="category-count" data-target="single-05">2</span>
+          <span class="category-count" data-target="single-05">0</span>
         </li>
         <li class="category-item" onclick="filterCategory('single-08', this)">
           <span data-i18n="cat_s08">單槽 0.8 BTB 系列</span>
-          <span class="category-count" data-target="single-08">3</span>
+          <span class="category-count" data-target="single-08">0</span>
         </li>
         <li class="category-item" onclick="filterCategory('sata', this)">
           <span data-i18n="cat_sata">SATA 連接器系列</span>
-          <span class="category-count" data-target="sata">1</span>
+          <span class="category-count" data-target="sata">0</span>
         </li>
         <li class="category-item" onclick="filterCategory('0.8', this)">
           <span data-i18n="cat_08">0.8 BTB 雙排系列</span>
-          <span class="category-count" data-target="0.8">1</span>
+          <span class="category-count" data-target="0.8">0</span>
         </li>
       </ul>
     </aside>
@@ -1000,7 +1000,7 @@
     <main>
       <div class="content-header">
         <h2 id="current-category-name" data-i18n="cat_all">全部產品展示</h2>
-        <span class="product-counter" id="visible-counter">共顯示 11 個產品</span>
+        <span class="product-counter" id="visible-counter" data-n="0">共顯示 0 個產品</span>
       </div>
 
       <div class="product-grid">
@@ -1352,22 +1352,44 @@
 
     // Mobile menu handled by initMobileNav
 
-    // Auto count categories
-    window.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.product-card');
-      const counts = document.querySelectorAll('.category-count');
-      counts.forEach(counter => {
-        const targetCat = counter.getAttribute('data-target');
+    // Auto count categories + visible product counter
+    function refreshProductCounts() {
+      var cards = document.querySelectorAll('.product-card');
+      var total = cards.length;
+
+      // sidebar category counts
+      document.querySelectorAll('.category-count').forEach(function(counter) {
+        var targetCat = counter.getAttribute('data-target');
         if (targetCat === 'all') {
-          counter.innerText = cards.length;
+          counter.textContent = String(total);
         } else {
-          let matched = 0;
-          cards.forEach(card => {
+          var matched = 0;
+          cards.forEach(function(card) {
             if (card.getAttribute('data-cat') === targetCat) matched++;
           });
-          counter.innerText = matched;
+          counter.textContent = String(matched);
         }
       });
+
+      // main "Showing N products" — count currently visible cards
+      var visible = 0;
+      cards.forEach(function(card) {
+        if (card.style.display !== 'none') visible++;
+      });
+      var vc = document.getElementById('visible-counter');
+      if (vc) {
+        vc.setAttribute('data-n', String(visible));
+        var lang = 'zh-Hant';
+        try { lang = localStorage.getItem('jxk_lang') || 'zh-Hant'; } catch (e) {}
+        var pack = (window.JXK_PAGE_I18N && window.JXK_PAGE_I18N[lang]) || {};
+        var tpl = pack.show_count || '共顯示 {n} 個產品';
+        vc.textContent = tpl.replace('{n}', visible);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', refreshProductCounts);
+    // also run after short delay in case i18n applies later
+    window.addEventListener('DOMContentLoaded', function() {
+      setTimeout(refreshProductCounts, 50);
     });
 
     // Filter
@@ -1401,6 +1423,20 @@
         vc.setAttribute('data-n', String(visibleCount));
         var pack = (window.JXK_PAGE_I18N && window.JXK_PAGE_I18N[(function(){try{return localStorage.getItem('jxk_lang')||'zh-Hant'}catch(e){return 'zh-Hant'}})()]) || {};
         vc.innerText = (pack.show_count || '共顯示 {n} 個產品').replace('{n}', visibleCount);
+      }
+      // keep sidebar totals accurate if DOM cards change later
+      if (typeof refreshProductCounts === 'function') {
+        // only update sidebar totals, visible already set above
+        document.querySelectorAll('.category-count').forEach(function(counter) {
+          var targetCat = counter.getAttribute('data-target');
+          var cards = document.querySelectorAll('.product-card');
+          if (targetCat === 'all') counter.textContent = String(cards.length);
+          else {
+            var matched = 0;
+            cards.forEach(function(card){ if(card.getAttribute('data-cat')===targetCat) matched++; });
+            counter.textContent = String(matched);
+          }
+        });
       }
     }
 
