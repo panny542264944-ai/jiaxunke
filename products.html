@@ -733,33 +733,188 @@
       .float-item span:not(.icon) { display: none; }
     }
 
+  
+    
+
+    
+
+  
+    /* ===== Nav layout (desktop + mobile) ===== */
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0;
+    }
+    .nav-container .logo {
+      flex-shrink: 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #FFF;
+      letter-spacing: 0.5px;
+    }
+    .nav-container .logo span { color: var(--accent, #00F2FE); }
+    .nav-container .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      list-style: none;
+      margin: 0 0 0 auto;
+      padding: 0;
+    }
+    .nav-container .nav-links a {
+      color: var(--text-muted, #9CA3AF);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-container .nav-links a:hover,
+    .nav-container .nav-links a.active { color: var(--accent, #00F2FE); }
+    .nav-container .nav-links a.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent, #00F2FE);
+      border-radius: 1px;
+    }
+    .nav-container .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      margin-left: 1.25rem;
+      flex-shrink: 0;
+      border: 1px solid var(--border, #1F2937);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      z-index: 1003;
+    }
+    .nav-container .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted, #9CA3AF);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.55rem;
+      cursor: pointer;
+      font-family: inherit;
+      line-height: 1.2;
+      transition: all 0.2s;
+    }
+    .nav-container .lang-btn:hover { color: var(--accent, #00F2FE); }
+    .nav-container .lang-btn.active {
+      background: rgba(0, 242, 254, 0.15);
+      color: var(--accent, #00F2FE);
+    }
+    .nav-container .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 6px;
+      z-index: 1003;
+    }
+    .nav-container .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #F3F4F6;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .nav-container .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-container .menu-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-container .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-backdrop {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.55);
+      z-index: 1001;
+    }
+    .nav-backdrop.active { display: block; }
+
+    @media (max-width: 768px) {
+      .nav-container .logo { order: 1; }
+      .nav-container .lang-switch {
+        order: 2;
+        margin-left: auto;
+        margin-right: 8px;
+      }
+      .nav-container .menu-toggle {
+        display: flex !important;
+        order: 3;
+      }
+      .nav-container .nav-links {
+        order: 4;
+        position: fixed !important;
+        top: 0;
+        right: -100%;
+        width: 78%;
+        max-width: 300px;
+        height: 100vh;
+        margin: 0 !important;
+        background: #111827;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 5.5rem 2rem 2rem;
+        transition: right 0.3s ease;
+        border-left: 1px solid #1F2937;
+        gap: 0 !important;
+        z-index: 1002 !important;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        box-shadow: -8px 0 24px rgba(0,0,0,0.4);
+        pointer-events: auto !important;
+      }
+      .nav-container .nav-links.active { right: 0 !important; }
+      .nav-container .nav-links li { width: 100%; display: block; margin: 0; }
+      .nav-container .nav-links a {
+        display: block !important;
+        font-size: 1.1rem;
+        padding: 0.95rem 0;
+        width: 100%;
+        color: #F3F4F6 !important;
+        pointer-events: auto !important;
+      }
+      .nav-container .nav-links a.active::after { display: none; }
+    }
+
   </style>
 </head>
 <body>
 
-    <header>
+        <header>
     <div class="nav-container">
       <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
-      <div class="nav-right">
-        <ul class="nav-links" id="nav-links">
-          <li><a href="index.html" data-i18n="nav_home">首頁</a></li>
-          <li><a href="products.html" class="active" data-i18n="nav_products">產品中心</a></li>
-          <li><a href="about.html" data-i18n="nav_about">關於我們</a></li>
-          <li><a href="contact.html" data-i18n="nav_contact">聯絡我們</a></li>
-        </ul>
-        <div class="lang-switch" id="lang-switch" aria-label="Language">
-          <button type="button" class="lang-btn active" data-lang="zh-Hant">繁</button>
-          <button type="button" class="lang-btn" data-lang="zh-Hans">簡</button>
-          <button type="button" class="lang-btn" data-lang="en">EN</button>
-        </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" data-i18n="nav_home">首頁</a></li>
+        <li><a href="products.html" class="active" data-i18n="nav_products">產品中心</a></li>
+        <li><a href="about.html" data-i18n="nav_about">關於我們</a></li>
+        <li><a href="contact.html" data-i18n="nav_contact">聯絡我們</a></li>
+      </ul>
+      <div class="lang-switch" id="lang-switch" aria-label="Language">
+        <button type="button" class="lang-btn active" data-lang="zh-Hant">繁</button>
+        <button type="button" class="lang-btn" data-lang="zh-Hans">簡</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
       </div>
-      <button class="menu-toggle" id="mobile-menu" aria-label="開啟選單">
+      <button type="button" class="menu-toggle" id="mobile-menu" aria-label="開啟選單">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
-
-  <div class="page-banner">
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+<div class="page-banner">
     <h1 data-i18n="banner_h">BTB 板對板與連接器產品目錄</h1>
     <p data-i18n="banner_p">東莞市嘉訊科電子 — 精密單槽 / 雙槽板對板與 SATA 連接器研發製造</p>
   </div>
@@ -1154,19 +1309,7 @@
       emailjs.init(EMAILJS_PUBLIC_KEY);
     }
 
-    // Mobile menu
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-links');
-    mobileMenu.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-      navLinks.classList.toggle('active');
-    });
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        navLinks.classList.remove('active');
-      });
-    });
+    // Mobile menu handled by initMobileNav
 
     // Auto count categories
     window.addEventListener('DOMContentLoaded', () => {
@@ -1445,6 +1588,62 @@ window.JXK_PAGE_I18N = {
     }
     applyI18n();
   });
+})();
+</script>
+
+
+<script>
+(function(){
+  function initMobileNav(){
+    var mobileMenu = document.getElementById('mobile-menu');
+    var navLinks = document.getElementById('nav-links');
+    var backdrop = document.getElementById('nav-backdrop');
+    if(!mobileMenu || !navLinks) return;
+
+    function openMenu(){
+      mobileMenu.classList.add('open');
+      navLinks.classList.add('active');
+      if(backdrop) backdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu(){
+      mobileMenu.classList.remove('open');
+      navLinks.classList.remove('active');
+      if(backdrop) backdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function toggleMenu(e){
+      if(e){ e.preventDefault(); e.stopPropagation(); }
+      if(navLinks.classList.contains('active')) closeMenu();
+      else openMenu();
+    }
+
+    mobileMenu.addEventListener('click', toggleMenu);
+    mobileMenu.addEventListener('touchend', function(e){
+      e.preventDefault();
+      toggleMenu(e);
+    }, {passive:false});
+
+    if(backdrop){
+      backdrop.addEventListener('click', closeMenu);
+      backdrop.addEventListener('touchend', function(e){
+        e.preventDefault();
+        closeMenu();
+      }, {passive:false});
+    }
+
+    // Links must navigate — only close menu, do NOT preventDefault on <a>
+    navLinks.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click', function(){
+        closeMenu();
+      });
+    });
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initMobileNav);
+  } else {
+    initMobileNav();
+  }
 })();
 </script>
 
