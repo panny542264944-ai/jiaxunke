@@ -100,6 +100,40 @@
     .menu-toggle.open span:nth-child(2) { opacity: 0; }
     .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-left: auto;
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.55rem;
+      cursor: pointer;
+      font-family: inherit;
+      line-height: 1.2;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover { color: var(--accent); }
+    .lang-btn.active {
+      background: rgba(0, 242, 254, 0.15);
+      color: var(--accent);
+    }
+
     /* Hero */
     .about-hero {
       padding: 8.5rem 2rem 3.5rem;
@@ -363,7 +397,9 @@
     }
 
     @media (max-width: 768px) {
-      .menu-toggle { display: flex; }
+      .menu-toggle { display: flex; order: 3; z-index: 1003; }
+      .nav-right { margin-left: auto; margin-right: 4px; order: 2; }
+      .logo { order: 1; }
       .nav-links {
         position: fixed;
         top: 0;
@@ -378,6 +414,7 @@
         transition: right 0.3s ease;
         border-left: 1px solid var(--border);
         gap: 0;
+        z-index: 1002;
       }
       .nav-links.active { right: 0; }
       .nav-links li { width: 100%; }
@@ -399,24 +436,31 @@
 </head>
 <body>
 
-  <header>
+    <header>
     <div class="nav-container">
       <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" data-i18n="nav_home">首頁</a></li>
+          <li><a href="products.html" data-i18n="nav_products">產品中心</a></li>
+          <li><a href="about.html" class="active" data-i18n="nav_about">關於我們</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">聯絡我們</a></li>
+        </ul>
+        <div class="lang-switch" id="lang-switch" aria-label="Language">
+          <button type="button" class="lang-btn active" data-lang="zh-Hant">繁</button>
+          <button type="button" class="lang-btn" data-lang="zh-Hans">簡</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
       <button class="menu-toggle" id="mobile-menu" aria-label="開啟選單">
         <span></span><span></span><span></span>
       </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html">首頁</a></li>
-        <li><a href="products.html">產品中心</a></li>
-        <li><a href="about.html" class="active">關於我們</a></li>
-        <li><a href="contact.html">聯絡我們</a></li>
-      </ul>
     </div>
   </header>
 
   <div class="about-hero">
-    <h1>聚焦高精密 BTB 連接器研發與製造</h1>
-    <p>東莞市嘉訊科電子科技有限公司，致力於為全球電子製造業提供超高傳輸效率、高可靠性的微型化板對板連接解決方案。</p>
+    <h1 data-i18n="hero_h1">聚焦高精密 BTB 連接器研發與製造</h1>
+    <p data-i18n="hero_p">東莞市嘉訊科電子科技有限公司，致力於為全球電子製造業提供超高傳輸效率、高可靠性的微型化板對板連接解決方案。</p>
   </div>
 
   <div class="container">
@@ -424,135 +468,135 @@
     <div class="metrics-grid">
       <div class="metric-card">
         <div class="metric-num">±0.01<span style="font-size:1.1rem">mm</span></div>
-        <div class="metric-label">精密模具與衝壓精度</div>
+        <div class="metric-label" data-i18n="m1">精密模具與衝壓精度</div>
       </div>
       <div class="metric-card">
         <div class="metric-num">0.5 / 0.8<span style="font-size:1.1rem">mm</span></div>
-        <div class="metric-label">主力微距 BTB 間距規格</div>
+        <div class="metric-label" data-i18n="m2">主力微距 BTB 間距規格</div>
       </div>
       <div class="metric-card">
         <div class="metric-num">100<span style="font-size:1.1rem">%</span></div>
-        <div class="metric-label">全自動化 CCD 光學檢測</div>
+        <div class="metric-label" data-i18n="m3">全自動化 CCD 光學檢測</div>
       </div>
       <div class="metric-card">
         <div class="metric-num">24<span style="font-size:1.1rem">h</span></div>
-        <div class="metric-label">快速工程樣品響應</div>
+        <div class="metric-label" data-i18n="m4">快速工程樣品響應</div>
       </div>
     </div>
 
     <!-- Company Intro -->
-    <h2 class="section-title">公司簡介</h2>
+    <h2 class="section-title" data-i18n="sec_intro">公司簡介</h2>
     <div class="intro-block">
-      <p><strong>東莞市嘉訊科電子科技有限公司</strong>位於電子製造重鎮廣東省東莞市長安鎮，深耕精密電子連接器產業超過 <strong>25 年台資企業</strong>。公司前身為「嘉普」，歷經多年產業發展與技術累積，現以「嘉訊科」品牌持續投入電子連接器的研發、製造與銷售，憑藉長期累積的製造經驗與完整的生產能力，為客戶提供高品質、高可靠度的連接器產品與專業服務。</p>
+      <p data-i18n="intro1"><strong>東莞市嘉訊科電子科技有限公司</strong>位於電子製造重鎮廣東省東莞市長安鎮，深耕精密電子連接器產業超過 <strong>25 年台資企業</strong>。公司前身為「嘉普」，歷經多年產業發展與技術累積，現以「嘉訊科」品牌持續投入電子連接器的研發、製造與銷售，憑藉長期累積的製造經驗與完整的生產能力，為客戶提供高品質、高可靠度的連接器產品與專業服務。</p>
 
-      <p>嘉訊科專注於 <strong>BTB（Board-to-Board，板對板）連接器</strong> 的研發與製造，主力產品涵蓋單槽、雙槽及 <strong>0.5mm、0.8mm 間距</strong> 等高密度板對板連接器，產品廣泛應用於智慧終端、工業控制、消費電子、車載電子及通訊設備等領域。</p>
+      <p data-i18n="intro2">嘉訊科專注於 <strong>BTB（Board-to-Board，板對板）連接器</strong> 的研發與製造，主力產品涵蓋單槽、雙槽及 <strong>0.5mm、0.8mm 間距</strong> 等高密度板對板連接器，產品廣泛應用於智慧終端、工業控制、消費電子、車載電子及通訊設備等領域。</p>
 
-      <p>公司具備完整的<strong>自主製造能力</strong>，從精密金屬端子、塑膠射出成型，到連接器成品組裝，主要生產製程均由公司自主完成。透過端子沖壓、塑膠成型、產品組裝及自動化生產等完整製程，公司能有效掌握產品品質與生產效率，並快速配合客戶進行產品開發、規格調整及量產需求。</p>
+      <p data-i18n="intro3">公司具備完整的<strong>自主製造能力</strong>，從精密金屬端子、塑膠射出成型，到連接器成品組裝，主要生產製程均由公司自主完成。透過端子沖壓、塑膠成型、產品組裝及自動化生產等完整製程，公司能有效掌握產品品質與生產效率，並快速配合客戶進行產品開發、規格調整及量產需求。</p>
 
-      <p>自嘉普時期開始，公司已累積超過 <strong>25 年的連接器製造經驗</strong>，在產品結構、生產工藝、模具配合、材料應用及量產管理等方面建立深厚的技術基礎。面對電子產品輕薄化、高密度及高可靠度的發展趨勢，嘉訊科持續投入自動化設備、製程改善與產品技術開發，不斷提升產品品質與製造效率。</p>
+      <p data-i18n="intro4">自嘉普時期開始，公司已累積超過 <strong>25 年的連接器製造經驗</strong>，在產品結構、生產工藝、模具配合、材料應用及量產管理等方面建立深厚的技術基礎。面對電子產品輕薄化、高密度及高可靠度的發展趨勢，嘉訊科持續投入自動化設備、製程改善與產品技術開發，不斷提升產品品質與製造效率。</p>
 
-      <p>嘉訊科始終以<strong>「高精度、高穩定、高效率、快速響應」</strong>為核心，從產品設計、生產製造到品質管理，嚴格控制各項製程品質，致力於提供穩定可靠的電子連接器產品，並以專業技術、完整製造能力及快速服務，與客戶建立長期穩定的合作關係。</p>
+      <p data-i18n="intro5">嘉訊科始終以<strong>「高精度、高穩定、高效率、快速響應」</strong>為核心，從產品設計、生產製造到品質管理，嚴格控制各項製程品質，致力於提供穩定可靠的電子連接器產品，並以專業技術、完整製造能力及快速服務，與客戶建立長期穩定的合作關係。</p>
 
-      <p>未來，嘉訊科將持續深耕精密電子連接器領域，以超過 25 年的產業經驗與自主製造能力為基礎，持續拓展高密度、高精度及高可靠度連接器產品，提升研發與製造能力，為全球客戶提供更具競爭力的產品與服務。</p>
+      <p data-i18n="intro6">未來，嘉訊科將持續深耕精密電子連接器領域，以超過 25 年的產業經驗與自主製造能力為基礎，持續拓展高密度、高精度及高可靠度連接器產品，提升研發與製造能力，為全球客戶提供更具競爭力的產品與服務。</p>
     </div>
 
     <!-- 厂区与生产实景 6张 -->
     <div class="gallery-section">
-      <h2 class="section-title">廠區與生產實景</h2>
+      <h2 class="section-title" data-i18n="sec_gallery">廠區與生產實景</h2>
       <div class="gallery-grid">
         <div class="gallery-item">
           <div class="gallery-img-wrap">
             <img src="images/factory-01.jpg" alt="廠區實景">
           </div>
-          <div class="gallery-caption">廠區實景</div>
+          <div class="gallery-caption" data-i18n="cap1">廠區實景</div>
         </div>
         <div class="gallery-item">
           <div class="gallery-img-wrap">
             <img src="images/factory-02.jpg" alt="生產車間">
           </div>
-          <div class="gallery-caption">生產車間</div>
+          <div class="gallery-caption" data-i18n="cap2">生產車間</div>
         </div>
         <div class="gallery-item">
           <div class="gallery-img-wrap">
             <img src="images/factory-03.jpg" alt="精密沖壓製程">
           </div>
-          <div class="gallery-caption">精密沖壓製程</div>
+          <div class="gallery-caption" data-i18n="cap3">精密沖壓製程</div>
         </div>
         <div class="gallery-item">
           <div class="gallery-img-wrap">
             <img src="images/factory-04.jpg" alt="注塑成型製程">
           </div>
-          <div class="gallery-caption">注塑成型製程</div>
+          <div class="gallery-caption" data-i18n="cap4">注塑成型製程</div>
         </div>
         <div class="gallery-item">
           <div class="gallery-img-wrap">
             <img src="images/factory-05.jpg" alt="自動化生產線">
           </div>
-          <div class="gallery-caption">自動化生產線</div>
+          <div class="gallery-caption" data-i18n="cap5">自動化生產線</div>
         </div>
         <div class="gallery-item">
           <div class="gallery-img-wrap">
             <img src="images/factory-06.jpg" alt="自動化生產與CCD 品質檢測包裝">
           </div>
-          <div class="gallery-caption">自動化生產與CCD 品質檢測包裝</div>
+          <div class="gallery-caption" data-i18n="cap6">自動化生產與CCD 品質檢測包裝</div>
         </div>
       </div>
     </div>
 
     <!-- Core Advantages -->
-    <h2 class="section-title">核心競爭優勢</h2>
+    <h2 class="section-title" data-i18n="sec_adv">核心競爭優勢</h2>
     <div class="adv-grid">
       <div class="adv-card">
         <div class="adv-icon">⚙️</div>
-        <h3>精密模具自主開發</h3>
-        <p>擁有高精密的模具加工設備與頂尖工程團隊，實現從模具設計、加工到組裝的全流程自主控管，確保產品高重複精度。</p>
+        <h3 data-i18n="a1_h">精密模具自主開發</h3>
+        <p data-i18n="a1_p">擁有高精密的模具加工設備與頂尖工程團隊，實現從模具設計、加工到組裝的全流程自主控管，確保產品高重複精度。</p>
       </div>
       <div class="adv-card">
         <div class="adv-icon">🤖</div>
-        <h3>自動化高效生產</h3>
-        <p>全面導入自動化插針與組裝設備，結合高精度 CCD 自動光學檢測，嚴格把關 Pin 數平整度與接觸穩定性，產能穩定充足。</p>
+        <h3 data-i18n="a2_h">自動化高效生產</h3>
+        <p data-i18n="a2_p">全面導入自動化插針與組裝設備，結合高精度 CCD 自動光學檢測，嚴格把關 Pin 數平整度與接觸穩定性，產能穩定充足。</p>
       </div>
       <div class="adv-card">
         <div class="adv-icon">🛡️</div>
-        <h3>嚴格品質管理</h3>
-        <p>建立完善的品質管理體系，從進料檢驗（IQC）、製程檢驗（IPQC）到成品出貨檢驗（OQC），實施全程嚴格把關。</p>
+        <h3 data-i18n="a3_h">嚴格品質管理</h3>
+        <p data-i18n="a3_p">建立完善的品質管理體系，從進料檢驗（IQC）、製程檢驗（IPQC）到成品出貨檢驗（OQC），實施全程嚴格把關。</p>
       </div>
       <div class="adv-card">
         <div class="adv-icon">⚡</div>
-        <h3>靈活客製與快速打樣</h3>
-        <p>針對客戶不同的 PCB 佈局與合高需求，提供豐富的端子組合與客製化開模能力，大幅縮短客戶產品研發週期。</p>
+        <h3 data-i18n="a4_h">靈活客製與快速打樣</h3>
+        <p data-i18n="a4_p">針對客戶不同的 PCB 佈局與合高需求，提供豐富的端子組合與客製化開模能力，大幅縮短客戶產品研發週期。</p>
       </div>
     </div>
 
     <!-- Process Timeline -->
-    <h2 class="section-title">嚴謹的研發與生產管控流程</h2>
+    <h2 class="section-title" data-i18n="sec_flow">嚴謹的研發與生產管控流程</h2>
     <div class="timeline">
       <div class="time-item">
         <div class="time-dot"></div>
         <div class="time-content">
-          <h4>1. 需求評估與 2D 圖紙評估</h4>
-          <p>根據客戶的Pin 數、間距與合高需求，進行精準的結構模擬與圖紙確認。</p>
+          <h4 data-i18n="t1_h">1. 需求評估與 2D 圖紙評估</h4>
+          <p data-i18n="t1_p">根據客戶的Pin 數、間距與合高需求，進行精準的結構模擬與圖紙確認。</p>
         </div>
       </div>
       <div class="time-item">
         <div class="time-dot"></div>
         <div class="time-content">
-          <h4>2. 精密模具開發與試模打樣</h4>
-          <p>採用高精度加工設備開發沖壓與注塑模具，快速提供初版樣品供客戶進行 PCB 板級測試。</p>
+          <h4 data-i18n="t2_h">2. 精密模具開發與試模打樣</h4>
+          <p data-i18n="t2_p">採用高精度加工設備開發沖壓與注塑模具，快速提供初版樣品供客戶進行 PCB 板級測試。</p>
         </div>
       </div>
       <div class="time-item">
         <div class="time-dot"></div>
         <div class="time-content">
-          <h4>3. 高速沖壓與精密注塑</h4>
-          <p>採用高品質銅合金與耐高溫工程塑料，經高速沖壓與精密注塑成型，確保端子導電性與塑膠件耐熱性。</p>
+          <h4 data-i18n="t3_h">3. 高速沖壓與精密注塑</h4>
+          <p data-i18n="t3_p">採用高品質銅合金與耐高溫工程塑料，經高速沖壓與精密注塑成型，確保端子導電性與塑膠件耐熱性。</p>
         </div>
       </div>
       <div class="time-item">
         <div class="time-dot"></div>
         <div class="time-content">
-          <h4>4. 自動化組裝與 CCD 全檢</h4>
-          <p>全自動組裝線搭配 CCD 影像檢測系統，100% 檢查腳位共面度（Coplanarity）與外觀缺陷，確保零瑕疵出廠。</p>
+          <h4 data-i18n="t4_h">4. 自動化組裝與 CCD 全檢</h4>
+          <p data-i18n="t4_p">全自動組裝線搭配 CCD 影像檢測系統，100% 檢查腳位共面度（Coplanarity）與外觀缺陷，確保零瑕疵出廠。</p>
         </div>
       </div>
     </div>
@@ -562,46 +606,167 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
-        <p>東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
+        <p data-i18n="footer_desc">東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
       </div>
       <div class="footer-col">
-        <h4>快速導覽</h4>
+        <h4 data-i18n="footer_nav">快速導覽</h4>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="products.html">產品中心</a></li>
-          <li><a href="about.html">關於我們</a></li>
-          <li><a href="contact.html">聯絡我們</a></li>
+          <li><a href="index.html" data-i18n="nav_home">首頁</a></li>
+          <li><a href="products.html" data-i18n="nav_products">產品中心</a></li>
+          <li><a href="about.html" data-i18n="nav_about">關於我們</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">聯絡我們</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>聯絡資訊</h4>
+        <h4 data-i18n="footer_contact">聯絡資訊</h4>
         <ul>
-          <li><a href="tel:076985410081">電話：0769-85410081</a></li>
-          <li><a href="tel:076985410082">電話：0769-85410082</a></li>
-          <li><a href="tel:18929444965">手機 / 微信：18929444965</a></li>
-          <li>地址：廣東省東莞市長安鎮上角區螢光路15號</li>
+          <li><a href="tel:076985410081" data-i18n="footer_tel1">電話：0769-85410081</a></li>
+          <li><a href="tel:076985410082" data-i18n="footer_tel2">電話：0769-85410082</a></li>
+          <li><a href="tel:18929444965" data-i18n="footer_mobile">手機 / 微信：18929444965</a></li>
+          <li data-i18n="footer_addr">地址：廣東省東莞市長安鎮上角區螢光路15號</li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom" data-i18n="footer_copy">
       © 2026 東莞市嘉訊科電子科技有限公司 版權所有
     </div>
   </footer>
 
-  <script>
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.getElementById('nav-links');
-    mobileMenu.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-      navLinks.classList.toggle('active');
+  
+<script>
+window.JXK_PAGE_I18N = {
+"zh-Hant":{
+"nav_home":"首頁","nav_products":"產品中心","nav_about":"關於我們","nav_contact":"聯絡我們",
+"hero_h1":"聚焦高精密 BTB 連接器研發與製造",
+"hero_p":"東莞市嘉訊科電子科技有限公司，致力於為全球電子製造業提供超高傳輸效率、高可靠性的微型化板對板連接解決方案。",
+"m1":"精密模具與衝壓精度","m2":"主力微距 BTB 間距規格","m3":"全自動化 CCD 光學檢測","m4":"快速工程樣品響應",
+"sec_intro":"公司簡介","sec_gallery":"廠區與生產實景","sec_adv":"核心競爭優勢","sec_flow":"嚴謹的研發與生產管控流程",
+"intro1":"<strong>東莞市嘉訊科電子科技有限公司</strong>位於電子製造重鎮廣東省東莞市長安鎮，深耕精密電子連接器產業超過 <strong>25 年台資企業</strong>。公司前身為「嘉普」，歷經多年產業發展與技術累積，現以「嘉訊科」品牌持續投入電子連接器的研發、製造與銷售，憑藉長期累積的製造經驗與完整的生產能力，為客戶提供高品質、高可靠度的連接器產品與專業服務。",
+"intro2":"嘉訊科專注於 <strong>BTB（Board-to-Board，板對板）連接器</strong> 的研發與製造，主力產品涵蓋單槽、雙槽及 <strong>0.5mm、0.8mm 間距</strong> 等高密度板對板連接器，產品廣泛應用於智慧終端、工業控制、消費電子、車載電子及通訊設備等領域。",
+"intro3":"公司具備完整的<strong>自主製造能力</strong>，從精密金屬端子、塑膠射出成型，到連接器成品組裝，主要生產製程均由公司自主完成。透過端子沖壓、塑膠成型、產品組裝及自動化生產等完整製程，公司能有效掌握產品品質與生產效率，並快速配合客戶進行產品開發、規格調整及量產需求。",
+"intro4":"自嘉普時期開始，公司已累積超過 <strong>25 年的連接器製造經驗</strong>，在產品結構、生產工藝、模具配合、材料應用及量產管理等方面建立深厚的技術基礎。面對電子產品輕薄化、高密度及高可靠度的發展趨勢，嘉訊科持續投入自動化設備、製程改善與產品技術開發，不斷提升產品品質與製造效率。",
+"intro5":"嘉訊科始終以<strong>「高精度、高穩定、高效率、快速響應」</strong>為核心，從產品設計、生產製造到品質管理，嚴格控制各項製程品質，致力於提供穩定可靠的電子連接器產品，並以專業技術、完整製造能力及快速服務，與客戶建立長期穩定的合作關係。",
+"intro6":"未來，嘉訊科將持續深耕精密電子連接器領域，以超過 25 年的產業經驗與自主製造能力為基礎，持續拓展高密度、高精度及高可靠度連接器產品，提升研發與製造能力，為全球客戶提供更具競爭力的產品與服務。",
+"cap1":"廠區實景","cap2":"生產車間","cap3":"精密沖壓製程","cap4":"注塑成型製程","cap5":"自動化生產線","cap6":"自動化生產與CCD 品質檢測包裝",
+"a1_h":"精密模具自主開發","a1_p":"擁有高精密的模具加工設備與頂尖工程團隊，實現從模具設計、加工到組裝的全流程自主控管，確保產品高重複精度。",
+"a2_h":"自動化高效生產","a2_p":"全面導入自動化插針與組裝設備，結合高精度 CCD 自動光學檢測，嚴格把關 Pin 數平整度與接觸穩定性，產能穩定充足。",
+"a3_h":"嚴格品質管理","a3_p":"建立完善的品質管理體系，從進料檢驗（IQC）、製程檢驗（IPQC）到成品出貨檢驗（OQC），實施全程嚴格把關。",
+"a4_h":"靈活客製與快速打樣","a4_p":"針對客戶不同的 PCB 佈局與合高需求，提供豐富的端子組合與客製化開模能力，大幅縮短客戶產品研發週期。",
+"t1_h":"1. 需求評估與 2D 圖紙評估","t1_p":"根據客戶的Pin 數、間距與合高需求，進行精準的結構模擬與圖紙確認。",
+"t2_h":"2. 精密模具開發與試模打樣","t2_p":"採用高精度加工設備開發沖壓與注塑模具，快速提供初版樣品供客戶進行 PCB 板級測試。",
+"t3_h":"3. 高速沖壓與精密注塑","t3_p":"採用高品質銅合金與耐高溫工程塑料，經高速沖壓與精密注塑成型，確保端子導電性與塑膠件耐熱性。",
+"t4_h":"4. 自動化組裝與 CCD 全檢","t4_p":"全自動組裝線搭配 CCD 影像檢測系統，100% 檢查腳位共面度（Coplanarity）與外觀缺陷，確保零瑕疵出廠。",
+"footer_desc":"東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。",
+"footer_nav":"快速導覽","footer_contact":"聯絡資訊","footer_tel1":"電話：0769-85410081","footer_tel2":"電話：0769-85410082",
+"footer_mobile":"手機 / 微信：18929444965","footer_addr":"地址：廣東省東莞市長安鎮上角區螢光路15號",
+"footer_copy":"© 2026 東莞市嘉訊科電子科技有限公司 版權所有"
+},
+"zh-Hans":{
+"nav_home":"首页","nav_products":"产品中心","nav_about":"关于我们","nav_contact":"联系我们",
+"hero_h1":"聚焦高精密 BTB 连接器研发与制造",
+"hero_p":"东莞市嘉讯科电子科技有限公司，致力于为全球电子制造业提供超高传输效率、高可靠性的微型化板对板连接解决方案。",
+"m1":"精密模具与冲压精度","m2":"主力微距 BTB 间距规格","m3":"全自动化 CCD 光学检测","m4":"快速工程样品响应",
+"sec_intro":"公司简介","sec_gallery":"厂区与生产实景","sec_adv":"核心竞争优势","sec_flow":"严谨的研发与生产管控流程",
+"intro1":"<strong>东莞市嘉讯科电子科技有限公司</strong>位于电子制造重镇广东省东莞市长安镇，深耕精密电子连接器产业超过 <strong>25 年台资企业</strong>。公司前身为「嘉普」，历经多年产业发展与技术累积，现以「嘉讯科」品牌持续投入电子连接器的研发、制造与销售，凭借长期累积的制造经验与完整的生产能力，为客户提供高品质、高可靠度的连接器产品与专业服务。",
+"intro2":"嘉讯科专注于 <strong>BTB（Board-to-Board，板对板）连接器</strong> 的研发与制造，主力产品涵盖单槽、双槽及 <strong>0.5mm、0.8mm 间距</strong> 等高密度板对板连接器，产品广泛应用于智慧终端、工业控制、消费电子、车载电子及通讯设备等领域。",
+"intro3":"公司具备完整的<strong>自主制造能力</strong>，从精密金属端子、塑胶射出成型，到连接器成品组装，主要生产制程均由公司自主完成。通过端子冲压、塑胶成型、产品组装及自动化生产等完整制程，公司能有效掌握产品品质与生产效率，并快速配合客户进行产品开发、规格调整及量产需求。",
+"intro4":"自嘉普时期开始，公司已累积超过 <strong>25 年的连接器制造经验</strong>，在产品结构、生产工艺、模具配合、材料应用及量产管理等方面建立深厚的技术基础。面对电子产品轻薄化、高密度及高可靠度的发展趋势，嘉讯科持续投入自动化设备、制程改善与产品技术开发，不断提升产品品质与制造效率。",
+"intro5":"嘉讯科始终以<strong>「高精度、高稳定、高效率、快速响应」</strong>为核心，从产品设计、生产制造到品质管理，严格控制各项制程品质，致力于提供稳定可靠的电子连接器产品，并以专业技术、完整制造能力及快速服务，与客户建立长期稳定的合作关系。",
+"intro6":"未来，嘉讯科将持续深耕精密电子连接器领域，以超过 25 年的产业经验与自主制造能力为基础，持续拓展高密度、高精度及高可靠度连接器产品，提升研发与制造能力，为全球客户提供更具竞争力的产品与服务。",
+"cap1":"厂区实景","cap2":"生产车间","cap3":"精密冲压制程","cap4":"注塑成型制程","cap5":"自动化生产线","cap6":"自动化生产与CCD 品质检测包装",
+"a1_h":"精密模具自主开发","a1_p":"拥有高精密的模具加工设备与顶尖工程团队，实现从模具设计、加工到组装的全流程自主控管，确保产品高重复精度。",
+"a2_h":"自动化高效生产","a2_p":"全面导入自动化插针与组装设备，结合高精度 CCD 自动光学检测，严格把关 Pin 数平整度与接触稳定性，产能稳定充足。",
+"a3_h":"严格品质管理","a3_p":"建立完善的品质管理体系，从进料检验（IQC）、制程检验（IPQC）到成品出货检验（OQC），实施全程严格把关。",
+"a4_h":"灵活客制与快速打样","a4_p":"针对客户不同的 PCB 布局与合高需求，提供丰富的端子组合与客制化开模能力，大幅缩短客户产品研发周期。",
+"t1_h":"1. 需求评估与 2D 图纸评估","t1_p":"根据客户的Pin 数、间距与合高需求，进行精准的结构模拟与图纸确认。",
+"t2_h":"2. 精密模具开发与试模打样","t2_p":"采用高精度加工设备开发冲压与注塑模具，快速提供初版样品供客户进行 PCB 板级测试。",
+"t3_h":"3. 高速冲压与精密注塑","t3_p":"采用高品质铜合金与耐高温工程塑料，经高速冲压与精密注塑成型，确保端子导电性与塑胶件耐热性。",
+"t4_h":"4. 自动化组装与 CCD 全检","t4_p":"全自动组装线搭配 CCD 影像检测系统，100% 检查脚位共面度（Coplanarity）与外观缺陷，确保零瑕疵出厂。",
+"footer_desc":"东莞市嘉讯科电子科技有限公司，深耕精密 BTB 板对板连接器超过 25 年，专注高密度、高精度与高可靠度产品研发制造。",
+"footer_nav":"快速导览","footer_contact":"联系信息","footer_tel1":"电话：0769-85410081","footer_tel2":"电话：0769-85410082",
+"footer_mobile":"手机 / 微信：18929444965","footer_addr":"地址：广东省东莞市长安镇上角区荧光路15号",
+"footer_copy":"© 2026 东莞市嘉讯科电子科技有限公司 版权所有"
+},
+"en":{
+"nav_home":"Home","nav_products":"Products","nav_about":"About","nav_contact":"Contact",
+"hero_h1":"Fine-Pitch BTB Connector Design & Manufacturing",
+"hero_p":"Dongguan Jiaxunke Electronics Technology Co., Ltd. supplies high-reliability fine-pitch board-to-board (BTB) interconnect solutions for global electronics OEMs and ODMs.",
+"m1":"Precision tooling & stamping","m2":"0.5 / 0.8 mm fine-pitch BTB","m3":"100% automated optical inspection","m4":"24-hour sample response",
+"sec_intro":"About Us","sec_gallery":"Factory & Production Floor","sec_adv":"Core Competencies","sec_flow":"Development & Production Flow",
+"intro1":"<strong>Dongguan Jiaxunke Electronics Technology Co., Ltd.</strong> is based in Changan, Dongguan — a major electronics manufacturing hub. With more than <strong>25 years</strong> as a Taiwan-invested interconnect manufacturer (formerly “Jiapu”), we design, produce, and supply high-reliability connector products under the Jiaxunke brand.",
+"intro2":"We specialize in <strong>board-to-board (BTB) connectors</strong>, including single-row and dual-row products at <strong>0.5 mm and 0.8 mm pitch</strong>. Applications include smart terminals, industrial controls, consumer electronics, automotive electronics, and communications equipment.",
+"intro3":"We maintain <strong>in-house manufacturing</strong> from precision metal terminals and plastic injection molding to final connector assembly. Vertical control of stamping, molding, assembly, and automation supports consistent quality and fast response to development, specification changes, and volume production.",
+"intro4":"Building on more than <strong>25 years of connector manufacturing experience</strong> since the Jiapu era, we continue to invest in automation, process improvement, and product technology to meet thinner, denser, and higher-reliability electronics trends.",
+"intro5":"Guided by <strong>precision, stability, efficiency, and fast response</strong>, we control quality from design through production and inspection, and partner with customers through engineering support and reliable delivery.",
+"intro6":"Looking ahead, Jiaxunke will continue to expand high-density, high-precision, high-reliability interconnect products and strengthen R&amp;D and manufacturing capability for global customers.",
+"cap1":"Factory exterior","cap2":"Production workshop","cap3":"Precision stamping","cap4":"Injection molding","cap5":"Automated assembly line","cap6":"Automated production, AOI & packaging",
+"a1_h":"In-House Precision Tooling","a1_p":"High-precision tooling equipment and engineering team cover design, machining, and assembly to maintain tight process capability and repeatability.",
+"a2_h":"Automated Assembly","a2_p":"Automated pin insertion and assembly with high-accuracy AOI to control pin coplanarity and contact stability, with stable capacity.",
+"a3_h":"Full-Process Quality Control","a3_p":"IQC, IPQC, and OQC across incoming materials, in-process checks, and final inspection before shipment.",
+"a4_h":"Customization & Fast Sampling","a4_p":"Flexible terminal combinations and custom tooling for different PCB layouts and stack heights to shorten customer development cycles.",
+"t1_h":"1. Requirement & Drawing Review","t1_p":"Structural simulation and drawing confirmation based on pin count, pitch, and stack-height requirements.",
+"t2_h":"2. Tooling & Prototyping","t2_p":"High-precision machining for stamping and mold tooling, with rapid first samples for PCB-level evaluation.",
+"t3_h":"3. Stamping & Injection Molding","t3_p":"High-quality copper alloys and high-temperature engineering plastics processed by high-speed stamping and precision molding.",
+"t4_h":"4. Automated Assembly & 100% AOI","t4_p":"Automated assembly with CCD inspection for 100% coplanarity and cosmetic defect screening before shipment.",
+"footer_desc":"Dongguan Jiaxunke Electronics Technology Co., Ltd. — 25+ years specializing in precision BTB board-to-board connectors.",
+"footer_nav":"Quick Links","footer_contact":"Contact","footer_tel1":"Tel: 0769-85410081","footer_tel2":"Tel: 0769-85410082",
+"footer_mobile":"Mobile / WeChat: 18929444965","footer_addr":"Address: No.15 Yingguang Rd, Shangjiao, Changan, Dongguan, China",
+"footer_copy":"© 2026 Dongguan Jiaxunke Electronics Technology Co., Ltd. All rights reserved"
+}
+};
+
+(function(){
+  var LANG_KEY = 'jxk_lang';
+  function getLang(){
+    try { return localStorage.getItem(LANG_KEY) || 'zh-Hant'; } catch(e){ return 'zh-Hant'; }
+  }
+  function setLang(lang){
+    try { localStorage.setItem(LANG_KEY, lang); } catch(e){}
+  }
+  function applyI18n(){
+    var dict = window.JXK_PAGE_I18N;
+    var lang = getLang();
+    if(!dict[lang]) lang = 'zh-Hant';
+    var pack = dict[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(pack[key] != null) el.innerHTML = pack[key];
     });
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        navLinks.classList.remove('active');
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      if(btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+    document.documentElement.lang = (lang === 'en' ? 'en' : (lang === 'zh-Hans' ? 'zh-CN' : 'zh-Hant'));
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var switcher = document.getElementById('lang-switch');
+    if(switcher){
+      switcher.addEventListener('click', function(e){
+        var btn = e.target.closest('.lang-btn');
+        if(!btn) return;
+        setLang(btn.getAttribute('data-lang'));
+        applyI18n();
       });
-    });
-  </script>
+    }
+    applyI18n();
+
+    var mobileMenu = document.getElementById('mobile-menu');
+    var navLinks = document.getElementById('nav-links');
+    if(mobileMenu && navLinks){
+      mobileMenu.addEventListener('click', function(){
+        mobileMenu.classList.toggle('open');
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(function(link){
+        link.addEventListener('click', function(){
+          mobileMenu.classList.remove('open');
+          navLinks.classList.remove('active');
+        });
+      });
+    }
+  });
+})();
+</script>
 
 </body>
 </html>

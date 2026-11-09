@@ -101,6 +101,41 @@
     .menu-toggle.open span:nth-child(2) { opacity: 0; }
     .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+
+    /* Language switcher */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-left: auto;
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.55rem;
+      cursor: pointer;
+      font-family: inherit;
+      line-height: 1.2;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover { color: var(--accent); }
+    .lang-btn.active {
+      background: rgba(0, 242, 254, 0.15);
+      color: var(--accent);
+    }
+
     /* Banner */
     .page-banner {
       padding: 7.8rem 2rem 2.8rem;
@@ -594,7 +629,9 @@
       .category-sidebar { position: static; }
     }
     @media (max-width: 768px) {
-      .menu-toggle { display: flex; }
+      .menu-toggle { display: flex; order: 3; z-index: 1003; }
+      .nav-right { margin-left: auto; margin-right: 4px; order: 2; }
+      .logo { order: 1; }
       .nav-links {
         position: fixed;
         top: 0;
@@ -609,6 +646,7 @@
         transition: right 0.3s ease;
         border-left: 1px solid var(--border);
         gap: 0;
+        z-index: 1002;
       }
       .nav-links.active { right: 0; }
       .nav-links li { width: 100%; }
@@ -699,57 +737,64 @@
 </head>
 <body>
 
-  <header>
+    <header>
     <div class="nav-container">
       <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" data-i18n="nav_home">首頁</a></li>
+          <li><a href="products.html" class="active" data-i18n="nav_products">產品中心</a></li>
+          <li><a href="about.html" data-i18n="nav_about">關於我們</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">聯絡我們</a></li>
+        </ul>
+        <div class="lang-switch" id="lang-switch" aria-label="Language">
+          <button type="button" class="lang-btn active" data-lang="zh-Hant">繁</button>
+          <button type="button" class="lang-btn" data-lang="zh-Hans">簡</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
       <button class="menu-toggle" id="mobile-menu" aria-label="開啟選單">
         <span></span><span></span><span></span>
       </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html">首頁</a></li>
-        <li><a href="products.html" class="active">產品中心</a></li>
-        <li><a href="about.html">關於我們</a></li>
-        <li><a href="contact.html">聯絡我們</a></li>
-      </ul>
     </div>
   </header>
 
   <div class="page-banner">
-    <h1>BTB 板對板與連接器產品目錄</h1>
-    <p>東莞市嘉訊科電子 — 精密單槽 / 雙槽板對板與 SATA 連接器研發製造</p>
+    <h1 data-i18n="banner_h">BTB 板對板與連接器產品目錄</h1>
+    <p data-i18n="banner_p">東莞市嘉訊科電子 — 精密單槽 / 雙槽板對板與 SATA 連接器研發製造</p>
   </div>
 
   <div class="catalog-layout">
     <!-- Sidebar -->
     <aside class="category-sidebar">
-      <div class="sidebar-title">📂 產品分類目錄</div>
+      <div class="sidebar-title"><span data-i18n="cat_title">📂 產品分類目錄</span></div>
       <ul class="category-list">
         <li class="category-item active" onclick="filterCategory('all', this)">
-          <span>全部產品展示</span>
+          <span data-i18n="cat_all">全部產品展示</span>
           <span class="category-count" data-target="all">11</span>
         </li>
         <li class="category-item" onclick="filterCategory('double-05', this)">
-          <span>雙槽 0.5 BTB 系列</span>
+          <span data-i18n="cat_d05">雙槽 0.5 BTB 系列</span>
           <span class="category-count" data-target="double-05">3</span>
         </li>
         <li class="category-item" onclick="filterCategory('double-08', this)">
-          <span>雙槽 0.8 BTB 系列</span>
+          <span data-i18n="cat_d08">雙槽 0.8 BTB 系列</span>
           <span class="category-count" data-target="double-08">1</span>
         </li>
         <li class="category-item" onclick="filterCategory('single-05', this)">
-          <span>單槽 0.5 BTB 系列</span>
+          <span data-i18n="cat_s05">單槽 0.5 BTB 系列</span>
           <span class="category-count" data-target="single-05">2</span>
         </li>
         <li class="category-item" onclick="filterCategory('single-08', this)">
-          <span>單槽 0.8 BTB 系列</span>
+          <span data-i18n="cat_s08">單槽 0.8 BTB 系列</span>
           <span class="category-count" data-target="single-08">3</span>
         </li>
         <li class="category-item" onclick="filterCategory('sata', this)">
-          <span>SATA 連接器系列</span>
+          <span data-i18n="cat_sata">SATA 連接器系列</span>
           <span class="category-count" data-target="sata">1</span>
         </li>
         <li class="category-item" onclick="filterCategory('0.8', this)">
-          <span>0.8 BTB 雙排系列</span>
+          <span data-i18n="cat_08">0.8 BTB 雙排系列</span>
           <span class="category-count" data-target="0.8">1</span>
         </li>
       </ul>
@@ -758,7 +803,7 @@
     <!-- Product List -->
     <main>
       <div class="content-header">
-        <h2 id="current-category-name">全部產品展示</h2>
+        <h2 id="current-category-name" data-i18n="cat_all">全部產品展示</h2>
         <span class="product-counter" id="visible-counter">共顯示 11 個產品</span>
       </div>
 
@@ -767,8 +812,8 @@
         <!-- 雙槽 0.5 -->
         <div class="product-card" data-cat="double-05">
           <div>
-            <span class="product-tag">雙槽 0.5 BTB</span>
-            <h3>雙槽 0.5 BTB 連接器系列</h3>
+            <span class="product-tag" data-i18n="tag_d05">雙槽 0.5 BTB</span>
+            <h3 data-i18n="h3_d05_series">雙槽 0.5 BTB 連接器系列</h3>
             <div class="product-img-container">
               <img src="images/double-05-h8.5.jpg" alt="雙槽 0.5 BTB 最高合高 H8.5"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -777,19 +822,19 @@
               </div>
             </div>
             <ul class="spec-list">
-              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
-              <li><strong>公座高度：</strong> <span class="spec-highlight">H0.8 /H1.0 /H1.3 / H2.0 / H4.0</span></li>
-              <li><strong>母座高度：</strong> <span class="spec-highlight">H2.2 /H3.0 / H3.5 / H4.0 / H4.5</span></li>
-              <li><strong>最高合高：</strong> <span class="spec-highlight">最高可達 H8.5</span></li>
+              <li><strong data-i18n="lbl_pin">Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
+              <li><strong data-i18n="lbl_header">公座高度：</strong> <span class="spec-highlight">H0.8 /H1.0 /H1.3 / H2.0 / H4.0</span></li>
+              <li><strong data-i18n="lbl_receptacle">母座高度：</strong> <span class="spec-highlight">H2.2 /H3.0 / H3.5 / H4.0 / H4.5</span></li>
+              <li><strong data-i18n="lbl_stack_max">最高合高：</strong> <span class="spec-highlight" data-i18n="val_upto_h85">最高可達 H8.5</span></li>
             </ul>
           </div>
-          <a href="cad/double-05-h8.5.pdf" class="btn" target="_blank" title="下載圖紙：雙槽 0.5 BTB（最高合高 H8.5）">產品圖紙</a>
+          <a href="cad/double-05-h8.5.pdf" class="btn" target="_blank" title="下載圖紙：雙槽 0.5 BTB（最高合高 H8.5）" data-i18n="btn_dwg">產品圖紙</a>
         </div>
 
         <div class="product-card" data-cat="double-05">
           <div>
-            <span class="product-tag">雙槽 0.5 BTB</span>
-            <h3>雙槽 0.5 BTB（單獨規格）</h3>
+            <span class="product-tag" data-i18n="tag_d05">雙槽 0.5 BTB</span>
+            <h3 data-i18n="h3_d05_single">雙槽 0.5 BTB（單獨規格）</h3>
             <div class="product-img-container">
               <img src="images/double-05-h8.0.jpg" alt="雙槽 0.5 BTB 單獨規格"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -798,20 +843,20 @@
               </div>
             </div>
             <ul class="spec-list">
-              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×30 Pin</span></li>
-              <li><strong>公座高度：</strong> <span class="spec-highlight">H3.5</span></li>
-              <li><strong>母座高度：</strong> <span class="spec-highlight">H3.0 / H3.5 / H4.0 / H4.5</span></li>
-              <li><strong>最高合高：</strong> <span class="spec-highlight">最高可達 H8.0</span></li>
+              <li><strong data-i18n="lbl_pin">Pin 數：</strong> <span class="spec-highlight">2×30 Pin</span></li>
+              <li><strong data-i18n="lbl_header">公座高度：</strong> <span class="spec-highlight">H3.5</span></li>
+              <li><strong data-i18n="lbl_receptacle">母座高度：</strong> <span class="spec-highlight">H3.0 / H3.5 / H4.0 / H4.5</span></li>
+              <li><strong data-i18n="lbl_stack_max">最高合高：</strong> <span class="spec-highlight" data-i18n="val_upto_h80">最高可達 H8.0</span></li>
             </ul>
           </div>
-          <a href="cad/double-05-h8.0.pdf" class="btn" target="_blank" title="下載圖紙：雙槽 0.5 BTB（最高合高 H8.0）">產品圖紙</a>
+          <a href="cad/double-05-h8.0.pdf" class="btn" target="_blank" title="下載圖紙：雙槽 0.5 BTB（最高合高 H8.0）" data-i18n="btn_dwg">產品圖紙</a>
         </div>
 
         <!-- 雙槽 0.8 -->
         <div class="product-card" data-cat="double-08">
           <div>
-            <span class="product-tag">雙槽 0.8 BTB</span>
-            <h3>雙槽 0.8 BTB 連接器系列</h3>
+            <span class="product-tag" data-i18n="tag_d08">雙槽 0.8 BTB</span>
+            <h3 data-i18n="h3_d08_series">雙槽 0.8 BTB 連接器系列</h3>
             <div class="product-img-container">
               <img src="images/double-08-series.jpg" alt="雙槽 0.8 BTB 連接器系列"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -820,20 +865,20 @@
               </div>
             </div>
             <ul class="spec-list">
-              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
-              <li><strong>公座高度：</strong> <span class="spec-highlight">H1.0 / H2.0 / H4.0</span></li>
-              <li><strong>母座高度：</strong> <span class="spec-highlight">H3.0 / H3.5 / H4.0 / H4.5</span></li>
-              <li><strong>最高合高：</strong> <span class="spec-highlight">最高可達 H8.5</span></li>
+              <li><strong data-i18n="lbl_pin">Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
+              <li><strong data-i18n="lbl_header">公座高度：</strong> <span class="spec-highlight">H1.0 / H2.0 / H4.0</span></li>
+              <li><strong data-i18n="lbl_receptacle">母座高度：</strong> <span class="spec-highlight">H3.0 / H3.5 / H4.0 / H4.5</span></li>
+              <li><strong data-i18n="lbl_stack_max">最高合高：</strong> <span class="spec-highlight" data-i18n="val_upto_h85">最高可達 H8.5</span></li>
             </ul>
           </div>
-          <a href="cad/double-08-series.pdf" class="btn" target="_blank" title="下載圖紙：雙槽 0.8 BTB 連接器系列">產品圖紙</a>
+          <a href="cad/double-08-series.pdf" class="btn" target="_blank" title="下載圖紙：雙槽 0.8 BTB 連接器系列" data-i18n="btn_dwg">產品圖紙</a>
         </div>
 
         <!-- 單槽 0.5 -->
         <div class="product-card" data-cat="single-05">
           <div>
-            <span class="product-tag">單槽 0.5 BTB</span>
-            <h3>單槽 0.5 BTB（2×5~2×40 Pin 多合高）</h3>
+            <span class="product-tag" data-i18n="tag_s05">單槽 0.5 BTB</span>
+            <h3 data-i18n="h3_s05_multi">單槽 0.5 BTB（2×5~2×40 Pin 多合高）</h3>
             <div class="product-img-container">
               <img src="images/single-05-multi-height.jpg" alt="單槽 0.5 BTB 多合高"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -842,19 +887,19 @@
               </div>
             </div>
             <ul class="spec-list">
-              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×5 / 10 / 15 / 20 / 25 / 30 / 40</span></li>
-              <li><strong>合高 3.0：</strong> 公 H2.2 + 母 H2.3</li>
-              <li><strong>合高 5.0：</strong> 公 H2.7 + 母 H4.3</li>
-              <li><strong>合高 3.5：</strong> 公 H2.7 + 母 H2.8</li>
+              <li><strong data-i18n="lbl_pin">Pin 數：</strong> <span class="spec-highlight">2×5 / 10 / 15 / 20 / 25 / 30 / 40</span></li>
+              <li><strong data-i18n="lbl_stack30">合高 3.0：</strong> <span data-i18n="val_m22_f23">公 H2.2 + 母 H2.3</span></li>
+              <li><strong data-i18n="lbl_stack50">合高 5.0：</strong> <span data-i18n="val_m27_f43">公 H2.7 + 母 H4.3</span></li>
+              <li><strong data-i18n="lbl_stack35">合高 3.5：</strong> <span data-i18n="val_m27_f28">公 H2.7 + 母 H2.8</span></li>
             </ul>
           </div>
-          <a href="cad/single-05-multi-height.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.5 BTB（2×5~2×40 Pin 多合高）">產品圖紙</a>
+          <a href="cad/single-05-multi-height.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.5 BTB（2×5~2×40 Pin 多合高）" data-i18n="btn_dwg">產品圖紙</a>
         </div>
 
         <div class="product-card" data-cat="single-05">
           <div>
-            <span class="product-tag">單槽 0.5 BTB</span>
-            <h3>單槽 0.5 BTB 2×12 Pin（合高 3.0）</h3>
+            <span class="product-tag" data-i18n="tag_s05">單槽 0.5 BTB</span>
+            <h3 data-i18n="h3_s05_2x12">單槽 0.5 BTB 2×12 Pin（合高 3.0）</h3>
             <div class="product-img-container">
               <img src="images/single-05-2x12.jpg" alt="單槽 0.5 BTB 2×12 Pin"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -863,20 +908,20 @@
               </div>
             </div>
             <ul class="spec-list">
-              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×12 Pin</span></li>
-              <li><strong>公座高度：</strong> <span class="spec-highlight">H1.28</span></li>
-              <li><strong>母座高度：</strong> <span class="spec-highlight">H1.85</span></li>
-              <li><strong>組合合高：</strong> <span class="spec-highlight">H3.0</span></li>
+              <li><strong data-i18n="lbl_pin">Pin 數：</strong> <span class="spec-highlight">2×12 Pin</span></li>
+              <li><strong data-i18n="lbl_header">公座高度：</strong> <span class="spec-highlight">H1.28</span></li>
+              <li><strong data-i18n="lbl_receptacle">母座高度：</strong> <span class="spec-highlight">H1.85</span></li>
+              <li><strong data-i18n="lbl_stack">組合合高：</strong> <span class="spec-highlight">H3.0</span></li>
             </ul>
           </div>
-          <a href="cad/single-05-2x12.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.5 BTB 2×12 Pin">產品圖紙</a>
+          <a href="cad/single-05-2x12.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.5 BTB 2×12 Pin" data-i18n="btn_dwg">產品圖紙</a>
         </div>
 
         <!-- 單槽 0.8 -->
         <div class="product-card" data-cat="single-08">
           <div>
-            <span class="product-tag">單槽 0.8 BTB</span>
-            <h3>單槽 0.8 BTB（2×20~2×60 Pin 合高 5.0）</h3>
+            <span class="product-tag" data-i18n="tag_s08">單槽 0.8 BTB</span>
+            <h3 data-i18n="h3_s08_multi">單槽 0.8 BTB（2×20~2×60 Pin 合高 5.0）</h3>
             <div class="product-img-container">
               <img src="images/single-08-2x20-60.jpg" alt="單槽 0.8 BTB 2×20~2×60 Pin"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -885,19 +930,19 @@
               </div>
             </div>
             <ul class="spec-list">
-              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×20 / 30 / 40 / 50 / 60 Pin</span></li>
-              <li><strong>公座高度：</strong> <span class="spec-highlight">H4.6</span></li>
-              <li><strong>母座高度：</strong> <span class="spec-highlight">H3.8</span></li>
-              <li><strong>組合合高：</strong> <span class="spec-highlight">H5.0</span></li>
+              <li><strong data-i18n="lbl_pin">Pin 數：</strong> <span class="spec-highlight">2×20 / 30 / 40 / 50 / 60 Pin</span></li>
+              <li><strong data-i18n="lbl_header">公座高度：</strong> <span class="spec-highlight">H4.6</span></li>
+              <li><strong data-i18n="lbl_receptacle">母座高度：</strong> <span class="spec-highlight">H3.8</span></li>
+              <li><strong data-i18n="lbl_stack">組合合高：</strong> <span class="spec-highlight">H5.0</span></li>
             </ul>
           </div>
-          <a href="cad/single-08-2x20-60.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.8 BTB（2×20~2×60 Pin）">產品圖紙</a>
+          <a href="cad/single-08-2x20-60.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.8 BTB（2×20~2×60 Pin）" data-i18n="btn_dwg">產品圖紙</a>
         </div>
 
         <div class="product-card" data-cat="single-08">
           <div>
-            <span class="product-tag">單槽 0.8 BTB</span>
-            <h3>單槽 0.8 BTB 2×50 Pin（合高 5.0）</h3>
+            <span class="product-tag" data-i18n="tag_s08">單槽 0.8 BTB</span>
+            <h3 data-i18n="h3_s08_2x50">單槽 0.8 BTB 2×50 Pin（合高 5.0）</h3>
             <div class="product-img-container">
               <img src="images/single-08-2x50.jpg" alt="單槽 0.8 BTB 2×50 Pin"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -906,19 +951,19 @@
               </div>
             </div>
             <ul class="spec-list">
-              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×50 Pin</span></li>
-              <li><strong>公座高度：</strong> <span class="spec-highlight">H3.55</span></li>
-              <li><strong>母座高度：</strong> <span class="spec-highlight">H4.2</span></li>
-              <li><strong>組合合高：</strong> <span class="spec-highlight">H5.0</span></li>
+              <li><strong data-i18n="lbl_pin">Pin 數：</strong> <span class="spec-highlight">2×50 Pin</span></li>
+              <li><strong data-i18n="lbl_header">公座高度：</strong> <span class="spec-highlight">H3.55</span></li>
+              <li><strong data-i18n="lbl_receptacle">母座高度：</strong> <span class="spec-highlight">H4.2</span></li>
+              <li><strong data-i18n="lbl_stack">組合合高：</strong> <span class="spec-highlight">H5.0</span></li>
             </ul>
           </div>
-          <a href="cad/single-08-2x50.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.8 BTB 2×50 Pin">產品圖紙</a>
+          <a href="cad/single-08-2x50.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.8 BTB 2×50 Pin" data-i18n="btn_dwg">產品圖紙</a>
         </div>
 
         <div class="product-card" data-cat="single-08">
           <div>
-            <span class="product-tag">單槽 0.8 BTB</span>
-            <h3>單槽 0.8 BTB 2×6 Pin（合高 7.0）</h3>
+            <span class="product-tag" data-i18n="tag_s08">單槽 0.8 BTB</span>
+            <h3 data-i18n="h3_s08_2x6">單槽 0.8 BTB 2×6 Pin（合高 7.0）</h3>
             <div class="product-img-container">
               <img src="images/single-08-2x6.jpg" alt="單槽 0.8 BTB 2×6 Pin"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -927,20 +972,20 @@
               </div>
             </div>
             <ul class="spec-list">
-              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×6 Pin</span></li>
-              <li><strong>公座高度：</strong> <span class="spec-highlight">H3.55</span></li>
-              <li><strong>母座高度：</strong> <span class="spec-highlight">H6.2</span></li>
-              <li><strong>組合合高：</strong> <span class="spec-highlight">H7.0</span></li>
+              <li><strong data-i18n="lbl_pin">Pin 數：</strong> <span class="spec-highlight">2×6 Pin</span></li>
+              <li><strong data-i18n="lbl_header">公座高度：</strong> <span class="spec-highlight">H3.55</span></li>
+              <li><strong data-i18n="lbl_receptacle">母座高度：</strong> <span class="spec-highlight">H6.2</span></li>
+              <li><strong data-i18n="lbl_stack">組合合高：</strong> <span class="spec-highlight">H7.0</span></li>
             </ul>
           </div>
-          <a href="cad/single-08-2x6.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.8 BTB 2×6 Pin">產品圖紙</a>
+          <a href="cad/single-08-2x6.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.8 BTB 2×6 Pin" data-i18n="btn_dwg">產品圖紙</a>
         </div>
 
         <!-- SATA -->
         <div class="product-card" data-cat="sata">
           <div>
-            <span class="product-tag">SATA 系列</span>
-            <h3>SATA 7+6 DIP 母座</h3>
+            <span class="product-tag" data-i18n="tag_sata">SATA 系列</span>
+            <h3 data-i18n="h3_sata">SATA 7+6 DIP 母座</h3>
             <div class="product-img-container">
               <img src="images/sata-7-6-dip.jpg" alt="SATA 7+6 DIP 母座"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -949,20 +994,20 @@
               </div>
             </div>
             <ul class="spec-list">
-              <li><strong>針腳規格：</strong> <span class="spec-highlight">SATA 7+6 Pin</span></li>
-              <li><strong>安裝方式：</strong> <span class="spec-highlight">DIP 直插式母座</span></li>
-              <li><strong>高度規格：</strong> <span class="spec-highlight">H7.2</span></li>
-              <li><strong>Pitch 間距：</strong> <span class="spec-highlight">PC2.0</span></li>
+              <li><strong data-i18n="lbl_pin_spec">針腳規格：</strong> <span class="spec-highlight">SATA 7+6 Pin</span></li>
+              <li><strong data-i18n="lbl_mount">安裝方式：</strong> <span class="spec-highlight" data-i18n="val_dip_rec">DIP 直插式母座</span></li>
+              <li><strong data-i18n="lbl_height">高度規格：</strong> <span class="spec-highlight">H7.2</span></li>
+              <li><strong data-i18n="lbl_pitch">Pitch 間距：</strong> <span class="spec-highlight">PC2.0</span></li>
             </ul>
           </div>
-          <a href="cad/sata-7-6-dip.pdf" class="btn" target="_blank" title="下載圖紙：SATA 7+6 DIP 母座">產品圖紙</a>
+          <a href="cad/sata-7-6-dip.pdf" class="btn" target="_blank" title="下載圖紙：SATA 7+6 DIP 母座" data-i18n="btn_dwg">產品圖紙</a>
         </div>
 
         <!-- 0.8 雙排 -->
         <div class="product-card" data-cat="0.8">
           <div>
-            <span class="product-tag">0.8 BTB 雙排</span>
-            <h3>0.8×6.4 2×25 公座</h3>
+            <span class="product-tag" data-i18n="tag_08dr">0.8 BTB 雙排</span>
+            <h3 data-i18n="h3_08_2x25">0.8×6.4 2×25 公座</h3>
             <div class="product-img-container">
               <img src="images/0.8x6.4-2x25.jpg" alt="0.8×6.4 2×25 公座"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
@@ -971,12 +1016,12 @@
               </div>
             </div>
             <ul class="spec-list">
-              <li><strong>Pin 數：</strong> <span class="spec-highlight">2×25 Pin</span></li>
-              <li><strong>高度規格：</strong> <span class="spec-highlight">H6.4</span></li>
-              <li><strong>定位片：</strong> <span class="spec-highlight">有 / 無</span></li>
+              <li><strong data-i18n="lbl_pin">Pin 數：</strong> <span class="spec-highlight">2×25 Pin</span></li>
+              <li><strong data-i18n="lbl_height">高度規格：</strong> <span class="spec-highlight">H6.4</span></li>
+              <li><strong data-i18n="lbl_peg">定位片：</strong> <span class="spec-highlight" data-i18n="val_yes_no">有 / 無</span></li>
             </ul>
           </div>
-          <a href="cad/0.8x6.4-2x25.pdf" class="btn" target="_blank" title="下載圖紙：0.8×6.4 2×25 公座">產品圖紙</a>
+          <a href="cad/0.8x6.4-2x25.pdf" class="btn" target="_blank" title="下載圖紙：0.8×6.4 2×25 公座" data-i18n="btn_dwg">產品圖紙</a>
         </div>
 
       </div>
@@ -987,29 +1032,29 @@
   <section class="tech-section">
     <div class="tech-container">
       <div class="section-title">
-        <h2>嘉訊科品質與技術標準</h2>
-        <p>嚴格管控每一道生產工序，確保高密合度與穩定導通能力</p>
+        <h2 data-i18n="tech_h">嘉訊科品質與技術標準</h2>
+        <p data-i18n="tech_p">嚴格管控每一道生產工序，確保高密合度與穩定導通能力</p>
       </div>
       <div class="tech-grid">
         <div class="tech-card">
           <div class="tech-icon">🔬</div>
-          <h4>±0.01mm 精密模具</h4>
-          <p>自主精密模具研發與高速沖壓，控制端子 Pitch 間距與共面度，避免虛焊。</p>
+          <h4 data-i18n="t1_h">±0.01mm 精密模具</h4>
+          <p data-i18n="t1_p">自主精密模具研發與高速沖壓，控制端子 Pitch 間距與共面度，避免虛焊。</p>
         </div>
         <div class="tech-card">
           <div class="tech-icon">👁️</div>
-          <h4>100% CCD 全自動光學檢測</h4>
-          <p>出廠前全自動視覺檢測 Pin 腳平整度、正向力與微小瑕疵，打造零缺陷交付。</p>
+          <h4 data-i18n="t2_h">100% CCD 全自動光學檢測</h4>
+          <p data-i18n="t2_p">出廠前全自動視覺檢測 Pin 腳平整度、正向力與微小瑕疵，打造零缺陷交付。</p>
         </div>
         <div class="tech-card">
           <div class="tech-icon">📐</div>
-          <h4>工程 2D 圖紙支援</h4>
-          <p>提供完整 CAD 圖紙檔案，協助工程師於機構設計階段快速對接與驗證。</p>
+          <h4 data-i18n="t3_h">工程 2D 圖紙支援</h4>
+          <p data-i18n="t3_p">提供完整 CAD 圖紙檔案，協助工程師於機構設計階段快速對接與驗證。</p>
         </div>
         <div class="tech-card">
           <div class="tech-icon">⚡</div>
-          <h4>24 小時極速打樣</h4>
-          <p>擁有充裕端子備料與快速排產機制，提供研發團隊 24 小時內快速反應與寄樣。</p>
+          <h4 data-i18n="t4_h">24 小時極速打樣</h4>
+          <p data-i18n="t4_p">擁有充裕端子備料與快速排產機制，提供研發團隊 24 小時內快速反應與寄樣。</p>
         </div>
       </div>
     </div>
@@ -1019,26 +1064,26 @@
   <div class="modal-overlay" id="sample-modal">
     <div class="modal-box">
       <button class="modal-close" onclick="closeModal()" aria-label="關閉">&times;</button>
-      <h3>索取樣品 / CAD 圖紙</h3>
+      <h3 data-i18n="modal_h">索取樣品 / CAD 圖紙</h3>
       <p id="modal-product-title">請填寫您的產品需求資訊，工程團隊將於 24 小時內回覆。</p>
       <form onsubmit="handleFormSubmit(event)">
         <div class="form-group">
-          <label>需求 Pin 數與合高</label>
+          <label data-i18n="modal_l1">需求 Pin 數與合高</label>
           <input type="text" placeholder="例如：2×20 Pin，合高 3.0mm" required>
         </div>
         <div class="form-group">
-          <label>貴公司名稱 / 聯絡人</label>
+          <label data-i18n="modal_l2">貴公司名稱 / 聯絡人</label>
           <input type="text" placeholder="例如：張先生 / 某某科技有限公司" required>
         </div>
         <div class="form-group">
-          <label>聯絡電話 / 電子郵件</label>
+          <label data-i18n="modal_l3">聯絡電話 / 電子郵件</label>
           <input type="text" placeholder="例如：138-xxxx-xxxx 或 example@domain.com" required>
         </div>
         <div class="form-group">
-          <label>具體需求備註（選填）</label>
+          <label data-i18n="modal_l4">具體需求備註（選填）</label>
           <textarea rows="3" placeholder="例如：需要提供 2D CAD 圖紙與 5pcs 樣品測試"></textarea>
         </div>
-        <button type="submit" class="btn-card-primary">立即送出申請</button>
+        <button type="submit" class="btn-card-primary" data-i18n="modal_submit">立即送出申請</button>
       </form>
     </div>
   </div>
@@ -1047,28 +1092,28 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
-        <p>東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
+        <p data-i18n="footer_desc">東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
       </div>
       <div class="footer-col">
-        <h4>快速導覽</h4>
+        <h4 data-i18n="footer_nav">快速導覽</h4>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="products.html">產品中心</a></li>
-          <li><a href="about.html">關於我們</a></li>
-          <li><a href="contact.html">聯絡我們</a></li>
+          <li><a href="index.html" data-i18n="nav_home">首頁</a></li>
+          <li><a href="products.html" data-i18n="nav_products">產品中心</a></li>
+          <li><a href="about.html" data-i18n="nav_about">關於我們</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">聯絡我們</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>聯絡資訊</h4>
+        <h4 data-i18n="footer_contact">聯絡資訊</h4>
         <ul>
-          <li><a href="tel:076985410081">電話：0769-85410081</a></li>
-          <li><a href="tel:076985410082">電話：0769-85410082</a></li>
-          <li><a href="tel:18929444965">手機 / 微信：18929444965</a></li>
-          <li>地址：廣東省東莞市長安鎮上角區螢光路15號</li>
+          <li><a href="tel:076985410081" data-i18n="footer_tel1">電話：0769-85410081</a></li>
+          <li><a href="tel:076985410082" data-i18n="footer_tel2">電話：0769-85410082</a></li>
+          <li><a href="tel:18929444965" data-i18n="footer_mobile">手機 / 微信：18929444965</a></li>
+          <li data-i18n="footer_addr">地址：廣東省東莞市長安鎮上角區螢光路15號</li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom" data-i18n="footer_copy">
       © 2026 東莞市嘉訊科電子科技有限公司 版權所有
     </div>
   </footer>
@@ -1145,8 +1190,17 @@
     function filterCategory(catKey, element) {
       document.querySelectorAll('.category-item').forEach(item => item.classList.remove('active'));
       element.classList.add('active');
-      const categoryName = element.querySelector('span').innerText;
-      document.getElementById('current-category-name').innerText = categoryName;
+      var nameSpan = element.querySelector('span[data-i18n]') || element.querySelector('span');
+      var titleEl = document.getElementById('current-category-name');
+      if (nameSpan && titleEl) {
+        var key = nameSpan.getAttribute('data-i18n');
+        if (key) {
+          titleEl.setAttribute('data-i18n', key);
+          titleEl.innerText = nameSpan.innerText;
+        } else {
+          titleEl.innerText = nameSpan.innerText;
+        }
+      }
 
       const cards = document.querySelectorAll('.product-card');
       let visibleCount = 0;
@@ -1158,7 +1212,12 @@
           card.style.display = 'none';
         }
       });
-      document.getElementById('visible-counter').innerText = `共顯示 ${visibleCount} 個產品`;
+      var vc = document.getElementById('visible-counter');
+      if(vc){
+        vc.setAttribute('data-n', String(visibleCount));
+        var pack = (window.JXK_PAGE_I18N && window.JXK_PAGE_I18N[(function(){try{return localStorage.getItem('jxk_lang')||'zh-Hant'}catch(e){return 'zh-Hant'}})()]) || {};
+        vc.innerText = (pack.show_count || '共顯示 {n} 個產品').replace('{n}', visibleCount);
+      }
     }
 
     // Modal
@@ -1274,6 +1333,120 @@
 
   <!-- 右側浮動客服 -->
   
+
+
+<script>
+window.JXK_PAGE_I18N = {
+"zh-Hant":{
+"nav_home":"首頁","nav_products":"產品中心","nav_about":"關於我們","nav_contact":"聯絡我們",
+"banner_h":"BTB 板對板與連接器產品目錄","banner_p":"東莞市嘉訊科電子 — 精密單槽 / 雙槽板對板與 SATA 連接器研發製造",
+"cat_title":"📂 產品分類目錄","cat_all":"全部產品展示","cat_d05":"雙槽 0.5 BTB 系列","cat_d08":"雙槽 0.8 BTB 系列","cat_s05":"單槽 0.5 BTB 系列","cat_s08":"單槽 0.8 BTB 系列","cat_sata":"SATA 连接器系列","cat_08":"0.8 BTB 雙排系列",
+"tag_d05":"雙槽 0.5 BTB","tag_d08":"雙槽 0.8 BTB","tag_s05":"單槽 0.5 BTB","tag_s08":"單槽 0.8 BTB","tag_sata":"SATA 系列","tag_08dr":"0.8 BTB 雙排",
+"lbl_pin":"Pin 數：","lbl_header":"公座高度：","lbl_receptacle":"母座高度：","lbl_stack":"組合合高：","lbl_stack_max":"最高合高：",
+"lbl_stack30":"合高 3.0：","lbl_stack50":"合高 5.0：","lbl_stack35":"合高 3.5：",
+"lbl_pin_spec":"針腳規格：","lbl_mount":"安裝方式：","lbl_height":"高度規格：","lbl_pitch":"Pitch 間距：","lbl_peg":"定位片：",
+"btn_dwg":"產品圖紙",
+"tech_h":"嘉訊科品質與技術標準","tech_p":"嚴格管控每一道生產工序，確保高密合度與穩定導通能力",
+"t1_h":"±0.01mm 精密模具","t1_p":"自主精密模具研發與高速沖壓，控制端子 Pitch 間距與共面度，避免虛焊。",
+"t2_h":"100% CCD 全自動光學檢測","t2_p":"出廠前全自動視覺檢測 Pin 腳平整度、正向力與微小瑕疵，打造零缺陷交付。",
+"t3_h":"工程 2D 圖紙支援","t3_p":"提供完整 CAD 圖紙檔案，協助工程師於機構設計階段快速對接與驗證。",
+"t4_h":"24 小時極速打樣","t4_p":"擁有充裕端子備料與快速排產機制，提供研發團隊 24 小時內快速反應與寄樣。",
+"modal_h":"索取樣品 / CAD 圖紙","modal_l1":"需求 Pin 數與合高","modal_l2":"貴公司名稱 / 聯絡人","modal_l3":"聯絡電話 / 電子郵件","modal_l4":"具體需求備註（選填）","modal_submit":"立即送出申請",
+"footer_desc":"東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。",
+"footer_nav":"快速導覽","footer_contact":"聯絡資訊","footer_tel1":"電話：0769-85410081","footer_tel2":"電話：0769-85410082",
+"footer_mobile":"手機 / 微信：18929444965","footer_addr":"地址：廣東省東莞市長安鎮上角區螢光路15號",
+"footer_copy":"© 2026 東莞市嘉訊科電子科技有限公司 版權所有",
+"h3_d05_series":"雙槽 0.5 BTB 連接器系列","h3_d05_single":"雙槽 0.5 BTB（單獨規格）","h3_d08_series":"雙槽 0.8 BTB 連接器系列","h3_s05_multi":"單槽 0.5 BTB（2×5~2×40 Pin 多合高）","h3_s05_2x12":"單槽 0.5 BTB 2×12 Pin（合高 3.0）","h3_s08_multi":"單槽 0.8 BTB（2×20~2×60 Pin 合高 5.0）","h3_s08_2x50":"單槽 0.8 BTB 2×50 Pin（合高 5.0）","h3_s08_2x6":"單槽 0.8 BTB 2×6 Pin（合高 7.0）","h3_sata":"SATA 7+6 DIP 母座","h3_08_2x25":"0.8×6.4 2×25 公座","val_upto_h85":"最高可達 H8.5","val_upto_h80":"最高可達 H8.0","val_m22_f23":"公 H2.2 + 母 H2.3","val_m27_f43":"公 H2.7 + 母 H4.3","val_m27_f28":"公 H2.7 + 母 H2.8","val_dip_rec":"DIP 直插式母座","val_yes_no":"有 / 無","show_count":"共顯示 {n} 個產品"
+},
+"zh-Hans":{
+"nav_home":"首页","nav_products":"产品中心","nav_about":"关于我们","nav_contact":"联系我们",
+"banner_h":"BTB 板对板与连接器产品目录","banner_p":"东莞市嘉讯科电子 — 精密单槽 / 双槽板对板与 SATA 连接器研发制造",
+"cat_title":"📂 产品分类目录","cat_all":"全部产品展示","cat_d05":"双槽 0.5 BTB 系列","cat_d08":"双槽 0.8 BTB 系列","cat_s05":"单槽 0.5 BTB 系列","cat_s08":"单槽 0.8 BTB 系列","cat_sata":"SATA 连接器系列","cat_08":"0.8 BTB 双排系列",
+"tag_d05":"双槽 0.5 BTB","tag_d08":"双槽 0.8 BTB","tag_s05":"单槽 0.5 BTB","tag_s08":"单槽 0.8 BTB","tag_sata":"SATA 系列","tag_08dr":"0.8 BTB 双排",
+"lbl_pin":"Pin 数：","lbl_header":"公座高度：","lbl_receptacle":"母座高度：","lbl_stack":"组合合高：","lbl_stack_max":"最高合高：",
+"lbl_stack30":"合高 3.0：","lbl_stack50":"合高 5.0：","lbl_stack35":"合高 3.5：",
+"lbl_pin_spec":"针脚规格：","lbl_mount":"安装方式：","lbl_height":"高度规格：","lbl_pitch":"Pitch 间距：","lbl_peg":"定位片：",
+"btn_dwg":"产品图纸",
+"tech_h":"嘉讯科品质与技术标准","tech_p":"严格管控每一道生产工序，确保高密合度与稳定导通能力",
+"t1_h":"±0.01mm 精密模具","t1_p":"自主精密模具研发与高速冲压，控制端子 Pitch 间距与共面度，避免虚焊。",
+"t2_h":"100% CCD 全自动光学检测","t2_p":"出厂前全自动视觉检测 Pin 脚平整度、正向力与微小瑕疵，打造零缺陷交付。",
+"t3_h":"工程 2D 图纸支持","t3_p":"提供完整 CAD 图纸档案，协助工程师于机构设计阶段快速对接与验证。",
+"t4_h":"24 小时极速打样","t4_p":"拥有充裕端子备料与快速排产机制，提供研发团队 24 小时内快速反应与寄样。",
+"modal_h":"索取样品 / CAD 图纸","modal_l1":"需求 Pin 数与合高","modal_l2":"贵公司名称 / 联络人","modal_l3":"联络电话 / 电子邮件","modal_l4":"具体需求备注（选填）","modal_submit":"立即送出申请",
+"footer_desc":"东莞市嘉讯科电子科技有限公司，深耕精密 BTB 板对板连接器超过 25 年，专注高密度、高精度与高可靠度产品研发制造。",
+"footer_nav":"快速导览","footer_contact":"联系信息","footer_tel1":"电话：0769-85410081","footer_tel2":"电话：0769-85410082",
+"footer_mobile":"手机 / 微信：18929444965","footer_addr":"地址：广东省东莞市长安镇上角区荧光路15号",
+"footer_copy":"© 2026 东莞市嘉讯科电子科技有限公司 版权所有",
+"h3_d05_series":"双槽 0.5 BTB 连接器系列","h3_d05_single":"双槽 0.5 BTB（单独规格）","h3_d08_series":"双槽 0.8 BTB 连接器系列","h3_s05_multi":"单槽 0.5 BTB（2×5~2×40 Pin 多合高）","h3_s05_2x12":"单槽 0.5 BTB 2×12 Pin（合高 3.0）","h3_s08_multi":"单槽 0.8 BTB（2×20~2×60 Pin 合高 5.0）","h3_s08_2x50":"单槽 0.8 BTB 2×50 Pin（合高 5.0）","h3_s08_2x6":"单槽 0.8 BTB 2×6 Pin（合高 7.0）","h3_sata":"SATA 7+6 DIP 母座","h3_08_2x25":"0.8×6.4 2×25 公座","val_upto_h85":"最高可达 H8.5","val_upto_h80":"最高可达 H8.0","val_m22_f23":"公 H2.2 + 母 H2.3","val_m27_f43":"公 H2.7 + 母 H4.3","val_m27_f28":"公 H2.7 + 母 H2.8","val_dip_rec":"DIP 直插式母座","val_yes_no":"有 / 无","show_count":"共显示 {n} 个产品"
+},
+"en":{
+"nav_home":"Home","nav_products":"Products","nav_about":"About","nav_contact":"Contact",
+"banner_h":"BTB Board-to-Board Connector Catalog","banner_p":"Jiaxunke — Precision single-row / dual-row BTB and SATA interconnects",
+"cat_title":"📂 Categories","cat_all":"All Products","cat_d05":"0.5 mm Dual-Row BTB Series","cat_d08":"0.8 mm Dual-Row BTB Series","cat_s05":"0.5 mm Single-Row BTB Series","cat_s08":"0.8 mm Single-Row BTB Series","cat_sata":"SATA Connector Series","cat_08":"0.8 mm Dual-Row BTB Series",
+"tag_d05":"0.5 mm Dual-Row BTB","tag_d08":"0.8 mm Dual-Row BTB","tag_s05":"0.5 mm Single-Row BTB","tag_s08":"0.8 mm Single-Row BTB","tag_sata":"SATA Series","tag_08dr":"0.8 mm Dual-Row BTB",
+"lbl_pin":"Pin count:","lbl_header":"male height:","lbl_receptacle":"female height:","lbl_stack":"Stack height:","lbl_stack_max":"Max stack height:",
+"lbl_stack30":"Stack 3.0 mm:","lbl_stack50":"Stack 5.0 mm:","lbl_stack35":"Stack 3.5 mm:",
+"lbl_pin_spec":"Pin configuration:","lbl_mount":"Mounting:","lbl_height":"Height:","lbl_pitch":"Pitch:","lbl_peg":"Locating peg:",
+"btn_dwg":"Download Drawing",
+"tech_h":"Quality & Process Standards","tech_p":"Process control for reliable mating and stable electrical performance",
+"t1_h":"±0.01 mm Precision Tooling","t1_p":"In-house tooling and high-speed stamping control pin pitch and coplanarity.",
+"t2_h":"100% Automated Optical Inspection","t2_p":"100% AOI of pin coplanarity, contact force, and cosmetic defects before shipment.",
+"t3_h":"Engineering Drawing Support","t3_p":"Full CAD packages for PCB footprint and mechanical fit verification.",
+"t4_h":"24-Hour Sample Turnaround","t4_p":"Ready inventory and fast scheduling for sample shipment within 24 hours.",
+"modal_h":"Request Samples / CAD Drawings","modal_l1":"Required pin count & stack height","modal_l2":"Company / Contact person","modal_l3":"Phone / Email","modal_l4":"Notes (optional)","modal_submit":"Submit request",
+"footer_desc":"Dongguan Jiaxunke Electronics Technology Co., Ltd. — 25+ years specializing in precision BTB board-to-board connectors.",
+"footer_nav":"Quick Links","footer_contact":"Contact","footer_tel1":"Tel: 0769-85410081","footer_tel2":"Tel: 0769-85410082",
+"footer_mobile":"Mobile / WeChat: 18929444965","footer_addr":"Address: No.15 Yingguang Rd, Shangjiao, Changan, Dongguan, China",
+"footer_copy":"© 2026 Dongguan Jiaxunke Electronics Technology Co., Ltd. All rights reserved",
+"h3_d05_series":"0.5 mm Dual-Row BTB Series","h3_d05_single":"0.5 mm Dual-Row BTB (Individual Spec)","h3_d08_series":"0.8 mm Dual-Row BTB Series","h3_s05_multi":"0.5 mm Single-Row BTB (2×5–2×40, Multi Stack)","h3_s05_2x12":"0.5 mm Single-Row BTB 2×12 (Stack 3.0 mm)","h3_s08_multi":"0.8 mm Single-Row BTB (2×20–2×60, Stack 5.0 mm)","h3_s08_2x50":"0.8 mm Single-Row BTB 2×50 (Stack 5.0 mm)","h3_s08_2x6":"0.8 mm Single-Row BTB 2×6 (Stack 7.0 mm)","h3_sata":"SATA 7+6 DIP female","h3_08_2x25":"0.8×6.4 2×25 male","val_upto_h85":"Up to H8.5","val_upto_h80":"Up to H8.0","val_m22_f23":"male H2.2 + female H2.3","val_m27_f43":"male H2.7 + female H4.3","val_m27_f28":"male H2.7 + female H2.8","val_dip_rec":"DIP through-hole female","val_yes_no":"With / Without","show_count":"Showing {n} products"
+}
+};
+
+(function(){
+  var LANG_KEY = 'jxk_lang';
+  function getLang(){
+    try { return localStorage.getItem(LANG_KEY) || 'zh-Hant'; } catch(e){ return 'zh-Hant'; }
+  }
+  function setLang(lang){
+    try { localStorage.setItem(LANG_KEY, lang); } catch(e){}
+  }
+  function applyI18n(){
+    var dict = window.JXK_PAGE_I18N;
+    var lang = getLang();
+    if(!dict[lang]) lang = 'zh-Hant';
+    var pack = dict[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(pack[key] != null) el.innerHTML = pack[key];
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      if(btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+    document.documentElement.lang = (lang === 'en' ? 'en' : (lang === 'zh-Hans' ? 'zh-CN' : 'zh-Hant'));
+    // refresh visible counter text if present
+    var vc = document.getElementById('visible-counter');
+    if(vc && pack.show_count){
+      var n = (vc.getAttribute('data-n') || vc.innerText.replace(/\D/g,'')) || '0';
+      vc.setAttribute('data-n', n);
+      vc.innerText = pack.show_count.replace('{n}', n);
+    }
+  }
+  window.JXK_applyI18n = applyI18n;
+  document.addEventListener('DOMContentLoaded', function(){
+    var switcher = document.getElementById('lang-switch');
+    if(switcher){
+      switcher.addEventListener('click', function(e){
+        var btn = e.target.closest('.lang-btn');
+        if(!btn) return;
+        setLang(btn.getAttribute('data-lang'));
+        applyI18n();
+      });
+    }
+    applyI18n();
+  });
+})();
+</script>
 
 </body>
 </html>

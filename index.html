@@ -425,6 +425,55 @@
       font-size: 0.85rem;
     }
 
+
+    /* Language switcher */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-left: auto;
+    }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.55rem;
+      cursor: pointer;
+      font-family: inherit;
+      line-height: 1.2;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover { color: var(--accent); }
+    .lang-btn.active {
+      background: rgba(0, 242, 254, 0.15);
+      color: var(--accent);
+    }
+    @media (max-width: 768px) {
+      .nav-right {
+        margin-left: auto;
+        margin-right: 8px;
+        gap: 8px;
+      }
+      .nav-right .nav-links {
+        /* still the slide panel */
+      }
+      .lang-switch {
+        position: relative;
+        z-index: 1003;
+      }
+    }
+
     /* Mobile menu backdrop */
     .nav-backdrop {
       display: none;
@@ -444,7 +493,14 @@
         display: flex;
         position: relative;
         z-index: 1003;
+        order: 3;
       }
+      .nav-right {
+        margin-left: auto;
+        margin-right: 4px;
+        order: 2;
+      }
+      .logo { order: 1; }
       .nav-links {
         position: fixed;
         top: 0;
@@ -569,27 +625,35 @@
   <header>
     <div class="nav-container">
       <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" class="active" data-i18n="nav_home">首頁</a></li>
+          <li><a href="products.html" data-i18n="nav_products">產品中心</a></li>
+          <li><a href="about.html" data-i18n="nav_about">關於我們</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">聯絡我們</a></li>
+        </ul>
+        <div class="lang-switch" id="lang-switch" aria-label="Language">
+          <button type="button" class="lang-btn active" data-lang="zh-Hant">繁</button>
+          <button type="button" class="lang-btn" data-lang="zh-Hans">簡</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
       <button class="menu-toggle" id="mobile-menu" aria-label="開啟選單">
         <span></span><span></span><span></span>
       </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html" class="active">首頁</a></li>
-        <li><a href="products.html">產品中心</a></li>
-        <li><a href="about.html">關於我們</a></li>
-        <li><a href="contact.html">聯絡我們</a></li>
-      </ul>
     </div>
   </header>
+  <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
 
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <span class="hero-tag">JIAXUNKE CONNECTORS</span>
-      <h1>高精密微距 <span>BTB 板對板連接器</span><br>專業製造</h1>
-      <p>東莞市嘉訊科電子深耕精密連接器製造超過 25 年，專注 0.5 / 0.8mm 單槽與雙槽板對板連接器。提供精密模具自主開發、全自動化 CCD 檢測與 24 小時快速打樣服務。</p>
+      <span class="hero-tag" data-i18n="hero_tag">JIAXUNKE CONNECTORS</span>
+      <h1 data-i18n="hero_h1">高精密微距 <span>BTB 板對板連接器</span><br>專業製造</h1>
+      <p data-i18n="hero_p">東莞市嘉訊科電子深耕精密連接器製造超過 25 年，專注 0.5 / 0.8mm 單槽與雙槽板對板連接器。提供精密模具自主開發、全自動化 CCD 檢測與 24 小時快速打樣服務。</p>
       <div class="btn-group">
-        <a href="products.html" class="btn-primary">瀏覽產品中心</a>
-        <a href="contact.html" class="btn-secondary">線上詢價 / 索取樣品</a>
+        <a href="products.html" class="btn-primary" data-i18n="btn_products">瀏覽產品中心</a>
+        <a href="contact.html" class="btn-secondary" data-i18n="btn_inquiry">線上詢價 / 索取樣品</a>
       </div>
     </div>
   </section>
@@ -597,81 +661,81 @@
   <!-- Stats -->
   <div class="hero-stats">
     <div class="stat-item">
-      <div class="stat-num">25+ 年</div>
-      <div class="stat-desc">連接器製造與技術沉澱</div>
+      <div class="stat-num" data-i18n="stat1_n">25+ 年</div>
+      <div class="stat-desc" data-i18n="stat1_d">連接器製造與技術沉澱</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">±0.01mm</div>
-      <div class="stat-desc">精密模具與沖壓精度</div>
+      <div class="stat-num" data-i18n="stat2_n">±0.01mm</div>
+      <div class="stat-desc" data-i18n="stat2_d">精密模具與沖壓精度</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">100%</div>
-      <div class="stat-desc">CCD 光學全自動全檢</div>
+      <div class="stat-num" data-i18n="stat3_n">100%</div>
+      <div class="stat-desc" data-i18n="stat3_d">CCD 光學全自動全檢</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num">24h</div>
-      <div class="stat-desc">工程技術與樣品快速響應</div>
+      <div class="stat-num" data-i18n="stat4_n">24h</div>
+      <div class="stat-desc" data-i18n="stat4_d">工程技術與樣品快速響應</div>
     </div>
   </div>
 
   <!-- Core Products -->
   <section class="section">
     <div class="section-title">
-      <h2>核心產品矩陣</h2>
-      <p>涵蓋微型化高密度連接規格，支援多種高度與 Pin 數組合</p>
+      <h2 data-i18n="sec_prod_h">核心產品矩陣</h2>
+      <p data-i18n="sec_prod_p">涵蓋微型化高密度連接規格，支援多種高度與 Pin 數組合</p>
     </div>
     <div class="product-grid">
       <div class="product-card">
         <div>
-          <span class="product-tag">雙槽 0.5 BTB</span>
-          <h3>雙槽 0.5 BTB 連接器系列</h3>
+          <span class="product-tag" data-i18n="p1_tag">雙槽 0.5 BTB</span>
+          <h3 data-i18n="p1_h">雙槽 0.5 BTB 連接器系列</h3>
           <ul class="spec-list">
-            <li><strong>Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
-            <li><strong>公座高度：</strong> <span class="spec-highlight">H0.8 / H1.0 /H1.3/ H2.0/ H4.0</span></li>
-            <li><strong>母座高度：</strong> <span class="spec-highlight">H2.2 /H3.0 / H3.5 / H4.0 / H4.5</span></li>
-            <li><strong>最高合高：</strong> <span class="spec-highlight">最高可達 H8.5</span></li>
+            <li data-i18n="p1_s1"><strong>Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
+            <li data-i18n="p1_s2"><strong>公座高度：</strong> <span class="spec-highlight">H0.8 / H1.0 / H1.3 / H2.0 / H4.0</span></li>
+            <li data-i18n="p1_s3"><strong>母座高度：</strong> <span class="spec-highlight">H2.2 / H3.0 / H3.5 / H4.0 / H4.5</span></li>
+            <li data-i18n="p1_s4"><strong>最高合高：</strong> <span class="spec-highlight">最高可達 H8.5</span></li>
           </ul>
         </div>
-        <a href="products.html" class="product-link">查看完整規格與圖紙 →</a>
+        <a href="products.html" class="product-link" data-i18n="view_more">查看完整規格與圖紙 →</a>
       </div>
       <div class="product-card">
         <div>
-          <span class="product-tag">雙槽 0.8 BTB</span>
-          <h3>雙槽 0.8 BTB 連接器系列</h3>
+          <span class="product-tag" data-i18n="p2_tag">雙槽 0.8 BTB</span>
+          <h3 data-i18n="p2_h">雙槽 0.8 BTB 連接器系列</h3>
           <ul class="spec-list">
-            <li><strong>Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
-            <li><strong>公座高度：</strong> <span class="spec-highlight">H1.0 / H2.0 / H4.0</span></li>
-            <li><strong>母座高度：</strong> <span class="spec-highlight">H3.0 / H3.5 / H4.0 / H4.5</span></li>
-            <li><strong>最高合高：</strong> <span class="spec-highlight">最高可達 H8.5</span></li>
+            <li data-i18n="p2_s1"><strong>Pin 數：</strong> <span class="spec-highlight">2×4 ~ 2×50 Pin</span></li>
+            <li data-i18n="p2_s2"><strong>公座高度：</strong> <span class="spec-highlight">H1.0 / H2.0 / H4.0</span></li>
+            <li data-i18n="p2_s3"><strong>母座高度：</strong> <span class="spec-highlight">H3.0 / H3.5 / H4.0 / H4.5</span></li>
+            <li data-i18n="p2_s4"><strong>最高合高：</strong> <span class="spec-highlight">最高可達 H8.5</span></li>
           </ul>
         </div>
-        <a href="products.html" class="product-link">查看完整規格與圖紙 →</a>
+        <a href="products.html" class="product-link" data-i18n="view_more">查看完整規格與圖紙 →</a>
       </div>
       <div class="product-card">
         <div>
-          <span class="product-tag">單槽 0.5 BTB</span>
-          <h3>單槽 0.5 BTB 連接器系列</h3>
+          <span class="product-tag" data-i18n="p3_tag">單槽 0.5 BTB</span>
+          <h3 data-i18n="p3_h">單槽 0.5 BTB 連接器系列</h3>
           <ul class="spec-list">
-            <li><strong>Pin 數：</strong> <span class="spec-highlight">2×5 ~ 2×40 Pin</span></li>
-            <li><strong>合高 3.0：</strong> <span class="spec-highlight">公 H2.2 + 母 H2.3</span></li>
-            <li><strong>合高 5.0：</strong> <span class="spec-highlight">公 H2.7 + 母 H4.3</span></li>
-            <li><strong>合高 3.5：</strong> <span class="spec-highlight">公 H2.7 + 母 H2.8</span></li>
+            <li data-i18n="p3_s1"><strong>Pin 數：</strong> <span class="spec-highlight">2×5 ~ 2×40 Pin</span></li>
+            <li data-i18n="p3_s2"><strong>合高 3.0：</strong> <span class="spec-highlight">公 H2.2 + 母 H2.3</span></li>
+            <li data-i18n="p3_s3"><strong>合高 5.0：</strong> <span class="spec-highlight">公 H2.7 + 母 H4.3</span></li>
+            <li data-i18n="p3_s4"><strong>合高 3.5：</strong> <span class="spec-highlight">公 H2.7 + 母 H2.8</span></li>
           </ul>
         </div>
-        <a href="products.html" class="product-link">查看完整規格與圖紙 →</a>
+        <a href="products.html" class="product-link" data-i18n="view_more">查看完整規格與圖紙 →</a>
       </div>
       <div class="product-card">
         <div>
-          <span class="product-tag">單槽 0.8 BTB</span>
-          <h3>單槽 0.8 BTB 連接器系列</h3>
+          <span class="product-tag" data-i18n="p4_tag">單槽 0.8 BTB</span>
+          <h3 data-i18n="p4_h">單槽 0.8 BTB 連接器系列</h3>
           <ul class="spec-list">
-            <li><strong>Pin 數：</strong> <span class="spec-highlight">2×20 ~ 2×60 Pin</span></li>
-            <li><strong>公座高度：</strong> <span class="spec-highlight">H4.6</span></li>
-            <li><strong>母座高度：</strong> <span class="spec-highlight">H3.8</span></li>
-            <li><strong>組合合高：</strong> <span class="spec-highlight">H5.0</span></li>
+            <li data-i18n="p4_s1"><strong>Pin 數：</strong> <span class="spec-highlight">2×20 ~ 2×60 Pin</span></li>
+            <li data-i18n="p4_s2"><strong>公座高度：</strong> <span class="spec-highlight">H4.6</span></li>
+            <li data-i18n="p4_s3"><strong>母座高度：</strong> <span class="spec-highlight">H3.8</span></li>
+            <li data-i18n="p4_s4"><strong>組合合高：</strong> <span class="spec-highlight">H5.0</span></li>
           </ul>
         </div>
-        <a href="products.html" class="product-link">查看完整規格與圖紙 →</a>
+        <a href="products.html" class="product-link" data-i18n="view_more">查看完整規格與圖紙 →</a>
       </div>
     </div>
   </section>
@@ -679,29 +743,29 @@
   <!-- Why Choose Us -->
   <section class="section" style="padding-top: 1rem;">
     <div class="section-title">
-      <h2>為什麼選擇嘉訊科？</h2>
-      <p>專業研發、精密製造與高品質交付保障</p>
+      <h2 data-i18n="why_h">為什麼選擇嘉訊科？</h2>
+      <p data-i18n="why_p">專業研發、精密製造與高品質交付保障</p>
     </div>
     <div class="feature-grid">
       <div class="feature-card">
         <div class="feature-icon">📐</div>
-        <h3>±0.01mm 精密模具</h3>
-        <p>自主精密模具研發與高速沖壓，精準控制端子 Pitch 間距與共面度，有效避免虛焊問題。</p>
+        <h3 data-i18n="f1_h">±0.01mm 精密模具</h3>
+        <p data-i18n="f1_p">自主精密模具研發與高速沖壓，精準控制端子 Pitch 間距與共面度，有效避免虛焊問題。</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">👁️</div>
-        <h3>100% CCD 全自動光學檢測</h3>
-        <p>出廠前全自動視覺檢測 Pin 腳平整度、正向力與微小瑕疵，打造零缺陷交付標準。</p>
+        <h3 data-i18n="f2_h">100% CCD 全自動光學檢測</h3>
+        <p data-i18n="f2_p">出廠前全自動視覺檢測 Pin 腳平整度、正向力與微小瑕疵，打造零缺陷交付標準。</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📄</div>
-        <h3>工程 2D 圖紙支援</h3>
-        <p>提供完整 CAD 圖紙檔案，協助工程師於機構設計階段快速對接與驗證，縮短開發週期。</p>
+        <h3 data-i18n="f3_h">工程 2D 圖紙支援</h3>
+        <p data-i18n="f3_p">提供完整 CAD 圖紙檔案，協助工程師於機構設計階段快速對接與驗證，縮短開發週期。</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">⚡</div>
-        <h3>24 小時極速打樣</h3>
-        <p>充裕端子備料與快速排產機制，為研發團隊提供 24 小時內快速反應與樣品寄送服務。</p>
+        <h3 data-i18n="f4_h">24 小時極速打樣</h3>
+        <p data-i18n="f4_p">充裕端子備料與快速排產機制，為研發團隊提供 24 小時內快速反應與樣品寄送服務。</p>
       </div>
     </div>
   </section>
@@ -709,9 +773,9 @@
   <!-- CTA -->
   <section class="section">
     <div class="cta-banner">
-      <h2>需要微距 BTB 連接器選型、客製化開發或樣品索取？</h2>
-      <p>我們的工程與業務團隊隨時準備為您提供專業服務，包含 2D 圖紙精準對接、極速樣品寄送、高可靠度品質驗證以及極具競爭力的原廠直營報價。</p>
-      <a href="contact.html" class="btn-primary">立即聯繫我們索取樣品與報價</a>
+      <h2 data-i18n="cta_h">需要微距 BTB 連接器選型、客製化開發或樣品索取？</h2>
+      <p data-i18n="cta_p">我們的工程與業務團隊隨時準備為您提供專業服務，包含 2D 圖紙精準對接、極速樣品寄送、高可靠度品質驗證以及極具競爭力的原廠直營報價。</p>
+      <a href="contact.html" class="btn-primary" data-i18n="cta_btn">立即聯繫我們索取樣品與報價</a>
     </div>
   </section>
 
@@ -720,79 +784,249 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
-        <p>東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
+        <p data-i18n="footer_desc">東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
       </div>
       <div class="footer-col">
-        <h4>快速導覽</h4>
+        <h4 data-i18n="footer_nav">快速導覽</h4>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="products.html">產品中心</a></li>
-          <li><a href="about.html">關於我們</a></li>
-          <li><a href="contact.html">聯絡我們</a></li>
+          <li><a href="index.html" data-i18n="nav_home">首頁</a></li>
+          <li><a href="products.html" data-i18n="nav_products">產品中心</a></li>
+          <li><a href="about.html" data-i18n="nav_about">關於我們</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">聯絡我們</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>聯絡資訊</h4>
+        <h4 data-i18n="footer_contact">聯絡資訊</h4>
         <ul>
-          <li><a href="tel:076985410081">電話：0769-85410081</a></li>
-          <li><a href="tel:076985410082">電話：0769-85410082</a></li>
-          <li><a href="tel:18929444965">手機 / 微信：18929444965</a></li>
-          <li>地址：廣東省東莞市長安鎮上角區螢光路15號</li>
+          <li><a href="tel:076985410081" data-i18n="footer_tel1">電話：0769-85410081</a></li>
+          <li><a href="tel:076985410082" data-i18n="footer_tel2">電話：0769-85410082</a></li>
+          <li><a href="tel:18929444965" data-i18n="footer_mobile">手機 / 微信：18929444965</a></li>
+          <li data-i18n="footer_addr">地址：廣東省東莞市長安鎮上角區螢光路15號</li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom" data-i18n="footer_copy">
       © 2026 東莞市嘉訊科電子科技有限公司 版權所有
     </div>
   </footer>
 
-  <script>
-    (function() {
-      var mobileMenu = document.getElementById('mobile-menu');
-      var navLinks = document.getElementById('nav-links');
-      var backdrop = document.getElementById('nav-backdrop');
+  
+<script>
+window.JXK_PAGE_I18N = {
+  "zh-Hant": {
+    "nav_home":"首頁","nav_products":"產品中心","nav_about":"關於我們","nav_contact":"聯絡我們",
+    "hero_tag":"JIAXUNKE CONNECTORS",
+    "hero_h1":"高精密微距 <span>BTB 板對板連接器</span><br>專業製造",
+    "hero_p":"東莞市嘉訊科電子深耕精密連接器製造超過 25 年，專注 0.5 / 0.8mm 單槽與雙槽板對板連接器。提供精密模具自主開發、全自動化 CCD 檢測與 24 小時快速打樣服務。",
+    "btn_products":"瀏覽產品中心","btn_inquiry":"線上詢價 / 索取樣品",
+    "stat1_n":"25+ 年","stat1_d":"連接器製造與技術沉澱",
+    "stat2_n":"±0.01mm","stat2_d":"精密模具與沖壓精度",
+    "stat3_n":"100%","stat3_d":"CCD 光學全自動全檢",
+    "stat4_n":"24h","stat4_d":"工程技術與樣品快速響應",
+    "sec_prod_h":"核心產品矩陣","sec_prod_p":"涵蓋微型化高密度連接規格，支援多種高度與 Pin 數組合",
+    "p1_tag":"雙槽 0.5 BTB","p1_h":"雙槽 0.5 BTB 連接器系列",
+    "p1_s1":"<strong>Pin 數：</strong> <span class=\"spec-highlight\">2×4 ~ 2×50 Pin</span>",
+    "p1_s2":"<strong>公座高度：</strong> <span class=\"spec-highlight\">H0.8 / H1.0 / H1.3 / H2.0 / H4.0</span>",
+    "p1_s3":"<strong>母座高度：</strong> <span class=\"spec-highlight\">H2.2 / H3.0 / H3.5 / H4.0 / H4.5</span>",
+    "p1_s4":"<strong>最高合高：</strong> <span class=\"spec-highlight\">最高可達 H8.5</span>",
+    "p2_tag":"雙槽 0.8 BTB","p2_h":"雙槽 0.8 BTB 連接器系列",
+    "p2_s1":"<strong>Pin 數：</strong> <span class=\"spec-highlight\">2×4 ~ 2×50 Pin</span>",
+    "p2_s2":"<strong>公座高度：</strong> <span class=\"spec-highlight\">H1.0 / H2.0 / H4.0</span>",
+    "p2_s3":"<strong>母座高度：</strong> <span class=\"spec-highlight\">H3.0 / H3.5 / H4.0 / H4.5</span>",
+    "p2_s4":"<strong>最高合高：</strong> <span class=\"spec-highlight\">最高可達 H8.5</span>",
+    "p3_tag":"單槽 0.5 BTB","p3_h":"單槽 0.5 BTB 連接器系列",
+    "p3_s1":"<strong>Pin 數：</strong> <span class=\"spec-highlight\">2×5 ~ 2×40 Pin</span>",
+    "p3_s2":"<strong>合高 3.0：</strong> <span class=\"spec-highlight\">公 H2.2 + 母 H2.3</span>",
+    "p3_s3":"<strong>合高 5.0：</strong> <span class=\"spec-highlight\">公 H2.7 + 母 H4.3</span>",
+    "p3_s4":"<strong>合高 3.5：</strong> <span class=\"spec-highlight\">公 H2.7 + 母 H2.8</span>",
+    "p4_tag":"單槽 0.8 BTB","p4_h":"單槽 0.8 BTB 連接器系列",
+    "p4_s1":"<strong>Pin 數：</strong> <span class=\"spec-highlight\">2×20 ~ 2×60 Pin</span>",
+    "p4_s2":"<strong>公座高度：</strong> <span class=\"spec-highlight\">H4.6</span>",
+    "p4_s3":"<strong>母座高度：</strong> <span class=\"spec-highlight\">H3.8</span>",
+    "p4_s4":"<strong>組合合高：</strong> <span class=\"spec-highlight\">H5.0</span>",
+    "view_more":"查看完整規格與圖紙 →",
+    "why_h":"為什麼選擇嘉訊科？","why_p":"專業研發、精密製造與高品質交付保障",
+    "f1_h":"±0.01mm 精密模具","f1_p":"自主精密模具研發與高速沖壓，精準控制端子 Pitch 間距與共面度，有效避免虛焊問題。",
+    "f2_h":"100% CCD 全自動光學檢測","f2_p":"出廠前全自動視覺檢測 Pin 腳平整度、正向力與微小瑕疵，打造零缺陷交付標準。",
+    "f3_h":"工程 2D 圖紙支援","f3_p":"提供完整 CAD 圖紙檔案，協助工程師於機構設計階段快速對接與驗證，縮短開發週期。",
+    "f4_h":"24 小時極速打樣","f4_p":"充裕端子備料與快速排產機制，為研發團隊提供 24 小時內快速反應與樣品寄送服務。",
+    "cta_h":"需要微距 BTB 連接器選型、客製化開發或樣品索取？",
+    "cta_p":"我們的工程與業務團隊隨時準備為您提供專業服務，包含 2D 圖紙精準對接、極速樣品寄送、高可靠度品質驗證以及極具競爭力的原廠直營報價。",
+    "cta_btn":"立即聯繫我們索取樣品與報價",
+    "footer_desc":"東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。",
+    "footer_nav":"快速導覽","footer_contact":"聯絡資訊",
+    "footer_tel1":"電話：0769-85410081","footer_tel2":"電話：0769-85410082",
+    "footer_mobile":"手機 / 微信：18929444965",
+    "footer_addr":"地址：廣東省東莞市長安鎮上角區螢光路15號",
+    "footer_copy":"© 2026 東莞市嘉訊科電子科技有限公司 版權所有"
+  },
+  "zh-Hans": {
+    "nav_home":"首页","nav_products":"产品中心","nav_about":"关于我们","nav_contact":"联系我们",
+    "hero_tag":"JIAXUNKE CONNECTORS",
+    "hero_h1":"高精密微距 <span>BTB 板对板连接器</span><br>专业制造",
+    "hero_p":"东莞市嘉讯科电子深耕精密连接器制造超过 25 年，专注 0.5 / 0.8mm 单槽与双槽板对板连接器。提供精密模具自主开发、全自动化 CCD 检测与 24 小时快速打样服务。",
+    "btn_products":"浏览产品中心","btn_inquiry":"在线询价 / 索取样品",
+    "stat1_n":"25+ 年","stat1_d":"连接器制造与技术沉淀",
+    "stat2_n":"±0.01mm","stat2_d":"精密模具与冲压精度",
+    "stat3_n":"100%","stat3_d":"CCD 光学全自动全检",
+    "stat4_n":"24h","stat4_d":"工程技术与样品快速响应",
+    "sec_prod_h":"核心产品矩阵","sec_prod_p":"涵盖微型化高密度连接规格，支持多种高度与 Pin 数组合",
+    "p1_tag":"双槽 0.5 BTB","p1_h":"双槽 0.5 BTB 连接器系列",
+    "p1_s1":"<strong>Pin 数：</strong> <span class=\"spec-highlight\">2×4 ~ 2×50 Pin</span>",
+    "p1_s2":"<strong>公座高度：</strong> <span class=\"spec-highlight\">H0.8 / H1.0 / H1.3 / H2.0 / H4.0</span>",
+    "p1_s3":"<strong>母座高度：</strong> <span class=\"spec-highlight\">H2.2 / H3.0 / H3.5 / H4.0 / H4.5</span>",
+    "p1_s4":"<strong>最高合高：</strong> <span class=\"spec-highlight\">最高可达 H8.5</span>",
+    "p2_tag":"双槽 0.8 BTB","p2_h":"双槽 0.8 BTB 连接器系列",
+    "p2_s1":"<strong>Pin 数：</strong> <span class=\"spec-highlight\">2×4 ~ 2×50 Pin</span>",
+    "p2_s2":"<strong>公座高度：</strong> <span class=\"spec-highlight\">H1.0 / H2.0 / H4.0</span>",
+    "p2_s3":"<strong>母座高度：</strong> <span class=\"spec-highlight\">H3.0 / H3.5 / H4.0 / H4.5</span>",
+    "p2_s4":"<strong>最高合高：</strong> <span class=\"spec-highlight\">最高可达 H8.5</span>",
+    "p3_tag":"单槽 0.5 BTB","p3_h":"单槽 0.5 BTB 连接器系列",
+    "p3_s1":"<strong>Pin 数：</strong> <span class=\"spec-highlight\">2×5 ~ 2×40 Pin</span>",
+    "p3_s2":"<strong>合高 3.0：</strong> <span class=\"spec-highlight\">公 H2.2 + 母 H2.3</span>",
+    "p3_s3":"<strong>合高 5.0：</strong> <span class=\"spec-highlight\">公 H2.7 + 母 H4.3</span>",
+    "p3_s4":"<strong>合高 3.5：</strong> <span class=\"spec-highlight\">公 H2.7 + 母 H2.8</span>",
+    "p4_tag":"单槽 0.8 BTB","p4_h":"单槽 0.8 BTB 连接器系列",
+    "p4_s1":"<strong>Pin 数：</strong> <span class=\"spec-highlight\">2×20 ~ 2×60 Pin</span>",
+    "p4_s2":"<strong>公座高度：</strong> <span class=\"spec-highlight\">H4.6</span>",
+    "p4_s3":"<strong>母座高度：</strong> <span class=\"spec-highlight\">H3.8</span>",
+    "p4_s4":"<strong>组合合高：</strong> <span class=\"spec-highlight\">H5.0</span>",
+    "view_more":"查看完整规格与图纸 →",
+    "why_h":"为什么选择嘉讯科？","why_p":"专业研发、精密制造与高品质交付保障",
+    "f1_h":"±0.01mm 精密模具","f1_p":"自主精密模具研发与高速冲压，精准控制端子 Pitch 间距与共面度，有效避免虚焊问题。",
+    "f2_h":"100% CCD 全自动光学检测","f2_p":"出厂前全自动视觉检测 Pin 脚平整度、正向力与微小瑕疵，打造零缺陷交付标准。",
+    "f3_h":"工程 2D 图纸支持","f3_p":"提供完整 CAD 图纸档案，协助工程师于机构设计阶段快速对接与验证，缩短开发周期。",
+    "f4_h":"24 小时极速打样","f4_p":"充裕端子备料与快速排产机制，为研发团队提供 24 小时内快速反应与样品寄送服务。",
+    "cta_h":"需要微距 BTB 连接器选型、客制化开发或样品索取？",
+    "cta_p":"我们的工程与业务团队随时准备为您提供专业服务，包含 2D 图纸精准对接、极速样品寄送、高可靠度品质验证以及极具竞争力的原厂直营报价。",
+    "cta_btn":"立即联系我们索取样品与报价",
+    "footer_desc":"东莞市嘉讯科电子科技有限公司，深耕精密 BTB 板对板连接器超过 25 年，专注高密度、高精度与高可靠度产品研发制造。",
+    "footer_nav":"快速导览","footer_contact":"联系信息",
+    "footer_tel1":"电话：0769-85410081","footer_tel2":"电话：0769-85410082",
+    "footer_mobile":"手机 / 微信：18929444965",
+    "footer_addr":"地址：广东省东莞市长安镇上角区荧光路15号",
+    "footer_copy":"© 2026 东莞市嘉讯科电子科技有限公司 版权所有"
+  },
+  "en": {
+    "nav_home":"Home","nav_products":"Products","nav_about":"About","nav_contact":"Contact",
+    "hero_tag":"JIAXUNKE CONNECTORS",
+    "hero_h1":"Fine-Pitch <span>BTB Board-to-Board Connectors</span><br>Precision Manufacturing",
+    "hero_p":"Dongguan Jiaxunke Electronics has specialized in precision interconnects for over 25 years, focusing on 0.5 mm / 0.8 mm single-row and dual-row board-to-board (BTB) connectors. In-house tooling, fully automated AOI, and 24-hour sample turnaround.",
+    "btn_products":"Browse Products","btn_inquiry":"RFQ / Request Samples",
+    "stat1_n":"25+ yrs","stat1_d":"Interconnect manufacturing experience",
+    "stat2_n":"±0.01 mm","stat2_d":"Precision tooling & stamping",
+    "stat3_n":"100%","stat3_d":"Full automated optical inspection",
+    "stat4_n":"24h","stat4_d":"Engineering support & sample lead time",
+    "sec_prod_h":"Product Portfolio","sec_prod_p":"Fine-pitch, high-density BTB interconnects in multiple stack heights and pin counts",
+    "p1_tag":"0.5 mm Dual-Row BTB","p1_h":"0.5 mm Dual-Row BTB Series",
+    "p1_s1":"<strong>Pin count:</strong> <span class=\"spec-highlight\">2×4 to 2×50</span>",
+    "p1_s2":"<strong>male height:</strong> <span class=\"spec-highlight\">H0.8 / H1.0 / H1.3 / H2.0 / H4.0</span>",
+    "p1_s3":"<strong>female height:</strong> <span class=\"spec-highlight\">H2.2 / H3.0 / H3.5 / H4.0 / H4.5</span>",
+    "p1_s4":"<strong>Stack height:</strong> <span class=\"spec-highlight\">Up to 8.5 mm</span>",
+    "p2_tag":"0.8 mm Dual-Row BTB","p2_h":"0.8 mm Dual-Row BTB Series",
+    "p2_s1":"<strong>Pin count:</strong> <span class=\"spec-highlight\">2×4 to 2×50</span>",
+    "p2_s2":"<strong>male height:</strong> <span class=\"spec-highlight\">H1.0 / H2.0 / H4.0</span>",
+    "p2_s3":"<strong>female height:</strong> <span class=\"spec-highlight\">H3.0 / H3.5 / H4.0 / H4.5</span>",
+    "p2_s4":"<strong>Stack height:</strong> <span class=\"spec-highlight\">Up to 8.5 mm</span>",
+    "p3_tag":"0.5 mm Single-Row BTB","p3_h":"0.5 mm Single-Row BTB Series",
+    "p3_s1":"<strong>Pin count:</strong> <span class=\"spec-highlight\">2×5 to 2×40</span>",
+    "p3_s2":"<strong>Stack 3.0 mm:</strong> <span class=\"spec-highlight\">male H2.2 + female H2.3</span>",
+    "p3_s3":"<strong>Stack 5.0 mm:</strong> <span class=\"spec-highlight\">male H2.7 + female H4.3</span>",
+    "p3_s4":"<strong>Stack 3.5 mm:</strong> <span class=\"spec-highlight\">male H2.7 + female H2.8</span>",
+    "p4_tag":"0.8 mm Single-Row BTB","p4_h":"0.8 mm Single-Row BTB Series",
+    "p4_s1":"<strong>Pin count:</strong> <span class=\"spec-highlight\">2×20 to 2×60</span>",
+    "p4_s2":"<strong>male height:</strong> <span class=\"spec-highlight\">H4.6</span>",
+    "p4_s3":"<strong>female height:</strong> <span class=\"spec-highlight\">H3.8</span>",
+    "p4_s4":"<strong>Stack height:</strong> <span class=\"spec-highlight\">5.0 mm</span>",
+    "view_more":"View full specifications & drawings →",
+    "why_h":"Why Jiaxunke?","why_p":"Engineering support, precision manufacturing, and reliable delivery",
+    "f1_h":"±0.01 mm Precision Tooling","f1_p":"In-house tooling design and high-speed stamping control pin pitch and coplanarity to minimize solder joint defects.",
+    "f2_h":"100% Automated Optical Inspection (AOI)","f2_p":"100% AOI of pin coplanarity, contact normal force, and cosmetic defects before shipment.",
+    "f3_h":"Engineering Drawing Support","f3_p":"Full 2D/CAD packages to accelerate PCB footprint and mechanical fit verification.",
+    "f4_h":"24-Hour Sample Turnaround","f4_p":"Ready terminal inventory and fast scheduling for sample shipment within 24 hours.",
+    "cta_h":"Need BTB part selection, customization, or samples?",
+    "cta_p":"Our engineering and sales teams support drawing match, fast samples, reliability validation, and competitive factory pricing.",
+    "cta_btn":"Request samples & quotation",
+    "footer_desc":"Dongguan Jiaxunke Electronics Technology Co., Ltd. — 25+ years specializing in precision BTB board-to-board connectors.",
+    "footer_nav":"Quick Links","footer_contact":"Contact",
+    "footer_tel1":"Tel: 0769-85410081","footer_tel2":"Tel: 0769-85410082",
+    "footer_mobile":"Mobile / WeChat: 18929444965",
+    "footer_addr":"Address: No.15 Yingguang Rd, Shangjiao, Changan, Dongguan, Guangdong, China",
+    "footer_copy":"© 2026 Dongguan Jiaxunke Electronics Technology Co., Ltd. All rights reserved"
+  }
+};
 
-      function openMenu() {
-        if (mobileMenu) mobileMenu.classList.add('open');
-        if (navLinks) navLinks.classList.add('active');
-        if (backdrop) backdrop.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeMenu() {
-        if (mobileMenu) mobileMenu.classList.remove('open');
-        if (navLinks) navLinks.classList.remove('active');
-        if (backdrop) backdrop.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-      function toggleMenu(e) {
-        if (e) { e.preventDefault(); e.stopPropagation(); }
-        if (navLinks && navLinks.classList.contains('active')) closeMenu();
-        else openMenu();
-      }
+(function(){
+  var LANG_KEY = 'jxk_lang';
+  function getLang(){
+    try { return localStorage.getItem(LANG_KEY) || 'zh-Hant'; } catch(e){ return 'zh-Hant'; }
+  }
+  function setLang(lang){
+    try { localStorage.setItem(LANG_KEY, lang); } catch(e){}
+  }
+  function applyI18n(){
+    var dict = window.JXK_PAGE_I18N;
+    var lang = getLang();
+    if(!dict[lang]) lang = 'zh-Hant';
+    var pack = dict[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(pack[key] != null) el.innerHTML = pack[key];
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      if(btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+    document.documentElement.lang = (lang === 'en' ? 'en' : (lang === 'zh-Hans' ? 'zh-CN' : 'zh-Hant'));
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var switcher = document.getElementById('lang-switch');
+    if(switcher){
+      switcher.addEventListener('click', function(e){
+        var btn = e.target.closest('.lang-btn');
+        if(!btn) return;
+        setLang(btn.getAttribute('data-lang'));
+        applyI18n();
+      });
+    }
+    applyI18n();
 
-      if (mobileMenu) {
-        mobileMenu.addEventListener('click', toggleMenu);
-        mobileMenu.addEventListener('touchend', function(e) {
-          e.preventDefault();
-          toggleMenu(e);
-        }, { passive: false });
-      }
-      if (backdrop) {
-        backdrop.addEventListener('click', closeMenu);
-        backdrop.addEventListener('touchend', function(e) {
-          e.preventDefault();
-          closeMenu();
-        }, { passive: false });
-      }
-      if (navLinks) {
-        navLinks.querySelectorAll('a').forEach(function(link) {
-          link.addEventListener('click', function() {
-            closeMenu();
-          });
-        });
-      }
-    })();
-  </script>
+    // Mobile menu
+    var mobileMenu = document.getElementById('mobile-menu');
+    var navLinks = document.getElementById('nav-links');
+    var backdrop = document.getElementById('nav-backdrop');
+    function openMenu() {
+      if (mobileMenu) mobileMenu.classList.add('open');
+      if (navLinks) navLinks.classList.add('active');
+      if (backdrop) backdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      if (mobileMenu) mobileMenu.classList.remove('open');
+      if (navLinks) navLinks.classList.remove('active');
+      if (backdrop) backdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function toggleMenu(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+      if (navLinks && navLinks.classList.contains('active')) closeMenu();
+      else openMenu();
+    }
+    if (mobileMenu) {
+      mobileMenu.addEventListener('click', toggleMenu);
+    }
+    if (backdrop) {
+      backdrop.addEventListener('click', closeMenu);
+    }
+    if (navLinks) {
+      navLinks.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() { closeMenu(); });
+      });
+    }
+  });
+})();
+</script>
+
 
   <!-- 右側浮動客服 -->
   <!-- 右側浮動客服 -->

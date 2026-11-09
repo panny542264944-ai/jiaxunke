@@ -34,30 +34,35 @@
       max-width: 1280px;
       margin: 0 auto;
       padding: 16px 24px;
-      *zoom: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
     }
-    .nav-container:after { content: ""; display: table; clear: both; }
     .logo {
-      float: left;
       font-size: 22px;
       font-weight: 700;
       color: #FFFFFF;
       letter-spacing: 0.5px;
       line-height: 40px;
+      flex-shrink: 0;
     }
     .logo span { color: #00F2FE; }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
     .nav-links {
-      float: right;
       list-style: none;
       margin: 0;
       padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 28px;
     }
-    .nav-links li {
-      display: inline-block;
-      *display: inline;
-      *zoom: 1;
-      margin-left: 28px;
-    }
+    .nav-links li { display: block; margin: 0; }
     .nav-links a {
       color: #9CA3AF;
       font-size: 15px;
@@ -66,6 +71,32 @@
     .nav-links a:hover,
     .nav-links a.active { color: #00F2FE; }
     .menu-toggle { display: none; }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      border: 1px solid #1F2937;
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: #9CA3AF;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 9px;
+      cursor: pointer;
+      font-family: inherit;
+      line-height: 1.2;
+    }
+    .lang-btn:hover { color: #00F2FE; }
+    .lang-btn.active {
+      background: rgba(0, 242, 254, 0.15);
+      color: #00F2FE;
+    }
 
     .container {
       max-width: 1280px;
@@ -318,14 +349,14 @@
     @media screen and (max-width: 768px) {
       .menu-toggle {
         display: block;
-        float: right;
         width: 28px;
         height: 28px;
-        margin-top: 6px;
         cursor: pointer;
         background: none;
         border: none;
         padding: 0;
+        order: 3;
+        z-index: 1003;
       }
       .menu-toggle span {
         display: block;
@@ -334,9 +365,14 @@
         background: #F3F4F6;
         margin: 5px auto;
       }
+      .nav-right {
+        margin-left: auto;
+        margin-right: 8px;
+        order: 2;
+      }
+      .logo { order: 1; }
       .nav-links {
         display: none;
-        float: none;
         position: fixed;
         top: 0;
         right: 0;
@@ -347,9 +383,12 @@
         padding: 70px 24px 20px;
         border-left: 1px solid #1F2937;
         z-index: 1001;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
       }
-      .nav-links.active { display: block; }
-      .nav-links li { display: block; margin: 0; }
+      .nav-links.active { display: flex; }
+      .nav-links li { display: block; margin: 0; width: 100%; }
       .nav-links a {
         display: block;
         font-size: 16px;
@@ -377,57 +416,64 @@
 </head>
 <body>
 
-  <header>
+    <header>
     <div class="nav-container">
       <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html" data-i18n="nav_home">首頁</a></li>
+          <li><a href="products.html" data-i18n="nav_products">產品中心</a></li>
+          <li><a href="about.html" data-i18n="nav_about">關於我們</a></li>
+          <li><a href="contact.html" class="active" data-i18n="nav_contact">聯絡我們</a></li>
+        </ul>
+        <div class="lang-switch" id="lang-switch" aria-label="Language">
+          <button type="button" class="lang-btn active" data-lang="zh-Hant">繁</button>
+          <button type="button" class="lang-btn" data-lang="zh-Hans">簡</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
       <button type="button" class="menu-toggle" id="mobile-menu" aria-label="選單">
         <span></span><span></span><span></span>
       </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html">首頁</a></li>
-        <li><a href="products.html">產品中心</a></li>
-        <li><a href="about.html">關於我們</a></li>
-        <li><a href="contact.html" class="active">聯絡我們</a></li>
-      </ul>
     </div>
   </header>
 
   <div class="container">
     <div class="page-title">
-      <h1>聯絡我們與線上諮詢</h1>
-      <p>歡迎通過 QQ / 微信與我們聯繫，獲取產品諮詢、圖紙評估與樣品服務</p>
+      <h1 data-i18n="page_h1">聯絡我們與線上諮詢</h1>
+      <p data-i18n="page_p">歡迎通過 QQ / 微信與我們聯繫，獲取產品諮詢、圖紙評估與樣品服務</p>
     </div>
 
     <div class="contact-grid">
       <!-- 左側聯繫資訊 -->
       <div class="contact-info">
-        <h2>聯繫方式</h2>
+        <h2 data-i18n="info_h">聯繫方式</h2>
         <div class="info-item">
-          <h3>公司名稱</h3>
-          <p>嘉普塑膠五金電子有限公司</p>
-          <p>東莞市嘉訊科電子科技有限公司</p>
+          <h3 data-i18n="c_name">公司名稱</h3>
+          <p data-i18n="co1">嘉普塑膠五金電子有限公司</p>
+          <p data-i18n="co2">東莞市嘉訊科電子科技有限公司</p>
         </div>
         <div class="info-item">
-          <h3>公司地址</h3>
-          <p>廣東省東莞市長安鎮上角區螢光路15號</p>
+          <h3 data-i18n="c_addr">公司地址</h3>
+          <p data-i18n="addr_full">廣東省東莞市長安鎮上角區螢光路15號</p>
         </div>
         <div class="info-item">
-          <h3>聯繫電話</h3>
+          <h3 data-i18n="c_tel">聯繫電話</h3>
           <p>
-            <a href="tel:076985410081">公司電話：0769-85410081</a><br>
-            <a href="tel:076985410082">公司電話：0769-85410082</a><br>
-            <a href="tel:18929444965">黃先生手機：18929444965</a>
+            <a href="tel:076985410081" data-i18n="tel1">公司電話：0769-85410081</a><br>
+            <a href="tel:076985410082" data-i18n="tel2">公司電話：0769-85410082</a><br>
+            <a href="tel:18929444965" data-i18n="tel3">黃先生手機：18929444965</a>
           </p>
         </div>
         <div class="info-item">
-          <h3>技術支援與服務</h3>
+          <h3 data-i18n="c_svc">技術支援與服務</h3>
           <ul class="service-list">
-            <li>2D CAD 工程圖紙快速對接與下載</li>
-            <li>樣品索取、小批量試產與客製化開發諮詢</li>
-            <li>精密 BTB 板對板連接器選型與合高匹配評估</li>
-            <li>交期與量產供貨能力確認</li>
-            <li>技術問題 24 小時內工程快速響應</li>
-            <li>歡迎來電或線上諮詢，業務即時回覆</li>
+            <li data-i18n="s1">2D CAD 工程圖紙快速對接與下載</li>
+            <li data-i18n="s2">樣品索取、小批量試產與客製化開發諮詢</li>
+            <li data-i18n="s3">精密 BTB 板對板連接器選型與合高匹配評估</li>
+            <li data-i18n="s4">交期與量產供貨能力確認</li>
+            <li data-i18n="s5">技術問題 24 小時內工程快速響應</li>
+            <li data-i18n="s6">歡迎來電或線上諮詢，業務即時回覆</li>
           </ul>
         </div>
       </div>
@@ -436,26 +482,26 @@
       <div class="service-panel">
         <!-- QQ -->
         <div class="cs-card">
-          <h2>QQ 線上客服</h2>
-          <p>點擊下方按鈕，直接與我們的業務人員對話</p>
+          <h2 data-i18n="qq_h">QQ 線上客服</h2>
+          <p data-i18n="qq_p">點擊下方按鈕，直接與我們的業務人員對話</p>
           <div class="cs-number">QQ：2190343453</div>
           <a target="_blank"
              href="http://wpa.qq.com/msgrd?v=3&amp;uin=2190343453&amp;site=qq&amp;menu=yes"
-             class="btn-qq">
+             class="btn-qq" data-i18n="qq_btn">
             點擊這裡給我發消息
           </a>
-          <p class="cs-tip">若無法自動開啟，請手動添加 QQ：2190343453</p>
+          <p class="cs-tip" data-i18n="qq_tip">若無法自動開啟，請手動添加 QQ：2190343453</p>
         </div>
 
         <!-- 微信 + QR CODE -->
         <div class="cs-card">
-          <h2>微信客服</h2>
-          <p>掃描下方二維碼，或搜尋微信號添加好友</p>
+          <h2 data-i18n="wx_h">微信客服</h2>
+          <p data-i18n="wx_p">掃描下方二維碼，或搜尋微信號添加好友</p>
           <div class="cs-number">微信：18929444965</div>
           <div class="wx-qr-box">
             <img src="images/wechat-qr.png" alt="微信二維碼">
           </div>
-          <p class="cs-tip">請使用手機微信掃碼添加，或搜尋：18929444965</p>
+          <p class="cs-tip" data-i18n="wx_tip">請使用手機微信掃碼添加，或搜尋：18929444965</p>
         </div>
       </div>
     </div>
@@ -463,8 +509,8 @@
     <!-- 高德地图 -->
     <div class="map-section">
       <div class="map-header">
-        <h2>公司位置</h2>
-        <a href="https://www.amap.com/place/B0FFG1XMAP" target="_blank">在高德地圖中開啟 →</a>
+        <h2 data-i18n="map_h">公司位置</h2>
+        <a href="https://www.amap.com/place/B0FFG1XMAP" target="_blank" data-i18n="map_link">在高德地圖中開啟 →</a>
       </div>
       <div class="map-embed">
         <iframe 
@@ -485,37 +531,136 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
-        <p>東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
+        <p data-i18n="footer_desc">東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。</p>
       </div>
       <div class="footer-col">
-        <h4>快速導覽</h4>
+        <h4 data-i18n="footer_nav">快速導覽</h4>
         <ul>
-          <li><a href="index.html">首頁</a></li>
-          <li><a href="products.html">產品中心</a></li>
-          <li><a href="about.html">關於我們</a></li>
-          <li><a href="contact.html">聯絡我們</a></li>
+          <li><a href="index.html" data-i18n="nav_home">首頁</a></li>
+          <li><a href="products.html" data-i18n="nav_products">產品中心</a></li>
+          <li><a href="about.html" data-i18n="nav_about">關於我們</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">聯絡我們</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>聯絡資訊</h4>
+        <h4 data-i18n="footer_contact">聯絡資訊</h4>
         <ul>
-          <li><a href="tel:076985410081">電話：0769-85410081</a></li>
-          <li><a href="tel:076985410082">電話：0769-85410082</a></li>
-          <li>手機 / 微信：18929444965</li>
-          <li>QQ：2190343453</li>
-          <li>地址：廣東省東莞市長安鎮上角區螢光路15號</li>
+          <li><a href="tel:076985410081" data-i18n="footer_tel1">電話：0769-85410081</a></li>
+          <li><a href="tel:076985410082" data-i18n="footer_tel2">電話：0769-85410082</a></li>
+          <li data-i18n="footer_mobile">手機 / 微信：18929444965</li>
+          <li data-i18n="footer_qq">QQ：2190343453</li>
+          <li data-i18n="footer_addr">地址：廣東省東莞市長安鎮上角區螢光路15號</li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom" data-i18n="footer_copy">
       &copy; 2026 東莞市嘉訊科電子科技有限公司 版權所有
     </div>
   </footer>
 
-  <script type="text/javascript">
+  
+<script>
+window.JXK_PAGE_I18N = {
+"zh-Hant":{
+"nav_home":"首頁","nav_products":"產品中心","nav_about":"關於我們","nav_contact":"聯絡我們",
+"page_h1":"聯絡我們與線上諮詢","page_p":"歡迎通過 QQ / 微信與我們聯繫，獲取產品諮詢、圖紙評估與樣品服務",
+"info_h":"聯繫方式","c_name":"公司名稱","c_addr":"公司地址","c_tel":"聯繫電話","c_svc":"技術支援與服務",
+"co1":"嘉普塑膠五金電子有限公司","co2":"東莞市嘉訊科電子科技有限公司",
+"addr_full":"廣東省東莞市長安鎮上角區螢光路15號",
+"tel1":"公司電話：0769-85410081","tel2":"公司電話：0769-85410082","tel3":"黃先生手機：18929444965",
+"s1":"2D CAD 工程圖紙快速對接與下載","s2":"樣品索取、小批量試產與客製化開發諮詢",
+"s3":"精密 BTB 板對板連接器選型與合高匹配評估","s4":"交期與量產供貨能力確認",
+"s5":"技術問題 24 小時內工程快速響應","s6":"歡迎來電或線上諮詢，業務即時回覆",
+"qq_h":"QQ 線上客服","qq_p":"點擊下方按鈕，直接與我們的業務人員對話","qq_btn":"點擊這裡給我發消息",
+"qq_tip":"若無法自動開啟，請手動添加 QQ：2190343453",
+"wx_h":"微信客服","wx_p":"掃描下方二維碼，或搜尋微信號添加好友","wx_tip":"請使用手機微信掃碼添加，或搜尋：18929444965",
+"map_h":"公司位置","map_link":"在高德地圖中開啟 →",
+"footer_desc":"東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。",
+"footer_nav":"快速導覽","footer_contact":"聯絡資訊","footer_tel1":"電話：0769-85410081","footer_tel2":"電話：0769-85410082",
+"footer_mobile":"手機 / 微信：18929444965","footer_qq":"QQ：2190343453",
+"footer_addr":"地址：廣東省東莞市長安鎮上角區螢光路15號",
+"footer_copy":"© 2026 東莞市嘉訊科電子科技有限公司 版權所有"
+},
+"zh-Hans":{
+"nav_home":"首页","nav_products":"产品中心","nav_about":"关于我们","nav_contact":"联系我们",
+"page_h1":"联系我们与在线咨询","page_p":"欢迎通过 QQ / 微信与我们联系，获取产品咨询、图纸评估与样品服务",
+"info_h":"联系方式","c_name":"公司名称","c_addr":"公司地址","c_tel":"联系电话","c_svc":"技术支持与服务",
+"co1":"嘉普塑胶五金电子有限公司","co2":"东莞市嘉讯科电子科技有限公司",
+"addr_full":"广东省东莞市长安镇上角区荧光路15号",
+"tel1":"公司电话：0769-85410081","tel2":"公司电话：0769-85410082","tel3":"黄先生手机：18929444965",
+"s1":"2D CAD 工程图纸快速对接与下载","s2":"样品索取、小批量试产与客制化开发咨询",
+"s3":"精密 BTB 板对板连接器选型与合高匹配评估","s4":"交期与量产供货能力确认",
+"s5":"技术问题 24 小时内工程快速响应","s6":"欢迎来电或在线咨询，业务即时回复",
+"qq_h":"QQ 在线客服","qq_p":"点击下方按钮，直接与我们的业务人员对话","qq_btn":"点击这里给我发消息",
+"qq_tip":"若无法自动开启，请手动添加 QQ：2190343453",
+"wx_h":"微信客服","wx_p":"扫描下方二维码，或搜索微信号添加好友","wx_tip":"请使用手机微信扫码添加，或搜索：18929444965",
+"map_h":"公司位置","map_link":"在高德地图中打开 →",
+"footer_desc":"东莞市嘉讯科电子科技有限公司，深耕精密 BTB 板对板连接器超过 25 年，专注高密度、高精度与高可靠度产品研发制造。",
+"footer_nav":"快速导览","footer_contact":"联系信息","footer_tel1":"电话：0769-85410081","footer_tel2":"电话：0769-85410082",
+"footer_mobile":"手机 / 微信：18929444965","footer_qq":"QQ：2190343453",
+"footer_addr":"地址：广东省东莞市长安镇上角区荧光路15号",
+"footer_copy":"© 2026 东莞市嘉讯科电子科技有限公司 版权所有"
+},
+"en":{
+"nav_home":"Home","nav_products":"Products","nav_about":"About","nav_contact":"Contact",
+"page_h1":"Contact & Inquiry","page_p":"Contact us via QQ or WeChat for product consulting, drawing review, and sample requests",
+"info_h":"Contact Information","c_name":"Company Name","c_addr":"Address","c_tel":"Phone","c_svc":"Technical Support & Services",
+"co1":"Jiapu Plastic Hardware Electronics Co., Ltd.","co2":"Dongguan Jiaxunke Electronics Technology Co., Ltd.",
+"addr_full":"No.15 Yingguang Road, Shangjiao, Changan Town, Dongguan, Guangdong, China",
+"tel1":"Office: 0769-85410081","tel2":"Office: 0769-85410082","tel3":"Mr. Huang: 18929444965",
+"s1":"2D CAD drawing support and download","s2":"Sample requests, pilot runs, and custom development",
+"s3":"Fine-pitch BTB selection and stack-height matching","s4":"Lead time and volume supply confirmation",
+"s5":"Engineering response within 24 hours","s6":"Call or message us — sales responds promptly",
+"qq_h":"QQ Live Chat","qq_p":"Click below to chat with our sales team","qq_btn":"Message us on QQ",
+"qq_tip":"If QQ does not open, please add: 2190343453",
+"wx_h":"WeChat Support","wx_p":"Scan the QR code or search the WeChat ID to connect","wx_tip":"Scan with WeChat or search: 18929444965",
+"map_h":"Our Location","map_link":"Open in Amap →",
+"footer_desc":"Dongguan Jiaxunke Electronics Technology Co., Ltd. — 25+ years specializing in precision BTB board-to-board connectors.",
+"footer_nav":"Quick Links","footer_contact":"Contact","footer_tel1":"Tel: 0769-85410081","footer_tel2":"Tel: 0769-85410082",
+"footer_mobile":"Mobile / WeChat: 18929444965","footer_qq":"QQ: 2190343453",
+"footer_addr":"Address: No.15 Yingguang Rd, Shangjiao, Changan, Dongguan, China",
+"footer_copy":"© 2026 Dongguan Jiaxunke Electronics Technology Co., Ltd. All rights reserved"
+}
+};
+
+(function(){
+  var LANG_KEY = 'jxk_lang';
+  function getLang(){
+    try { return localStorage.getItem(LANG_KEY) || 'zh-Hant'; } catch(e){ return 'zh-Hant'; }
+  }
+  function setLang(lang){
+    try { localStorage.setItem(LANG_KEY, lang); } catch(e){}
+  }
+  function applyI18n(){
+    var dict = window.JXK_PAGE_I18N;
+    var lang = getLang();
+    if(!dict[lang]) lang = 'zh-Hant';
+    var pack = dict[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(pack[key] != null) el.innerHTML = pack[key];
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      if(btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+    document.documentElement.lang = (lang === 'en' ? 'en' : (lang === 'zh-Hans' ? 'zh-CN' : 'zh-Hant'));
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    var switcher = document.getElementById('lang-switch');
+    if(switcher){
+      switcher.addEventListener('click', function(e){
+        var btn = e.target.closest('.lang-btn');
+        if(!btn) return;
+        setLang(btn.getAttribute('data-lang'));
+        applyI18n();
+      });
+    }
+    applyI18n();
+
     var mobileMenu = document.getElementById('mobile-menu');
     var navLinks = document.getElementById('nav-links');
-    if (mobileMenu) {
+    if (mobileMenu && navLinks) {
       mobileMenu.onclick = function() {
         if (navLinks.className.indexOf('active') >= 0) {
           navLinks.className = 'nav-links';
@@ -524,6 +669,9 @@
         }
       };
     }
-  </script>
+  });
+})();
+</script>
+
 </body>
 </html>
