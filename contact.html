@@ -603,6 +603,89 @@
       #mobile-nav { display: none !important; }
       .nav-backdrop { display: none !important; }
     }
+  
+    /* Contact page enhancements */
+    .contact-promise {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .promise-item {
+      background: rgba(0, 242, 254, 0.05);
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-radius: 10px;
+      padding: 1rem 0.9rem;
+      text-align: center;
+    }
+    .promise-item .p-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.35rem;
+    }
+    .promise-item .p-title {
+      color: #FFF;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .promise-item .p-desc {
+      color: #9CA3AF;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+    .contact-steps {
+      background: #111827;
+      border: 1px solid #1F2937;
+      border-radius: 12px;
+      padding: 1.35rem 1.4rem;
+      margin-bottom: 1.8rem;
+    }
+    .contact-steps h3 {
+      color: #00F2FE;
+      font-size: 1.05rem;
+      margin-bottom: 0.9rem;
+      font-weight: 700;
+    }
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.9rem;
+    }
+    .step-item {
+      position: relative;
+      padding: 0.75rem 0.7rem;
+      background: rgba(0,242,254,0.04);
+      border-radius: 8px;
+      border: 1px solid rgba(0,242,254,0.12);
+    }
+    .step-num {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      text-align: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #4FACFE, #00F2FE);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .step-item p {
+      color: #9CA3AF;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      margin: 0;
+    }
+    .step-item strong {
+      color: #FFF;
+      font-weight: 600;
+    }
+    @media screen and (max-width: 768px) {
+      .contact-promise { grid-template-columns: 1fr; }
+      .steps-row { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body>
@@ -638,6 +721,45 @@
     <div class="page-title">
       <h1 data-i18n="page_h1">聯絡我們與線上諮詢</h1>
       <p data-i18n="page_p">歡迎通過 QQ / 微信與我們聯繫，獲取產品諮詢、圖紙評估與樣品服務</p>
+    </div>
+
+
+    <!-- Response promise -->
+    <div class="contact-promise">
+      <div class="promise-item">
+        <div class="p-icon">⚡</div>
+        <div class="p-title" data-i18n="pr1_t">24 小時內響應</div>
+        <div class="p-desc" data-i18n="pr1_d">工程與業務盡快回覆選型與樣品需求</div>
+      </div>
+      <div class="promise-item">
+        <div class="p-icon">📐</div>
+        <div class="p-title" data-i18n="pr2_t">CAD 圖紙支援</div>
+        <div class="p-desc" data-i18n="pr2_d">協助確認腳位、合高與機構配合</div>
+      </div>
+      <div class="promise-item">
+        <div class="p-icon">📦</div>
+        <div class="p-title" data-i18n="pr3_t">樣品與小批量</div>
+        <div class="p-desc" data-i18n="pr3_d">支援打樣、試產與量產供貨評估</div>
+      </div>
+    </div>
+
+    <!-- How to inquire -->
+    <div class="contact-steps">
+      <h3 data-i18n="steps_h">如何快速詢價 / 索取樣品</h3>
+      <div class="steps-row">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <p data-i18n="step1"><strong>告訴我們規格</strong><br>Pitch、單雙槽、Pin 數、合高或應用場景</p>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <p data-i18n="step2"><strong>選擇聯絡方式</strong><br>QQ 在線、微信掃碼或直接來電</p>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <p data-i18n="step3"><strong>工程對接</strong><br>圖紙確認、樣品安排與報價回覆</p>
+        </div>
+      </div>
     </div>
 
     <div class="contact-grid">
@@ -771,7 +893,7 @@ window.JXK_PAGE_I18N = {
 "qq_tip":"若無法自動開啟，請手動添加 QQ：2190343453",
 "wx_h":"微信客服","wx_p":"掃描下方二維碼，或搜尋微信號添加好友","wx_tip":"請使用手機微信掃碼添加，或搜尋：18929444965",
 "map_h":"公司位置","map_link":"在高德地圖中開啟 →",
-"footer_desc":"東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。",
+"pr1_t":"24 小時內響應","pr1_d":"工程與業務盡快回覆選型與樣品需求","pr2_t":"CAD 圖紙支援","pr2_d":"協助確認腳位、合高與機構配合","pr3_t":"樣品與小批量","pr3_d":"支援打樣、試產與量產供貨評估","steps_h":"如何快速詢價 / 索取樣品","step1":"<strong>告訴我們規格</strong><br>Pitch、單雙槽、Pin 數、合高或應用場景","step2":"<strong>選擇聯絡方式</strong><br>QQ 在線、微信掃碼或直接來電","step3":"<strong>工程對接</strong><br>圖紙確認、樣品安排與報價回覆","footer_desc":"東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。",
 "footer_nav":"快速導覽","footer_contact":"聯絡資訊","footer_tel1":"電話：0769-85410081","footer_tel2":"電話：0769-85410082",
 "footer_mobile":"手機 / 微信：18929444965","footer_qq":"QQ：2190343453",
 "footer_addr":"地址：廣東省東莞市長安鎮上角區螢光路15號",
@@ -791,7 +913,7 @@ window.JXK_PAGE_I18N = {
 "qq_tip":"若无法自动开启，请手动添加 QQ：2190343453",
 "wx_h":"微信客服","wx_p":"扫描下方二维码，或搜索微信号添加好友","wx_tip":"请使用手机微信扫码添加，或搜索：18929444965",
 "map_h":"公司位置","map_link":"在高德地图中打开 →",
-"footer_desc":"东莞市嘉讯科电子科技有限公司，深耕精密 BTB 板对板连接器超过 25 年，专注高密度、高精度与高可靠度产品研发制造。",
+"pr1_t":"24 小时内响应","pr1_d":"工程与业务尽快回复选型与样品需求","pr2_t":"CAD 图纸支持","pr2_d":"协助确认脚位、合高与机构配合","pr3_t":"样品与小批量","pr3_d":"支持打样、试产与量产供货评估","steps_h":"如何快速询价 / 索取样品","step1":"<strong>告诉我们规格</strong><br>Pitch、单双槽、Pin 数、合高或应用场景","step2":"<strong>选择联络方式</strong><br>QQ 在线、微信扫码或直接来电","step3":"<strong>工程对接</strong><br>图纸确认、样品安排与报价回复","footer_desc":"东莞市嘉讯科电子科技有限公司，深耕精密 BTB 板对板连接器超过 25 年，专注高密度、高精度与高可靠度产品研发制造。",
 "footer_nav":"快速导览","footer_contact":"联系信息","footer_tel1":"电话：0769-85410081","footer_tel2":"电话：0769-85410082",
 "footer_mobile":"手机 / 微信：18929444965","footer_qq":"QQ：2190343453",
 "footer_addr":"地址：广东省东莞市长安镇上角区荧光路15号",
@@ -811,7 +933,7 @@ window.JXK_PAGE_I18N = {
 "qq_tip":"If QQ does not open, please add: 2190343453",
 "wx_h":"WeChat Support","wx_p":"Scan the QR code or search the WeChat ID to connect","wx_tip":"Scan with WeChat or search: 18929444965",
 "map_h":"Our Location","map_link":"Open in Amap →",
-"footer_desc":"Dongguan Jiaxunke Electronics Technology Co., Ltd. — 25+ years specializing in precision BTB board-to-board connectors.",
+"pr1_t":"Response within 24h","pr1_d":"Engineering and sales reply on selection and samples","pr2_t":"CAD drawing support","pr2_d":"Help confirm footprint, stack height and fit","pr3_t":"Samples & pilot runs","pr3_d":"Sampling, pilot and volume supply evaluation","steps_h":"How to inquire / request samples","step1":"<strong>Share your requirements</strong><br>Pitch, row type, pin count, stack height or application","step2":"<strong>Choose a contact method</strong><br>QQ chat, WeChat QR or phone","step3":"<strong>Engineering follow-up</strong><br>Drawing check, sample arrangement and quotation","footer_desc":"Dongguan Jiaxunke Electronics Technology Co., Ltd. — 25+ years specializing in precision BTB board-to-board connectors.",
 "footer_nav":"Quick Links","footer_contact":"Contact","footer_tel1":"Tel: 0769-85410081","footer_tel2":"Tel: 0769-85410082",
 "footer_mobile":"Mobile / WeChat: 18929444965","footer_qq":"QQ: 2190343453",
 "footer_addr":"Address: No.15 Yingguang Rd, Shangjiao, Changan, Dongguan, China",

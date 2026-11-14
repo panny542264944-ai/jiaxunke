@@ -260,7 +260,7 @@
       flex-direction: column;
       justify-content: space-between;
       height: 100%;
-      min-height: 420px;
+      min-height: 460px;
     }
     .product-card:hover {
       border-color: var(--accent);
@@ -374,6 +374,84 @@
       box-sizing: border-box;
     }
 
+
+    
+    /* Dual CTA on product cards */
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem;
+      margin-top: 0.2rem;
+    }
+    .card-actions .btn {
+      width: 100%;
+      padding: 0.7rem 0.4rem;
+      font-size: 0.85rem;
+      text-align: center;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s;
+      display: block;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+    .card-actions .btn-dwg {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent));
+      color: #000;
+    }
+    .card-actions .btn-dwg:hover {
+      opacity: 0.92;
+      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+    }
+    .card-actions .btn-sample {
+      background: transparent;
+      border: 1px solid rgba(0, 242, 254, 0.45);
+      color: var(--accent);
+    }
+    .card-actions .btn-sample:hover {
+      border-color: var(--accent);
+      background: rgba(0, 242, 254, 0.08);
+    }
+    @media (max-width: 360px) {
+      .card-actions { grid-template-columns: 1fr; }
+    }
+
+    /* Spec pitch chip row */
+    .spec-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.85rem;
+    }
+    .spec-chip {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.18rem 0.45rem;
+      border-radius: 4px;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.22);
+      color: var(--accent);
+      letter-spacing: 0.2px;
+    }
+
+    /* Selection helper under banner */
+    .select-tip {
+      max-width: 1280px;
+      margin: 1.2rem auto 0;
+      padding: 0 2rem;
+    }
+    .select-tip-inner {
+      background: rgba(0, 242, 254, 0.06);
+      border: 1px solid rgba(0, 242, 254, 0.22);
+      border-radius: 10px;
+      padding: 0.9rem 1.2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+    .select-tip-inner strong { color: #FFF; }
 
     /* Product image clickable */
     .product-img-container img {
@@ -1009,6 +1087,7 @@
         <div class="product-card" data-cat="double-05">
           <div>
             <span class="product-tag" data-i18n="tag_d05">雙槽 0.5 BTB</span>
+            <div class="spec-chips"><span class="spec-chip">Pitch 0.5 mm</span><span class="spec-chip">Dual-Row</span></div>
             <h3 data-i18n="h3_d05_series">雙槽 0.5 BTB 連接器系列</h3>
             <div class="product-img-container">
               <img src="images/double-05-h8.5.jpg" alt="雙槽 0.5 BTB 最高合高 H8.5"
@@ -1024,12 +1103,13 @@
               <li><strong data-i18n="lbl_stack_max">最高合高：</strong> <span class="spec-highlight" data-i18n="val_upto_h85">最高可達 H8.5</span></li>
             </ul>
           </div>
-          <a href="cad/double-05-h8.5.pdf" class="btn" target="_blank" title="下載圖紙：雙槽 0.5 BTB（最高合高 H8.5）" data-i18n="btn_dwg">產品圖紙</a>
+          <div class="card-actions"><a href="cad/double-05-h8.5.pdf" class="btn btn-dwg" target="_blank" rel="noopener" title="下載圖紙：雙槽 0.5 BTB（最高合高 H8.5）" data-i18n="btn_dwg">產品圖紙</a><a href="contact.html" class="btn btn-sample" data-i18n="btn_sample">索取樣品</a></div>
         </div>
 
         <div class="product-card" data-cat="double-05">
           <div>
             <span class="product-tag" data-i18n="tag_d05">雙槽 0.5 BTB</span>
+            <div class="spec-chips"><span class="spec-chip">Pitch 0.5 mm</span><span class="spec-chip">Dual-Row</span></div>
             <h3 data-i18n="h3_d05_single">雙槽 0.5 BTB（單獨規格）</h3>
             <div class="product-img-container">
               <img src="images/double-05-h8.0.jpg" alt="雙槽 0.5 BTB 單獨規格"
@@ -1045,13 +1125,14 @@
               <li><strong data-i18n="lbl_stack_max">最高合高：</strong> <span class="spec-highlight" data-i18n="val_upto_h80">最高可達 H8.0</span></li>
             </ul>
           </div>
-          <a href="cad/double-05-h8.0.pdf" class="btn" target="_blank" title="下載圖紙：雙槽 0.5 BTB（最高合高 H8.0）" data-i18n="btn_dwg">產品圖紙</a>
+          <div class="card-actions"><a href="cad/double-05-h8.0.pdf" class="btn btn-dwg" target="_blank" rel="noopener" title="下載圖紙：雙槽 0.5 BTB（最高合高 H8.0）" data-i18n="btn_dwg">產品圖紙</a><a href="contact.html" class="btn btn-sample" data-i18n="btn_sample">索取樣品</a></div>
         </div>
 
         <!-- 雙槽 0.8 -->
         <div class="product-card" data-cat="double-08">
           <div>
             <span class="product-tag" data-i18n="tag_d08">雙槽 0.8 BTB</span>
+            <div class="spec-chips"><span class="spec-chip">Pitch 0.8 mm</span><span class="spec-chip">Dual-Row</span></div>
             <h3 data-i18n="h3_d08_series">雙槽 0.8 BTB 連接器系列</h3>
             <div class="product-img-container">
               <img src="images/double-08-series.jpg" alt="雙槽 0.8 BTB 連接器系列"
@@ -1067,13 +1148,14 @@
               <li><strong data-i18n="lbl_stack_max">最高合高：</strong> <span class="spec-highlight" data-i18n="val_upto_h85">最高可達 H8.5</span></li>
             </ul>
           </div>
-          <a href="cad/double-08-series.pdf" class="btn" target="_blank" title="下載圖紙：雙槽 0.8 BTB 連接器系列" data-i18n="btn_dwg">產品圖紙</a>
+          <div class="card-actions"><a href="cad/double-08-series.pdf" class="btn btn-dwg" target="_blank" rel="noopener" title="下載圖紙：雙槽 0.8 BTB 連接器系列" data-i18n="btn_dwg">產品圖紙</a><a href="contact.html" class="btn btn-sample" data-i18n="btn_sample">索取樣品</a></div>
         </div>
 
         <!-- 單槽 0.5 -->
         <div class="product-card" data-cat="single-05">
           <div>
             <span class="product-tag" data-i18n="tag_s05">單槽 0.5 BTB</span>
+            <div class="spec-chips"><span class="spec-chip">Pitch 0.5 mm</span><span class="spec-chip">Single-Row</span></div>
             <h3 data-i18n="h3_s05_multi">單槽 0.5 BTB（2×5~2×40 Pin 多合高）</h3>
             <div class="product-img-container">
               <img src="images/single-05-multi-height.jpg" alt="單槽 0.5 BTB 多合高"
@@ -1089,12 +1171,13 @@
               <li><strong data-i18n="lbl_stack35">合高 3.5：</strong> <span data-i18n="val_m27_f28">公 H2.7 + 母 H2.8</span></li>
             </ul>
           </div>
-          <a href="cad/single-05-multi-height.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.5 BTB（2×5~2×40 Pin 多合高）" data-i18n="btn_dwg">產品圖紙</a>
+          <div class="card-actions"><a href="cad/single-05-multi-height.pdf" class="btn btn-dwg" target="_blank" rel="noopener" title="下載圖紙：單槽 0.5 BTB（2×5~2×40 Pin 多合高）" data-i18n="btn_dwg">產品圖紙</a><a href="contact.html" class="btn btn-sample" data-i18n="btn_sample">索取樣品</a></div>
         </div>
 
         <div class="product-card" data-cat="single-05">
           <div>
             <span class="product-tag" data-i18n="tag_s05">單槽 0.5 BTB</span>
+            <div class="spec-chips"><span class="spec-chip">Pitch 0.5 mm</span><span class="spec-chip">Single-Row</span></div>
             <h3 data-i18n="h3_s05_2x12">單槽 0.5 BTB 2×12 Pin（合高 3.0）</h3>
             <div class="product-img-container">
               <img src="images/single-05-2x12.jpg" alt="單槽 0.5 BTB 2×12 Pin"
@@ -1110,13 +1193,14 @@
               <li><strong data-i18n="lbl_stack">組合合高：</strong> <span class="spec-highlight">H3.0</span></li>
             </ul>
           </div>
-          <a href="cad/single-05-2x12.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.5 BTB 2×12 Pin" data-i18n="btn_dwg">產品圖紙</a>
+          <div class="card-actions"><a href="cad/single-05-2x12.pdf" class="btn btn-dwg" target="_blank" rel="noopener" title="下載圖紙：單槽 0.5 BTB 2×12 Pin" data-i18n="btn_dwg">產品圖紙</a><a href="contact.html" class="btn btn-sample" data-i18n="btn_sample">索取樣品</a></div>
         </div>
 
         <!-- 單槽 0.8 -->
         <div class="product-card" data-cat="single-08">
           <div>
             <span class="product-tag" data-i18n="tag_s08">單槽 0.8 BTB</span>
+            <div class="spec-chips"><span class="spec-chip">Pitch 0.8 mm</span><span class="spec-chip">Single-Row</span></div>
             <h3 data-i18n="h3_s08_multi">單槽 0.8 BTB（2×20~2×60 Pin 合高 5.0）</h3>
             <div class="product-img-container">
               <img src="images/single-08-2x20-60.jpg" alt="單槽 0.8 BTB 2×20~2×60 Pin"
@@ -1132,12 +1216,13 @@
               <li><strong data-i18n="lbl_stack">組合合高：</strong> <span class="spec-highlight">H5.0</span></li>
             </ul>
           </div>
-          <a href="cad/single-08-2x20-60.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.8 BTB（2×20~2×60 Pin）" data-i18n="btn_dwg">產品圖紙</a>
+          <div class="card-actions"><a href="cad/single-08-2x20-60.pdf" class="btn btn-dwg" target="_blank" rel="noopener" title="下載圖紙：單槽 0.8 BTB（2×20~2×60 Pin）" data-i18n="btn_dwg">產品圖紙</a><a href="contact.html" class="btn btn-sample" data-i18n="btn_sample">索取樣品</a></div>
         </div>
 
         <div class="product-card" data-cat="single-08">
           <div>
             <span class="product-tag" data-i18n="tag_s08">單槽 0.8 BTB</span>
+            <div class="spec-chips"><span class="spec-chip">Pitch 0.8 mm</span><span class="spec-chip">Single-Row</span></div>
             <h3 data-i18n="h3_s08_2x50">單槽 0.8 BTB 2×50 Pin（合高 5.0）</h3>
             <div class="product-img-container">
               <img src="images/single-08-2x50.jpg" alt="單槽 0.8 BTB 2×50 Pin"
@@ -1153,12 +1238,13 @@
               <li><strong data-i18n="lbl_stack">組合合高：</strong> <span class="spec-highlight">H5.0</span></li>
             </ul>
           </div>
-          <a href="cad/single-08-2x50.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.8 BTB 2×50 Pin" data-i18n="btn_dwg">產品圖紙</a>
+          <div class="card-actions"><a href="cad/single-08-2x50.pdf" class="btn btn-dwg" target="_blank" rel="noopener" title="下載圖紙：單槽 0.8 BTB 2×50 Pin" data-i18n="btn_dwg">產品圖紙</a><a href="contact.html" class="btn btn-sample" data-i18n="btn_sample">索取樣品</a></div>
         </div>
 
         <div class="product-card" data-cat="single-08">
           <div>
             <span class="product-tag" data-i18n="tag_s08">單槽 0.8 BTB</span>
+            <div class="spec-chips"><span class="spec-chip">Pitch 0.8 mm</span><span class="spec-chip">Single-Row</span></div>
             <h3 data-i18n="h3_s08_2x6">單槽 0.8 BTB 2×6 Pin（合高 7.0）</h3>
             <div class="product-img-container">
               <img src="images/single-08-2x6.jpg" alt="單槽 0.8 BTB 2×6 Pin"
@@ -1174,13 +1260,14 @@
               <li><strong data-i18n="lbl_stack">組合合高：</strong> <span class="spec-highlight">H7.0</span></li>
             </ul>
           </div>
-          <a href="cad/single-08-2x6.pdf" class="btn" target="_blank" title="下載圖紙：單槽 0.8 BTB 2×6 Pin" data-i18n="btn_dwg">產品圖紙</a>
+          <div class="card-actions"><a href="cad/single-08-2x6.pdf" class="btn btn-dwg" target="_blank" rel="noopener" title="下載圖紙：單槽 0.8 BTB 2×6 Pin" data-i18n="btn_dwg">產品圖紙</a><a href="contact.html" class="btn btn-sample" data-i18n="btn_sample">索取樣品</a></div>
         </div>
 
         <!-- SATA -->
         <div class="product-card" data-cat="sata">
           <div>
             <span class="product-tag" data-i18n="tag_sata">SATA 系列</span>
+            <div class="spec-chips"><span class="spec-chip">SATA</span><span class="spec-chip">DIP</span></div>
             <h3 data-i18n="h3_sata">SATA 7+6 DIP 母座</h3>
             <div class="product-img-container">
               <img src="images/sata-7-6-dip.jpg" alt="SATA 7+6 DIP 母座"
@@ -1196,13 +1283,14 @@
               <li><strong data-i18n="lbl_pitch">Pitch 間距：</strong> <span class="spec-highlight">PC2.0</span></li>
             </ul>
           </div>
-          <a href="cad/sata-7-6-dip.pdf" class="btn" target="_blank" title="下載圖紙：SATA 7+6 DIP 母座" data-i18n="btn_dwg">產品圖紙</a>
+          <div class="card-actions"><a href="cad/sata-7-6-dip.pdf" class="btn btn-dwg" target="_blank" rel="noopener" title="下載圖紙：SATA 7+6 DIP 母座" data-i18n="btn_dwg">產品圖紙</a><a href="contact.html" class="btn btn-sample" data-i18n="btn_sample">索取樣品</a></div>
         </div>
 
         <!-- 0.8 雙排 -->
         <div class="product-card" data-cat="0.8">
           <div>
             <span class="product-tag" data-i18n="tag_08dr">0.8 BTB 雙排</span>
+            <div class="spec-chips"><span class="spec-chip">Pitch 0.8 mm</span><span class="spec-chip">2×25</span></div>
             <h3 data-i18n="h3_08_2x25">0.8×6.4 2×25 公座</h3>
             <div class="product-img-container">
               <img src="images/0.8x6.4-2x25.jpg" alt="0.8×6.4 2×25 公座"
@@ -1217,7 +1305,7 @@
               <li><strong data-i18n="lbl_peg">定位片：</strong> <span class="spec-highlight" data-i18n="val_yes_no">有 / 無</span></li>
             </ul>
           </div>
-          <a href="cad/0.8x6.4-2x25.pdf" class="btn" target="_blank" title="下載圖紙：0.8×6.4 2×25 公座" data-i18n="btn_dwg">產品圖紙</a>
+          <div class="card-actions"><a href="cad/0.8x6.4-2x25.pdf" class="btn btn-dwg" target="_blank" rel="noopener" title="下載圖紙：0.8×6.4 2×25 公座" data-i18n="btn_dwg">產品圖紙</a><a href="contact.html" class="btn btn-sample" data-i18n="btn_sample">索取樣品</a></div>
         </div>
 
       </div>
@@ -1565,7 +1653,7 @@ window.JXK_PAGE_I18N = {
 "lbl_pin":"Pin 數：","lbl_header":"公座高度：","lbl_receptacle":"母座高度：","lbl_stack":"組合合高：","lbl_stack_max":"最高合高：",
 "lbl_stack30":"合高 3.0：","lbl_stack50":"合高 5.0：","lbl_stack35":"合高 3.5：",
 "lbl_pin_spec":"針腳規格：","lbl_mount":"安裝方式：","lbl_height":"高度規格：","lbl_pitch":"Pitch 間距：","lbl_peg":"定位片：",
-"btn_dwg":"產品圖紙",
+"btn_dwg":"產品圖紙","btn_sample":"索取樣品","select_tip":"<strong>選型提示：</strong>請依 Pitch（0.5 / 0.8 mm）、單槽／雙槽與合高需求挑選系列；可下載 CAD 圖紙，或點「索取樣品」由工程與業務協助確認規格。",
 "tech_h":"嘉訊科品質與技術標準","tech_p":"嚴格管控每一道生產工序，確保高密合度與穩定導通能力",
 "t1_h":"±0.01mm 精密模具","t1_p":"自主精密模具研發與高速沖壓，控制端子 Pitch 間距與共面度，避免虛焊。",
 "t2_h":"100% CCD 全自動光學檢測","t2_p":"出廠前全自動視覺檢測 Pin 腳平整度、正向力與微小瑕疵，打造零缺陷交付。",
@@ -1586,7 +1674,7 @@ window.JXK_PAGE_I18N = {
 "lbl_pin":"Pin 数：","lbl_header":"公座高度：","lbl_receptacle":"母座高度：","lbl_stack":"组合合高：","lbl_stack_max":"最高合高：",
 "lbl_stack30":"合高 3.0：","lbl_stack50":"合高 5.0：","lbl_stack35":"合高 3.5：",
 "lbl_pin_spec":"针脚规格：","lbl_mount":"安装方式：","lbl_height":"高度规格：","lbl_pitch":"Pitch 间距：","lbl_peg":"定位片：",
-"btn_dwg":"产品图纸",
+"btn_dwg":"产品图纸","btn_sample":"索取样品","select_tip":"<strong>选型提示：</strong>请按 Pitch（0.5 / 0.8 mm）、单槽／双槽与合高需求挑选系列；可下载 CAD 图纸，或点「索取样品」由工程与业务协助确认规格。",
 "tech_h":"嘉讯科品质与技术标准","tech_p":"严格管控每一道生产工序，确保高密合度与稳定导通能力",
 "t1_h":"±0.01mm 精密模具","t1_p":"自主精密模具研发与高速冲压，控制端子 Pitch 间距与共面度，避免虚焊。",
 "t2_h":"100% CCD 全自动光学检测","t2_p":"出厂前全自动视觉检测 Pin 脚平整度、正向力与微小瑕疵，打造零缺陷交付。",
@@ -1607,7 +1695,7 @@ window.JXK_PAGE_I18N = {
 "lbl_pin":"Pin count:","lbl_header":"male height:","lbl_receptacle":"female height:","lbl_stack":"Stack height:","lbl_stack_max":"Max stack height:",
 "lbl_stack30":"Stack 3.0 mm:","lbl_stack50":"Stack 5.0 mm:","lbl_stack35":"Stack 3.5 mm:",
 "lbl_pin_spec":"Pin configuration:","lbl_mount":"Mounting:","lbl_height":"Height:","lbl_pitch":"Pitch:","lbl_peg":"Locating peg:",
-"btn_dwg":"Download Drawing",
+"btn_dwg":"Download Drawing","btn_sample":"Request Samples","select_tip":"<strong>Selection tip:</strong> Choose by pitch (0.5 / 0.8 mm), single/dual row and stack height. Download CAD drawings, or request samples for engineering support.",
 "tech_h":"Quality & Process Standards","tech_p":"Process control for reliable mating and stable electrical performance",
 "t1_h":"±0.01 mm Precision Tooling","t1_p":"In-house tooling and high-speed stamping control pin pitch and coplanarity.",
 "t2_h":"100% Automated Optical Inspection","t2_p":"100% AOI of pin coplanarity, contact force, and cosmetic defects before shipment.",

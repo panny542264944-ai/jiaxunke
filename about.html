@@ -343,6 +343,99 @@
       line-height: 1.6;
     }
 
+    
+    /* Company history */
+    .history-section { margin-bottom: 4rem; }
+    .history-track {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+    .history-track::before {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: 8%;
+      right: 8%;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(0,242,254,0.15), rgba(0,242,254,0.55), rgba(0,242,254,0.15));
+      z-index: 0;
+    }
+    .history-item {
+      position: relative;
+      z-index: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.2rem 1.3rem;
+      text-align: center;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .history-item:hover {
+      border-color: rgba(0, 242, 254, 0.4);
+      transform: translateY(-3px);
+    }
+    .history-year {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #000;
+      background: linear-gradient(135deg, var(--accent-blue, #4FACFE), var(--accent, #00F2FE));
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      margin-bottom: 0.75rem;
+    }
+    .history-item h3 {
+      color: #FFF;
+      font-size: 1.02rem;
+      margin-bottom: 0.45rem;
+      font-weight: 600;
+    }
+    .history-item p {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    /* Trust strip */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+    .trust-item {
+      background: rgba(0, 242, 254, 0.04);
+      border: 1px solid rgba(0, 242, 254, 0.18);
+      border-radius: 10px;
+      padding: 1.15rem 1rem;
+      text-align: center;
+    }
+    .trust-item .t-num {
+      color: var(--accent, #00F2FE);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .trust-item .t-label {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 900px) {
+      .history-track { grid-template-columns: repeat(2, 1fr); }
+      .history-track::before { display: none; }
+      .trust-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .history-track { grid-template-columns: 1fr; }
+      .trust-strip { grid-template-columns: 1fr; }
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid var(--border);
@@ -852,7 +945,7 @@ window.JXK_PAGE_I18N = {
 "t2_h":"2. 精密模具開發與試模打樣","t2_p":"採用高精度加工設備開發沖壓與注塑模具，快速提供初版樣品供客戶進行 PCB 板級測試。",
 "t3_h":"3. 高速沖壓與精密注塑","t3_p":"採用高品質銅合金與耐高溫工程塑料，經高速沖壓與精密注塑成型，確保端子導電性與塑膠件耐熱性。",
 "t4_h":"4. 自動化組裝與 CCD 全檢","t4_p":"全自動組裝線搭配 CCD 影像檢測系統，100% 檢查腳位共面度（Coplanarity）與外觀缺陷，確保零瑕疵出廠。",
-"footer_desc":"東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。",
+"sec_history":"公司沿革","h_y1":"嘉普時期","h_t1":"連接器製造起步","h_p1":"以「嘉普」品牌投入精密連接器製造，累積沖壓、成型與組裝基礎能力。","h_t2":"產業經驗沉澱","h_p2":"超過二十五年製造經驗，專注產品結構、模具配合與量產穩定性。","h_y3":"嘉訊科","h_t3":"品牌升級聚焦","h_p3":"以「嘉訊科」品牌持續深耕 0.5 / 0.8mm 微距 BTB 板對板連接器。","h_y4":"現在","h_t4":"精密製造交付","h_p4":"自主模具、自動化組裝與 100% CCD 全檢，支援快速打樣與穩定供貨。","tr1":"精密模具與沖壓精度","tr2":"CCD 光學全檢出貨","tr3":"工程樣品快速響應","tr4":"主力微距 BTB 間距","footer_desc":"東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。",
 "footer_nav":"快速導覽","footer_contact":"聯絡資訊","footer_tel1":"電話：0769-85410081","footer_tel2":"電話：0769-85410082",
 "footer_mobile":"手機 / 微信：18929444965","footer_addr":"地址：廣東省東莞市長安鎮上角區螢光路15號",
 "footer_copy":"© 2026 東莞市嘉訊科電子科技有限公司 版權所有"
@@ -878,7 +971,7 @@ window.JXK_PAGE_I18N = {
 "t2_h":"2. 精密模具开发与试模打样","t2_p":"采用高精度加工设备开发冲压与注塑模具，快速提供初版样品供客户进行 PCB 板级测试。",
 "t3_h":"3. 高速冲压与精密注塑","t3_p":"采用高品质铜合金与耐高温工程塑料，经高速冲压与精密注塑成型，确保端子导电性与塑胶件耐热性。",
 "t4_h":"4. 自动化组装与 CCD 全检","t4_p":"全自动组装线搭配 CCD 影像检测系统，100% 检查脚位共面度（Coplanarity）与外观缺陷，确保零瑕疵出厂。",
-"footer_desc":"东莞市嘉讯科电子科技有限公司，深耕精密 BTB 板对板连接器超过 25 年，专注高密度、高精度与高可靠度产品研发制造。",
+"sec_history":"公司沿革","h_y1":"嘉普时期","h_t1":"连接器制造起步","h_p1":"以「嘉普」品牌投入精密连接器制造，累积冲压、成型与组装基础能力。","h_t2":"产业经验沉淀","h_p2":"超过二十五年制造经验，专注产品结构、模具配合与量产稳定性。","h_y3":"嘉讯科","h_t3":"品牌升级聚焦","h_p3":"以「嘉讯科」品牌持续深耕 0.5 / 0.8mm 微距 BTB 板对板连接器。","h_y4":"现在","h_t4":"精密制造交付","h_p4":"自主模具、自动化组装与 100% CCD 全检，支持快速打样与稳定供货。","tr1":"精密模具与冲压精度","tr2":"CCD 光学全检出货","tr3":"工程样品快速响应","tr4":"主力微距 BTB 间距","footer_desc":"东莞市嘉讯科电子科技有限公司，深耕精密 BTB 板对板连接器超过 25 年，专注高密度、高精度与高可靠度产品研发制造。",
 "footer_nav":"快速导览","footer_contact":"联系信息","footer_tel1":"电话：0769-85410081","footer_tel2":"电话：0769-85410082",
 "footer_mobile":"手机 / 微信：18929444965","footer_addr":"地址：广东省东莞市长安镇上角区荧光路15号",
 "footer_copy":"© 2026 东莞市嘉讯科电子科技有限公司 版权所有"
@@ -904,7 +997,7 @@ window.JXK_PAGE_I18N = {
 "t2_h":"2. Tooling & Prototyping","t2_p":"High-precision machining for stamping and mold tooling, with rapid first samples for PCB-level evaluation.",
 "t3_h":"3. Stamping & Injection Molding","t3_p":"High-quality copper alloys and high-temperature engineering plastics processed by high-speed stamping and precision molding.",
 "t4_h":"4. Automated Assembly & 100% AOI","t4_p":"Automated assembly with CCD inspection for 100% coplanarity and cosmetic defect screening before shipment.",
-"footer_desc":"Dongguan Jiaxunke Electronics Technology Co., Ltd. — 25+ years specializing in precision BTB board-to-board connectors.",
+"sec_history":"Company Journey","h_y1":"Jiapu Era","h_t1":"Connector Manufacturing Begins","h_p1":"Started precision connector manufacturing under the Jiapu brand, building stamping, molding and assembly capability.","h_t2":"25+ Years of Know-how","h_p2":"Decades of experience in product structure, tooling fit and stable volume production.","h_y3":"Jiaxunke","h_t3":"Brand Focus on Fine-Pitch BTB","h_p3":"Continuing under the Jiaxunke brand with focus on 0.5 / 0.8 mm fine-pitch BTB connectors.","h_y4":"Today","h_t4":"Precision Manufacturing & Delivery","h_p4":"In-house tooling, automated assembly and 100% AOI for fast samples and reliable supply.","tr1":"Precision tooling & stamping","tr2":"100% AOI before shipment","tr3":"Fast engineering sample response","tr4":"Core 0.5 / 0.8 mm BTB pitch","footer_desc":"Dongguan Jiaxunke Electronics Technology Co., Ltd. — 25+ years specializing in precision BTB board-to-board connectors.",
 "footer_nav":"Quick Links","footer_contact":"Contact","footer_tel1":"Tel: 0769-85410081","footer_tel2":"Tel: 0769-85410082",
 "footer_mobile":"Mobile / WeChat: 18929444965","footer_addr":"Address: No.15 Yingguang Rd, Shangjiao, Changan, Dongguan, China",
 "footer_copy":"© 2026 Dongguan Jiaxunke Electronics Technology Co., Ltd. All rights reserved"
