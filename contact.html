@@ -2,698 +2,116 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>聯絡我們 | 東莞市嘉訊科電子科技有限公司</title>
   <meta name="description" content="歡迎聯繫東莞市嘉訊科電子業務團隊，提供 BTB 板對板連接器產品諮詢、圖紙評估、樣品索取與客製化開發服務。">
-  
-  <style type="text/css">
-    html { scroll-behavior: auto; }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background-color: #0B0F19;
-      color: #F3F4F6;
-      line-height: 1.6;
-      font-family: "Microsoft YaHei", "微软雅黑", "PingFang TC", "Segoe UI", Arial, sans-serif;
-      overflow-x: hidden;
-    }
-    a { text-decoration: none; color: inherit; }
-    img { border: 0; max-width: 100%; }
-
-    header {
-      background-color: #0B0F19;
-      background-color: rgba(11, 15, 25, 0.95);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      border-bottom: 1px solid #1F2937;
-    }
-    .nav-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 16px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-    }
-    .logo {
-      font-size: 22px;
-      font-weight: 700;
-      color: #FFFFFF;
-      letter-spacing: 0.5px;
-      line-height: 40px;
-      flex-shrink: 0;
-    }
-    .logo span { color: #00F2FE; }
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-left: auto;
-    }
-    .nav-links {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-    .nav-links li { display: block; margin: 0; }
-    .nav-links a {
-      color: #9CA3AF;
-      font-size: 15px;
-      line-height: 40px;
-    }
-    .nav-links a:hover,
-    .nav-links a.active { color: #00F2FE; }
-    .menu-toggle { display: none; }
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
-      gap: 2px;
-      border: 1px solid #1F2937;
-      border-radius: 8px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.03);
-      flex-shrink: 0;
-    }
-    .lang-btn {
-      background: transparent;
-      border: none;
-      color: #9CA3AF;
-      font-size: 12px;
-      font-weight: 600;
-      padding: 6px 9px;
-      cursor: pointer;
-      font-family: inherit;
-      line-height: 1.2;
-    }
-    .lang-btn:hover { color: #00F2FE; }
-    .lang-btn.active {
-      background: rgba(0, 242, 254, 0.15);
-      color: #00F2FE;
-    }
-
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 100px 24px 40px;
-    }
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .container { max-width: 1280px; margin: 0 auto; padding: 6.5rem 1.5rem 2rem; }
     .page-title {
       text-align: center;
-      margin: -100px -24px 40px;
-      padding: 120px 24px 40px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(0, 242, 254, 0.12) 0%, transparent 60%);
+      padding: 2.2rem 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: var(--radius);
+      background: radial-gradient(ellipse at 50% 0%, rgba(0, 242, 254, 0.12) 0%, transparent 65%);
     }
-    .page-title h1 {
-      font-size: 28px;
-      color: #FFFFFF;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-    .page-title p {
-      color: #9CA3AF;
-      font-size: 16px;
-    }
+    .page-title h1 { font-size: clamp(1.7rem, 4vw, 2.2rem); color: #FFF; margin-bottom: 0.5rem; }
+    .page-title p { color: var(--text-muted); }
 
-    .contact-grid {
-      *zoom: 1;
-      margin-bottom: 40px;
-      display: table;
-      width: 100%;
-      table-layout: fixed;
-      border-spacing: 0;
+    .contact-promise, .steps-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
     }
-    .contact-grid:after { content: ""; display: none; }
-    .contact-info {
-      background-color: #111827;
-      border: 1px solid #1F2937;
-      border-radius: 12px;
-      padding: 32px;
-      width: 42%;
-      display: table-cell;
-      vertical-align: top;
-      box-sizing: border-box;
-    }
-    .service-panel {
-      width: 55%;
-      display: table-cell;
-      vertical-align: top;
-      box-sizing: border-box;
-      padding-left: 3%;
-    }
-    .contact-info h2 {
-      color: #00F2FE;
-      font-size: 22px;
-      margin-bottom: 24px;
-      font-weight: 700;
-    }
-    .info-item { margin-bottom: 22px; }
-    .info-item h3 {
-      color: #FFFFFF;
-      font-size: 16px;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-    .info-item p, .info-item a {
-      color: #9CA3AF;
-      font-size: 15px;
-      line-height: 1.7;
-    }
-    .info-item a:hover { color: #00F2FE; }
-    .service-list {
-      list-style: none;
-      color: #9CA3AF;
-      font-size: 15px;
-    }
-    .service-list li {
-      margin-bottom: 6px;
-      padding-left: 14px;
-      position: relative;
-    }
-    .service-list li:before {
-      content: "•";
-      color: #00F2FE;
-      position: absolute;
-      left: 0;
-    }
-
-    /* QQ + WeChat cards */
-    .cs-card {
-      background-color: #111827;
-      border: 1px solid #1F2937;
-      border-radius: 12px;
-      padding: 28px;
-      margin-bottom: 18px;
-      text-align: center;
-    }
-    .cs-card h2 {
-      color: #00F2FE;
-      font-size: 20px;
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-    .cs-card p {
-      color: #9CA3AF;
-      font-size: 14px;
-      margin-bottom: 14px;
-      line-height: 1.6;
-    }
-    .cs-number {
-      font-size: 18px;
-      font-weight: 700;
-      color: #FFFFFF;
-      margin: 8px 0 16px;
-      letter-spacing: 0.5px;
-    }
-    .btn-qq {
-      display: inline-block;
-      width: 100%;
-      max-width: 260px;
-      padding: 12px 18px;
-      background-color: #12B7F5;
-      color: #FFFFFF !important;
-      font-weight: 600;
-      font-size: 15px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-align: center;
-    }
-    .btn-qq:hover { background-color: #0D8ECF; }
-    .cs-tip {
-      margin-top: 12px;
-      font-size: 12px;
-      color: #9CA3AF;
-    }
-
-    /* WeChat QR */
-    .wx-qr-box {
-      width: 180px;
-      height: 180px;
-      margin: 12px auto 16px;
-      background-color: #FFFFFF;
-      border: 1px solid #374151;
-      border-radius: 10px;
-      overflow: hidden;
-      padding: 8px;
-      box-sizing: border-box;
-    }
-    .wx-qr-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      border-radius: 4px;
-    }
-
-    /* Map */
-    .map-section {
-      background-color: #111827;
-      border: 1px solid #1F2937;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 30px;
-      clear: both;
-    }
-    .map-header {
-      padding: 16px 20px;
-      border-bottom: 1px solid #1F2937;
-      *zoom: 1;
-    }
-    .map-header:after { content: ""; display: table; clear: both; }
-    .map-header h2 {
-      float: left;
-      color: #FFFFFF;
-      font-size: 18px;
-      font-weight: 700;
-      margin: 0;
-      line-height: 28px;
-    }
-    .map-header a {
-      float: right;
-      color: #00F2FE;
-      font-size: 14px;
-      line-height: 28px;
-    }
-    .map-embed {
-      width: 100%;
-      height: 380px;
-      overflow: hidden;
-    }
-    .map-embed iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    footer {
-      border-top: 1px solid #1F2937;
-      background-color: #080B12;
-      padding: 40px 24px 24px;
-      margin-top: 40px;
-      clear: both;
-    }
-    .footer-inner {
-      max-width: 1280px;
-      margin: 0 auto 30px;
-      *zoom: 1;
-    }
-    .footer-inner:after { content: ""; display: table; clear: both; }
-    .footer-brand, .footer-col {
-      float: left;
-      width: 33%;
-      padding-right: 20px;
-      box-sizing: border-box;
-    }
-    .footer-brand .logo {
-      float: none;
-      display: block;
-      margin-bottom: 12px;
-      line-height: 1.3;
-    }
-    .footer-brand p {
-      color: #9CA3AF;
-      font-size: 14px;
-      line-height: 1.7;
-      max-width: 280px;
-    }
-    .footer-col h4 {
-      color: #FFFFFF;
-      font-size: 15px;
-      margin-bottom: 14px;
-      font-weight: 600;
-    }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 8px; }
-    .footer-col a {
-      color: #9CA3AF;
-      font-size: 14px;
-    }
-    .footer-col a:hover { color: #00F2FE; }
-    .footer-bottom {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding-top: 20px;
-      border-top: 1px solid #1F2937;
-      text-align: center;
-      color: #9CA3AF;
-      font-size: 13px;
-      clear: both;
-    }
-
-    @media screen and (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-        width: 28px;
-        height: 28px;
-        cursor: pointer;
-        background: none;
-        border: none;
-        padding: 0;
-        order: 3;
-        z-index: 1003;
-      }
-      .menu-toggle span {
-        display: block;
-        width: 24px;
-        height: 2px;
-        background: #F3F4F6;
-        margin: 5px auto;
-      }
-      .nav-right {
-        margin-left: auto;
-        margin-right: 8px;
-        order: 2;
-      }
-      .logo { order: 1; }
-      .nav-links {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 75%;
-        max-width: 280px;
-        height: 100%;
-        background-color: #111827;
-        padding: 70px 24px 20px;
-        border-left: 1px solid #1F2937;
-        z-index: 1001;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-      }
-      .nav-links.active { display: flex; }
-      .nav-links li { display: block; margin: 0; width: 100%; }
-      .nav-links a {
-        display: block;
-        font-size: 16px;
-        padding: 12px 0;
-        line-height: 1.4;
-      }
-      .contact-grid {
-        display: block;
-      }
-      .contact-info, .service-panel {
-        width: 100%;
-        display: block;
-        float: none;
-        margin-bottom: 20px;
-        padding-left: 0;
-      }
-      .footer-brand, .footer-col {
-        width: 100%;
-        float: none;
-        margin-bottom: 24px;
-      }
-      .map-embed { height: 280px; }
-    }
-  
-    
-
-    
-
-  
-    
-
-  
-    /* ===== Fixed nav: logo | links | lang (desktop) / logo | lang | burger (mobile) ===== */
-    header {
-      position: fixed;
-      top: 0; left: 0; width: 100%;
-      z-index: 1000;
-      background: rgba(11, 15, 25, 0.95);
-      border-bottom: 1px solid #1F2937;
-    }
-    .nav-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 1.1rem 2rem;
-      display: flex;
-      align-items: center;
-    }
-    .nav-container .logo {
-      flex-shrink: 0;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: #FFF;
-      letter-spacing: 0.5px;
-      text-decoration: none;
-    }
-    .nav-container .logo span { color: #00F2FE; }
-    /* Desktop: links pushed right, then lang */
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2.2rem;
-      list-style: none;
-      margin: 0 0 0 auto;
-      padding: 0;
-    }
-    .nav-links a {
-      color: #9CA3AF;
-      font-size: 0.95rem;
-      font-weight: 500;
-      text-decoration: none;
-      position: relative;
-      transition: color 0.25s;
-    }
-    .nav-links a:hover,
-    .nav-links a.active { color: #00F2FE; }
-    .nav-links a.active::after {
-      content: "";
-      position: absolute;
-      bottom: -6px; left: 0;
-      width: 100%; height: 2px;
-      background: #00F2FE;
-      border-radius: 1px;
-    }
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
-      gap: 2px;
-      margin-left: 1.25rem;
-      flex-shrink: 0;
-      border: 1px solid #1F2937;
-      border-radius: 8px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.03);
-    }
-    .lang-btn {
-      background: transparent;
-      border: none;
-      color: #9CA3AF;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.35rem 0.55rem;
-      cursor: pointer;
-      font-family: inherit;
-      line-height: 1.2;
-    }
-    .lang-btn:hover { color: #00F2FE; }
-    .lang-btn.active {
-      background: rgba(0, 242, 254, 0.15);
-      color: #00F2FE;
-    }
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      background: none;
-      border: none;
-      padding: 8px;
-      cursor: pointer;
-      margin-left: 4px;
-      z-index: 1003;
-    }
-    .menu-toggle span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: #F3F4F6;
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .menu-toggle.open span:nth-child(2) { opacity: 0; }
-    .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* Backdrop + mobile drawer OUTSIDE header stacking context */
-    .nav-backdrop {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: 1001;
-    }
-    .nav-backdrop.active { display: block; }
-
-    @media (max-width: 768px) {
-      .nav-container { padding: 0.9rem 1rem; }
-      /* Hide desktop inline links — drawer is separate element */
-      .nav-container > .nav-links { display: none !important; }
-      .lang-switch { margin-left: auto; margin-right: 4px; }
-      .menu-toggle { display: flex; }
-
-      /* Drawer panel (sibling of header, not inside it) */
-      #mobile-nav.nav-links,
-      ul.nav-links.mobile-drawer {
-        display: flex !important;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 78%;
-        max-width: 300px;
-        height: 100%;
-        height: 100vh;
-        margin: 0;
-        padding: 5rem 1.5rem 2rem;
-        background: #111827;
-        border-left: 1px solid #1F2937;
-        box-shadow: -8px 0 24px rgba(0,0,0,0.45);
-        z-index: 1002;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        transition: right 0.3s ease;
-        list-style: none;
-        pointer-events: auto;
-      }
-      #mobile-nav.nav-links.active,
-      ul.nav-links.mobile-drawer.active {
-        right: 0;
-      }
-      #mobile-nav.nav-links li,
-      ul.nav-links.mobile-drawer li {
-        width: 100%;
-        display: block;
-        margin: 0;
-        border-bottom: 1px solid #1F2937;
-      }
-      #mobile-nav.nav-links a,
-      ul.nav-links.mobile-drawer a {
-        display: block;
-        width: 100%;
-        padding: 1rem 0.25rem;
-        font-size: 1.1rem;
-        color: #F3F4F6 !important;
-        text-decoration: none;
-        pointer-events: auto;
-        -webkit-tap-highlight-color: rgba(0,242,254,0.25);
-      }
-      #mobile-nav.nav-links a.active,
-      ul.nav-links.mobile-drawer a.active {
-        color: #00F2FE !important;
-      }
-      #mobile-nav.nav-links a.active::after,
-      ul.nav-links.mobile-drawer a.active::after {
-        display: none;
-      }
-    }
-
-  
-    @media (min-width: 769px) {
-      #mobile-nav { display: none !important; }
-      .nav-backdrop { display: none !important; }
-    }
-  
-    /* Contact page enhancements */
-    .contact-promise {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.8rem;
-    }
+    .contact-promise { margin-bottom: 1.5rem; }
     .promise-item {
       background: rgba(0, 242, 254, 0.05);
       border: 1px solid rgba(0, 242, 254, 0.2);
-      border-radius: 10px;
-      padding: 1rem 0.9rem;
-      text-align: center;
+      border-radius: 10px; padding: 1rem; text-align: center;
     }
-    .promise-item .p-icon {
-      font-size: 1.4rem;
-      margin-bottom: 0.35rem;
-    }
-    .promise-item .p-title {
-      color: #FFF;
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-    .promise-item .p-desc {
-      color: #9CA3AF;
-      font-size: 0.82rem;
-      line-height: 1.45;
-    }
+    .promise-item .p-icon { font-size: 1.4rem; margin-bottom: 0.3rem; }
+    .promise-item .p-title { color: #FFF; font-weight: 600; font-size: 0.95rem; }
+    .promise-item .p-desc { color: var(--text-muted); font-size: 0.84rem; }
+
     .contact-steps {
-      background: #111827;
-      border: 1px solid #1F2937;
-      border-radius: 12px;
-      padding: 1.35rem 1.4rem;
-      margin-bottom: 1.8rem;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.4rem; margin-bottom: 2rem;
     }
-    .contact-steps h3 {
-      color: #00F2FE;
-      font-size: 1.05rem;
-      margin-bottom: 0.9rem;
-      font-weight: 700;
-    }
-    .steps-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.9rem;
-    }
+    .contact-steps h3 { color: var(--accent); font-size: 1.05rem; margin-bottom: 0.9rem; }
     .step-item {
-      position: relative;
-      padding: 0.75rem 0.7rem;
-      background: rgba(0,242,254,0.04);
-      border-radius: 8px;
-      border: 1px solid rgba(0,242,254,0.12);
+      background: rgba(0, 242, 254, 0.04); border: 1px solid rgba(0, 242, 254, 0.12);
+      border-radius: 8px; padding: 0.8rem;
     }
     .step-num {
-      display: inline-block;
-      width: 22px;
-      height: 22px;
-      line-height: 22px;
-      text-align: center;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #4FACFE, #00F2FE);
-      color: #000;
-      font-size: 0.75rem;
-      font-weight: 700;
-      margin-bottom: 0.4rem;
+      display: inline-block; width: 22px; height: 22px; line-height: 22px; text-align: center;
+      border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent));
+      color: #000; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.4rem;
     }
-    .step-item p {
-      color: #9CA3AF;
-      font-size: 0.84rem;
-      line-height: 1.45;
-      margin: 0;
-    }
-    .step-item strong {
-      color: #FFF;
-      font-weight: 600;
-    }
-    @media screen and (max-width: 768px) {
-      .contact-promise { grid-template-columns: 1fr; }
-      .steps-row { grid-template-columns: 1fr; }
-    }
+    .step-item p { color: var(--text-muted); font-size: 0.85rem; }
+    .step-item strong { color: #FFF; }
 
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.2rem;
+    }
+    .contact-info, .cs-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.8rem;
+    }
+    .contact-info h2 { color: var(--accent); font-size: 1.35rem; margin-bottom: 1.3rem; }
+    .info-item { margin-bottom: 1.3rem; }
+    .info-item h3 { color: #FFF; font-size: 1rem; margin-bottom: 0.35rem; }
+    .info-item p, .info-item a { color: var(--text-muted); font-size: 0.93rem; }
+    .info-item a:hover { color: var(--accent); }
+    .service-list { list-style: none; color: var(--text-muted); font-size: 0.92rem; }
+    .service-list li { padding-left: 1rem; position: relative; margin-bottom: 0.35rem; }
+    .service-list li::before { content: "•"; color: var(--accent); position: absolute; left: 0; }
+
+    .service-panel { display: flex; flex-direction: column; gap: 1.2rem; }
+    .cs-card { text-align: center; }
+    .cs-card h2 { color: var(--accent); font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .cs-card p { color: var(--text-muted); font-size: 0.9rem; }
+    .cs-number { font-size: 1.15rem; font-weight: 700; color: #FFF; margin: 0.7rem 0 1rem; }
+    .btn-qq {
+      display: inline-block; width: 100%; max-width: 260px; padding: 0.75rem 1.1rem;
+      background: #12B7F5; color: #FFF; font-weight: 600; border-radius: 8px;
+    }
+    .btn-qq:hover { background: #0D8ECF; }
+    .cs-tip { margin-top: 0.75rem; font-size: 0.8rem; color: var(--text-muted); }
+
+    .wx-qr-box {
+      width: 170px; height: 170px; margin: 0.75rem auto;
+      background: #FFF; border: 1px solid #374151; border-radius: 10px; padding: 8px;
+    }
+    .wx-qr-box img { width: 100%; height: 100%; object-fit: contain; margin: 0 auto; }
+
+    .map-section {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+    }
+    .map-header {
+      padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .map-header h2 { font-size: 1.1rem; color: #FFF; }
+    .map-header a { color: var(--accent); font-size: 0.9rem; }
+    .map-embed { width: 100%; height: 380px; }
+    .map-embed iframe { width: 100%; height: 100%; border: 0; }
+
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .contact-promise, .steps-row { grid-template-columns: 1fr; }
+      .map-embed { height: 280px; }
+    }
   </style>
 </head>
 <body>
-
-          <header>
+  <header>
     <div class="nav-container">
       <a href="index.html" class="logo">嘉訊科 <span>JIAXUNKE</span></a>
-      <ul class="nav-links" id="desktop-nav">
+      <ul class="nav-links">
         <li><a href="index.html" data-i18n="nav_home">首頁</a></li>
         <li><a href="products.html" data-i18n="nav_products">產品中心</a></li>
         <li><a href="about.html" data-i18n="nav_about">關於我們</a></li>
@@ -709,22 +127,21 @@
       </button>
     </div>
   </header>
-  <!-- Mobile drawer OUTSIDE header so it is not covered by backdrop stacking -->
-  <ul class="nav-links mobile-drawer" id="mobile-nav">
+
+  <ul class="mobile-drawer" id="mobile-nav">
     <li><a href="index.html" data-i18n="nav_home">首頁</a></li>
     <li><a href="products.html" data-i18n="nav_products">產品中心</a></li>
     <li><a href="about.html" data-i18n="nav_about">關於我們</a></li>
     <li><a href="contact.html" class="active" data-i18n="nav_contact">聯絡我們</a></li>
   </ul>
   <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
-<div class="container">
+
+  <div class="container">
     <div class="page-title">
       <h1 data-i18n="page_h1">聯絡我們與線上諮詢</h1>
       <p data-i18n="page_p">歡迎通過 QQ / 微信與我們聯繫，獲取產品諮詢、圖紙評估與樣品服務</p>
     </div>
 
-
-    <!-- Response promise -->
     <div class="contact-promise">
       <div class="promise-item">
         <div class="p-icon">⚡</div>
@@ -743,7 +160,6 @@
       </div>
     </div>
 
-    <!-- How to inquire -->
     <div class="contact-steps">
       <h3 data-i18n="steps_h">如何快速詢價 / 索取樣品</h3>
       <div class="steps-row">
@@ -763,7 +179,6 @@
     </div>
 
     <div class="contact-grid">
-      <!-- 左側聯繫資訊 -->
       <div class="contact-info">
         <h2 data-i18n="info_h">聯繫方式</h2>
         <div class="info-item">
@@ -796,22 +211,15 @@
         </div>
       </div>
 
-      <!-- 右側 QQ + 微信客服 -->
       <div class="service-panel">
-        <!-- QQ -->
         <div class="cs-card">
           <h2 data-i18n="qq_h">QQ 線上客服</h2>
           <p data-i18n="qq_p">點擊下方按鈕，直接與我們的業務人員對話</p>
           <div class="cs-number">QQ：2190343453</div>
-          <a target="_blank"
-             href="http://wpa.qq.com/msgrd?v=3&amp;uin=2190343453&amp;site=qq&amp;menu=yes"
-             class="btn-qq" data-i18n="qq_btn">
-            點擊這裡給我發消息
-          </a>
+          <a target="_blank" rel="noopener" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2190343453&amp;site=qq&amp;menu=yes" class="btn-qq" data-i18n="qq_btn">點擊這裡給我發消息</a>
           <p class="cs-tip" data-i18n="qq_tip">若無法自動開啟，請手動添加 QQ：2190343453</p>
         </div>
 
-        <!-- 微信 + QR CODE -->
         <div class="cs-card">
           <h2 data-i18n="wx_h">微信客服</h2>
           <p data-i18n="wx_p">掃描下方二維碼，或搜尋微信號添加好友</p>
@@ -824,23 +232,13 @@
       </div>
     </div>
 
-    <!-- 高德地图 -->
     <div class="map-section">
       <div class="map-header">
         <h2 data-i18n="map_h">公司位置</h2>
-        <a href="https://www.amap.com/place/B0FFG1XMAP" target="_blank" data-i18n="map_link">在高德地圖中開啟 →</a>
+        <a href="https://www.amap.com/place/B0FFG1XMAP" target="_blank" rel="noopener" data-i18n="map_link">在高德地圖中開啟 →</a>
       </div>
       <div class="map-embed">
-        <iframe 
-          src="https://www.amap.com/ssr/embed/place?id=B0FFG1XMAP&name=%E5%98%89%E6%99%AE%E5%A1%91%E8%83%B6%E4%BA%94%E9%87%91%E7%94%B5%E5%AD%90%E5%8E%82&lng=113.722042&lat=22.798411&address=%E8%8E%B9%E5%85%89%E8%B7%AF15%E5%8F%B7&zoom=16&source=poi_detail&platform=pc"
-          width="100%"
-          height="380"
-          frameborder="0"
-          scrolling="no"
-          loading="lazy"
-          allowfullscreen="allowfullscreen"
-          title="公司位置地图">
-        </iframe>
+        <iframe src="https://www.amap.com/ssr/embed/place?id=B0FFG1XMAP&name=%E5%98%89%E6%99%AE%E5%A1%91%E8%83%B6%E4%BA%94%E9%87%91%E7%94%B5%E5%AD%90%E5%8E%82&lng=113.722042&lat=22.798411&address=%E8%8E%B9%E5%85%89%E8%B7%AF15%E5%8F%B7&zoom=16&source=poi_detail&platform=pc" loading="lazy" title="公司位置地圖"></iframe>
       </div>
     </div>
   </div>
@@ -871,161 +269,97 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom" data-i18n="footer_copy">
-      &copy; 2026 東莞市嘉訊科電子科技有限公司 版權所有
-    </div>
+    <div class="footer-bottom" data-i18n="footer_copy">© 2026 東莞市嘉訊科電子科技有限公司 版權所有</div>
   </footer>
 
-  
-<script>
-window.JXK_PAGE_I18N = {
-"zh-Hant":{
-"nav_home":"首頁","nav_products":"產品中心","nav_about":"關於我們","nav_contact":"聯絡我們",
-"page_h1":"聯絡我們與線上諮詢","page_p":"歡迎通過 QQ / 微信與我們聯繫，獲取產品諮詢、圖紙評估與樣品服務",
-"info_h":"聯繫方式","c_name":"公司名稱","c_addr":"公司地址","c_tel":"聯繫電話","c_svc":"技術支援與服務",
-"co1":"嘉普塑膠五金電子有限公司","co2":"東莞市嘉訊科電子科技有限公司",
-"addr_full":"廣東省東莞市長安鎮上角區螢光路15號",
-"tel1":"公司電話：0769-85410081","tel2":"公司電話：0769-85410082","tel3":"黃先生手機：18929444965",
-"s1":"2D CAD 工程圖紙快速對接與下載","s2":"樣品索取、小批量試產與客製化開發諮詢",
-"s3":"精密 BTB 板對板連接器選型與合高匹配評估","s4":"交期與量產供貨能力確認",
-"s5":"技術問題 24 小時內工程快速響應","s6":"歡迎來電或線上諮詢，業務即時回覆",
-"qq_h":"QQ 線上客服","qq_p":"點擊下方按鈕，直接與我們的業務人員對話","qq_btn":"點擊這裡給我發消息",
-"qq_tip":"若無法自動開啟，請手動添加 QQ：2190343453",
-"wx_h":"微信客服","wx_p":"掃描下方二維碼，或搜尋微信號添加好友","wx_tip":"請使用手機微信掃碼添加，或搜尋：18929444965",
-"map_h":"公司位置","map_link":"在高德地圖中開啟 →",
-"pr1_t":"24 小時內響應","pr1_d":"工程與業務盡快回覆選型與樣品需求","pr2_t":"CAD 圖紙支援","pr2_d":"協助確認腳位、合高與機構配合","pr3_t":"樣品與小批量","pr3_d":"支援打樣、試產與量產供貨評估","steps_h":"如何快速詢價 / 索取樣品","step1":"<strong>告訴我們規格</strong><br>Pitch、單雙槽、Pin 數、合高或應用場景","step2":"<strong>選擇聯絡方式</strong><br>QQ 在線、微信掃碼或直接來電","step3":"<strong>工程對接</strong><br>圖紙確認、樣品安排與報價回覆","footer_desc":"東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。",
-"footer_nav":"快速導覽","footer_contact":"聯絡資訊","footer_tel1":"電話：0769-85410081","footer_tel2":"電話：0769-85410082",
-"footer_mobile":"手機 / 微信：18929444965","footer_qq":"QQ：2190343453",
-"footer_addr":"地址：廣東省東莞市長安鎮上角區螢光路15號",
-"footer_copy":"© 2026 東莞市嘉訊科電子科技有限公司 版權所有"
-},
-"zh-Hans":{
-"nav_home":"首页","nav_products":"产品中心","nav_about":"关于我们","nav_contact":"联系我们",
-"page_h1":"联系我们与在线咨询","page_p":"欢迎通过 QQ / 微信与我们联系，获取产品咨询、图纸评估与样品服务",
-"info_h":"联系方式","c_name":"公司名称","c_addr":"公司地址","c_tel":"联系电话","c_svc":"技术支持与服务",
-"co1":"嘉普塑胶五金电子有限公司","co2":"东莞市嘉讯科电子科技有限公司",
-"addr_full":"广东省东莞市长安镇上角区荧光路15号",
-"tel1":"公司电话：0769-85410081","tel2":"公司电话：0769-85410082","tel3":"黄先生手机：18929444965",
-"s1":"2D CAD 工程图纸快速对接与下载","s2":"样品索取、小批量试产与客制化开发咨询",
-"s3":"精密 BTB 板对板连接器选型与合高匹配评估","s4":"交期与量产供货能力确认",
-"s5":"技术问题 24 小时内工程快速响应","s6":"欢迎来电或在线咨询，业务即时回复",
-"qq_h":"QQ 在线客服","qq_p":"点击下方按钮，直接与我们的业务人员对话","qq_btn":"点击这里给我发消息",
-"qq_tip":"若无法自动开启，请手动添加 QQ：2190343453",
-"wx_h":"微信客服","wx_p":"扫描下方二维码，或搜索微信号添加好友","wx_tip":"请使用手机微信扫码添加，或搜索：18929444965",
-"map_h":"公司位置","map_link":"在高德地图中打开 →",
-"pr1_t":"24 小时内响应","pr1_d":"工程与业务尽快回复选型与样品需求","pr2_t":"CAD 图纸支持","pr2_d":"协助确认脚位、合高与机构配合","pr3_t":"样品与小批量","pr3_d":"支持打样、试产与量产供货评估","steps_h":"如何快速询价 / 索取样品","step1":"<strong>告诉我们规格</strong><br>Pitch、单双槽、Pin 数、合高或应用场景","step2":"<strong>选择联络方式</strong><br>QQ 在线、微信扫码或直接来电","step3":"<strong>工程对接</strong><br>图纸确认、样品安排与报价回复","footer_desc":"东莞市嘉讯科电子科技有限公司，深耕精密 BTB 板对板连接器超过 25 年，专注高密度、高精度与高可靠度产品研发制造。",
-"footer_nav":"快速导览","footer_contact":"联系信息","footer_tel1":"电话：0769-85410081","footer_tel2":"电话：0769-85410082",
-"footer_mobile":"手机 / 微信：18929444965","footer_qq":"QQ：2190343453",
-"footer_addr":"地址：广东省东莞市长安镇上角区荧光路15号",
-"footer_copy":"© 2026 东莞市嘉讯科电子科技有限公司 版权所有"
-},
-"en":{
-"nav_home":"Home","nav_products":"Products","nav_about":"About","nav_contact":"Contact",
-"page_h1":"Contact & Inquiry","page_p":"Contact us via QQ or WeChat for product consulting, drawing review, and sample requests",
-"info_h":"Contact Information","c_name":"Company Name","c_addr":"Address","c_tel":"Phone","c_svc":"Technical Support & Services",
-"co1":"Jiapu Plastic Hardware Electronics Co., Ltd.","co2":"Dongguan Jiaxunke Electronics Technology Co., Ltd.",
-"addr_full":"No.15 Yingguang Road, Shangjiao, Changan Town, Dongguan, Guangdong, China",
-"tel1":"Office: 0769-85410081","tel2":"Office: 0769-85410082","tel3":"Mr. Huang: 18929444965",
-"s1":"2D CAD drawing support and download","s2":"Sample requests, pilot runs, and custom development",
-"s3":"Fine-pitch BTB selection and stack-height matching","s4":"Lead time and volume supply confirmation",
-"s5":"Engineering response within 24 hours","s6":"Call or message us — sales responds promptly",
-"qq_h":"QQ Live Chat","qq_p":"Click below to chat with our sales team","qq_btn":"Message us on QQ",
-"qq_tip":"If QQ does not open, please add: 2190343453",
-"wx_h":"WeChat Support","wx_p":"Scan the QR code or search the WeChat ID to connect","wx_tip":"Scan with WeChat or search: 18929444965",
-"map_h":"Our Location","map_link":"Open in Amap →",
-"pr1_t":"Response within 24h","pr1_d":"Engineering and sales reply on selection and samples","pr2_t":"CAD drawing support","pr2_d":"Help confirm footprint, stack height and fit","pr3_t":"Samples & pilot runs","pr3_d":"Sampling, pilot and volume supply evaluation","steps_h":"How to inquire / request samples","step1":"<strong>Share your requirements</strong><br>Pitch, row type, pin count, stack height or application","step2":"<strong>Choose a contact method</strong><br>QQ chat, WeChat QR or phone","step3":"<strong>Engineering follow-up</strong><br>Drawing check, sample arrangement and quotation","footer_desc":"Dongguan Jiaxunke Electronics Technology Co., Ltd. — 25+ years specializing in precision BTB board-to-board connectors.",
-"footer_nav":"Quick Links","footer_contact":"Contact","footer_tel1":"Tel: 0769-85410081","footer_tel2":"Tel: 0769-85410082",
-"footer_mobile":"Mobile / WeChat: 18929444965","footer_qq":"QQ: 2190343453",
-"footer_addr":"Address: No.15 Yingguang Rd, Shangjiao, Changan, Dongguan, China",
-"footer_copy":"© 2026 Dongguan Jiaxunke Electronics Technology Co., Ltd. All rights reserved"
-}
-};
-
-(function(){
-  var LANG_KEY = 'jxk_lang';
-  function getLang(){
-    try { return localStorage.getItem(LANG_KEY) || 'zh-Hant'; } catch(e){ return 'zh-Hant'; }
-  }
-  function setLang(lang){
-    try { localStorage.setItem(LANG_KEY, lang); } catch(e){}
-  }
-  function applyI18n(){
-    var dict = window.JXK_PAGE_I18N;
-    var lang = getLang();
-    if(!dict[lang]) lang = 'zh-Hant';
-    var pack = dict[lang];
-    document.querySelectorAll('[data-i18n]').forEach(function(el){
-      var key = el.getAttribute('data-i18n');
-      if(pack[key] != null) el.innerHTML = pack[key];
-    });
-    document.querySelectorAll('.lang-btn').forEach(function(btn){
-      if(btn.getAttribute('data-lang') === lang) btn.classList.add('active');
-      else btn.classList.remove('active');
-    });
-    document.documentElement.lang = (lang === 'en' ? 'en' : (lang === 'zh-Hans' ? 'zh-CN' : 'zh-Hant'));
-  }
-  document.addEventListener('DOMContentLoaded', function(){
-    var switcher = document.getElementById('lang-switch');
-    if(switcher){
-      switcher.addEventListener('click', function(e){
-        var btn = e.target.closest('.lang-btn');
-        if(!btn) return;
-        setLang(btn.getAttribute('data-lang'));
-        applyI18n();
-      });
-    }
-    applyI18n();
-  });
-})();
-</script>
-
-
-
-<script>
-(function(){
-  function initMobileNav(){
-    var btn = document.getElementById('mobile-menu');
-    var panel = document.getElementById('mobile-nav');
-    var backdrop = document.getElementById('nav-backdrop');
-    if(!btn || !panel) return;
-
-    function openMenu(){
-      btn.classList.add('open');
-      panel.classList.add('active');
-      if(backdrop) backdrop.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeMenu(){
-      btn.classList.remove('open');
-      panel.classList.remove('active');
-      if(backdrop) backdrop.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    function toggleMenu(e){
-      if(e){ e.preventDefault(); e.stopPropagation(); }
-      if(panel.classList.contains('active')) closeMenu();
-      else openMenu();
-    }
-
-    btn.onclick = toggleMenu;
-    if(backdrop) backdrop.onclick = closeMenu;
-
-    panel.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){ closeMenu(); });
-    });
-
-    // close on Escape
-    document.addEventListener('keydown', function(e){
-      if(e.key === 'Escape') closeMenu();
-    });
-  }
-  if(document.readyState === 'loading')
-    document.addEventListener('DOMContentLoaded', initMobileNav);
-  else
-    initMobileNav();
-})();
-</script>
-
-
+  <script>
+    window.JXK_PAGE_I18N = {
+      "zh-Hant": {
+        nav_home: "首頁", nav_products: "產品中心", nav_about: "關於我們", nav_contact: "聯絡我們",
+        page_h1: "聯絡我們與線上諮詢", page_p: "歡迎通過 QQ / 微信與我們聯繫，獲取產品諮詢、圖紙評估與樣品服務",
+        pr1_t: "24 小時內響應", pr1_d: "工程與業務盡快回覆選型與樣品需求",
+        pr2_t: "CAD 圖紙支援", pr2_d: "協助確認腳位、合高與機構配合",
+        pr3_t: "樣品與小批量", pr3_d: "支援打樣、試產與量產供貨評估",
+        steps_h: "如何快速詢價 / 索取樣品",
+        step1: "<strong>告訴我們規格</strong><br>Pitch、單雙槽、Pin 數、合高或應用場景",
+        step2: "<strong>選擇聯絡方式</strong><br>QQ 在線、微信掃碼或直接來電",
+        step3: "<strong>工程對接</strong><br>圖紙確認、樣品安排與報價回覆",
+        info_h: "聯繫方式", c_name: "公司名稱", c_addr: "公司地址", c_tel: "聯繫電話", c_svc: "技術支援與服務",
+        co1: "嘉普塑膠五金電子有限公司", co2: "東莞市嘉訊科電子科技有限公司",
+        addr_full: "廣東省東莞市長安鎮上角區螢光路15號",
+        tel1: "公司電話：0769-85410081", tel2: "公司電話：0769-85410082", tel3: "黃先生手機：18929444965",
+        s1: "2D CAD 工程圖紙快速對接與下載", s2: "樣品索取、小批量試產與客製化開發諮詢",
+        s3: "精密 BTB 板對板連接器選型與合高匹配評估", s4: "交期與量產供貨能力確認",
+        s5: "技術問題 24 小時內工程快速響應", s6: "歡迎來電或線上諮詢，業務即時回覆",
+        qq_h: "QQ 線上客服", qq_p: "點擊下方按鈕，直接與我們的業務人員對話", qq_btn: "點擊這裡給我發消息",
+        qq_tip: "若無法自動開啟，請手動添加 QQ：2190343453",
+        wx_h: "微信客服", wx_p: "掃描下方二維碼，或搜尋微信號添加好友", wx_tip: "請使用手機微信掃碼添加，或搜尋：18929444965",
+        map_h: "公司位置", map_link: "在高德地圖中開啟 →",
+        footer_desc: "東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。",
+        footer_nav: "快速導覽", footer_contact: "聯絡資訊",
+        footer_tel1: "電話：0769-85410081", footer_tel2: "電話：0769-85410082",
+        footer_mobile: "手機 / 微信：18929444965", footer_qq: "QQ：2190343453",
+        footer_addr: "地址：廣東省東莞市長安鎮上角區螢光路15號",
+        footer_copy: "© 2026 東莞市嘉訊科電子科技有限公司 版權所有"
+      },
+      "zh-Hans": {
+        nav_home: "首页", nav_products: "产品中心", nav_about: "关于我们", nav_contact: "联系我们",
+        page_h1: "联系我们与在线咨询", page_p: "欢迎通过 QQ / 微信与我们联系，获取产品咨询、图纸评估与样品服务",
+        pr1_t: "24 小时内响应", pr1_d: "工程与业务尽快回复选型与样品需求",
+        pr2_t: "CAD 图纸支持", pr2_d: "协助确认脚位、合高与机构配合",
+        pr3_t: "样品与小批量", pr3_d: "支持打样、试产与量产供货评估",
+        steps_h: "如何快速询价 / 索取样品",
+        step1: "<strong>告诉我们规格</strong><br>Pitch、单双槽、Pin 数、合高或应用场景",
+        step2: "<strong>选择联络方式</strong><br>QQ 在线、微信扫码或直接来电",
+        step3: "<strong>工程对接</strong><br>图纸确认、样品安排与报价回复",
+        info_h: "联系方式", c_name: "公司名称", c_addr: "公司地址", c_tel: "联系电话", c_svc: "技术支持与服务",
+        co1: "嘉普塑胶五金电子有限公司", co2: "东莞市嘉讯科电子科技有限公司",
+        addr_full: "广东省东莞市长安镇上角区荧光路15号",
+        tel1: "公司电话：0769-85410081", tel2: "公司电话：0769-85410082", tel3: "黄先生手机：18929444965",
+        s1: "2D CAD 工程图纸快速对接与下载", s2: "样品索取、小批量试产与客制化开发咨询",
+        s3: "精密 BTB 板对板连接器选型与合高匹配评估", s4: "交期与量产供货能力确认",
+        s5: "技术问题 24 小时内工程快速响应", s6: "欢迎来电或在线咨询，业务即时回复",
+        qq_h: "QQ 在线客服", qq_p: "点击下方按钮，直接与我们的业务人员对话", qq_btn: "点击这里给我发消息",
+        qq_tip: "若无法自动开启，请手动添加 QQ：2190343453",
+        wx_h: "微信客服", wx_p: "扫描下方二维码，或搜索微信号添加好友", wx_tip: "请使用手机微信扫码添加，或搜索：18929444965",
+        map_h: "公司位置", map_link: "在高德地图中打开 →",
+        footer_desc: "东莞市嘉讯科电子科技有限公司，深耕精密 BTB 板对板连接器超过 25 年，专注高密度、高精度与高可靠度产品研发制造。",
+        footer_nav: "快速导览", footer_contact: "联系信息",
+        footer_tel1: "电话：0769-85410081", footer_tel2: "电话：0769-85410082",
+        footer_mobile: "手机 / 微信：18929444965", footer_qq: "QQ：2190343453",
+        footer_addr: "地址：广东省东莞市长安镇上角区荧光路15号",
+        footer_copy: "© 2026 东莞市嘉讯科电子科技有限公司 版权所有"
+      },
+      "en": {
+        nav_home: "Home", nav_products: "Products", nav_about: "About", nav_contact: "Contact",
+        page_h1: "Contact & Inquiry", page_p: "Contact us via QQ or WeChat for product consulting, drawing review, and sample requests",
+        pr1_t: "Response within 24h", pr1_d: "Engineering and sales reply on selection and samples",
+        pr2_t: "CAD drawing support", pr2_d: "Help confirm footprint, stack height and fit",
+        pr3_t: "Samples & pilot runs", pr3_d: "Sampling, pilot and volume supply evaluation",
+        steps_h: "How to inquire / request samples",
+        step1: "<strong>Share your requirements</strong><br>Pitch, row type, pin count, stack height or application",
+        step2: "<strong>Choose a contact method</strong><br>QQ chat, WeChat QR or phone",
+        step3: "<strong>Engineering follow-up</strong><br>Drawing check, sample arrangement and quotation",
+        info_h: "Contact Information", c_name: "Company Name", c_addr: "Address", c_tel: "Phone", c_svc: "Technical Support & Services",
+        co1: "Jiapu Plastic Hardware Electronics Co., Ltd.", co2: "Dongguan Jiaxunke Electronics Technology Co., Ltd.",
+        addr_full: "No.15 Yingguang Road, Shangjiao, Changan Town, Dongguan, Guangdong, China",
+        tel1: "Office: 0769-85410081", tel2: "Office: 0769-85410082", tel3: "Mr. Huang: 18929444965",
+        s1: "2D CAD drawing support and download", s2: "Sample requests, pilot runs, and custom development",
+        s3: "Fine-pitch BTB selection and stack-height matching", s4: "Lead time and volume supply confirmation",
+        s5: "Engineering response within 24 hours", s6: "Call or message us — sales responds promptly",
+        qq_h: "QQ Live Chat", qq_p: "Click below to chat with our sales team", qq_btn: "Message us on QQ",
+        qq_tip: "If QQ does not open, please add: 2190343453",
+        wx_h: "WeChat Support", wx_p: "Scan the QR code or search the WeChat ID to connect", wx_tip: "Scan with WeChat or search: 18929444965",
+        map_h: "Our Location", map_link: "Open in Amap →",
+        footer_desc: "Dongguan Jiaxunke Electronics Technology Co., Ltd. — 25+ years specializing in precision BTB board-to-board connectors.",
+        footer_nav: "Quick Links", footer_contact: "Contact",
+        footer_tel1: "Tel: 0769-85410081", footer_tel2: "Tel: 0769-85410082",
+        footer_mobile: "Mobile / WeChat: 18929444965", footer_qq: "QQ: 2190343453",
+        footer_addr: "Address: No.15 Yingguang Rd, Shangjiao, Changan, Dongguan, China",
+        footer_copy: "© 2026 Dongguan Jiaxunke Electronics Technology Co., Ltd. All rights reserved"
+      }
+    };
+  </script>
+  <script src="main.js"></script>
 </body>
 </html>
