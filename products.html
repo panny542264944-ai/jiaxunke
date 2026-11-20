@@ -10,7 +10,7 @@
   <style>
     .page-banner {
       padding: 7.5rem 2rem 2.5rem;
-      background: radial-gradient(ellipse at 50% 0%, rgba(0, 242, 254, 0.1) 0%, transparent 60%);
+      background: radial-gradient(ellipse at 50% 0%, var(--gold-tint) 0%, transparent 60%);
       border-bottom: 1px solid var(--border);
       text-align: center;
     }
@@ -57,8 +57,8 @@
     }
     .category-item:hover,
     .category-item.active {
-      background: rgba(0, 242, 254, 0.1);
-      color: var(--accent);
+      background: var(--gold-tint);
+      color: var(--accent-light);
       border-left-color: var(--accent);
     }
     .category-count {
@@ -68,8 +68,8 @@
       border-radius: 10px;
     }
     .category-item.active .category-count {
-      background: var(--accent);
-      color: #000;
+      background: var(--gold-gradient);
+      color: #141006;
       font-weight: 700;
     }
 
@@ -107,7 +107,7 @@
     .product-tag {
       display: inline-block;
       padding: 0.2rem 0.55rem;
-      background: rgba(0, 242, 254, 0.1);
+      background: var(--gold-tint);
       color: var(--accent);
       font-size: 0.78rem;
       font-weight: 600;
@@ -121,9 +121,9 @@
       font-weight: 600;
       padding: 0.15rem 0.45rem;
       border-radius: 4px;
-      background: rgba(0, 242, 254, 0.08);
-      border: 1px solid rgba(0, 242, 254, 0.22);
-      color: var(--accent);
+      background: rgba(212, 175, 55, 0.09);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      color: var(--accent-light);
     }
     .product-card h3 {
       color: #FFF;
@@ -169,16 +169,16 @@
       transition: all 0.2s;
     }
     .btn-dwg {
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent));
-      color: #000;
+      background: var(--gold-gradient);
+      color: #141006;
     }
     .btn-dwg:hover { opacity: 0.92; }
     .btn-sample {
       background: transparent;
-      border: 1px solid rgba(0, 242, 254, 0.45);
-      color: var(--accent);
+      border: 1px solid var(--gold-border);
+      color: var(--accent-light);
     }
-    .btn-sample:hover { background: rgba(0, 242, 254, 0.08); border-color: var(--accent); }
+    .btn-sample:hover { background: var(--gold-tint); border-color: var(--accent); }
 
     .tech-section {
       background: var(--bg-footer);
@@ -239,8 +239,8 @@
     .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
     .btn-submit {
       width: 100%; padding: 0.8rem;
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent));
-      color: #000; font-weight: 700; border: none; border-radius: 8px; cursor: pointer;
+      background: var(--gold-gradient);
+      color: #141006; font-weight: 700; border: none; border-radius: 8px; cursor: pointer;
     }
     .lightbox img { max-width: 92%; max-height: 85vh; object-fit: contain; border-radius: 8px; }
     .lightbox-caption { position: absolute; bottom: 1.25rem; color: var(--text-muted); font-size: 0.9rem; }

@@ -27,6 +27,10 @@
       if (pack[key] !== undefined) el.innerHTML = pack[key];
     });
 
+    if (pack._title) {
+      document.title = pack._title;
+    }
+
     document.querySelectorAll('.lang-btn').forEach((btn) => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
@@ -63,7 +67,9 @@
       a.addEventListener('click', () => toggleMenu(true));
     });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') toggleMenu(true);
+      if (e.key === 'Escape' && drawer.classList.contains('active')) {
+        toggleMenu(true);
+      }
     });
   }
 
