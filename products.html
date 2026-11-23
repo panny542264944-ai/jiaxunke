@@ -220,6 +220,7 @@
       width: 100%; max-width: 480px;
       padding: 2rem;
       position: relative;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.75);
     }
     .modal-close, .lightbox-close {
       position: absolute; top: 1rem; right: 1.1rem;
@@ -235,13 +236,46 @@
       width: 100%; padding: 0.7rem;
       background: var(--bg-main); border: 1px solid var(--border);
       border-radius: 8px; color: #FFF; font-size: 0.92rem; font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.14);
+    }
     .btn-submit {
       width: 100%; padding: 0.8rem;
       background: var(--gold-gradient);
       color: #141006; font-weight: 700; border: none; border-radius: 8px; cursor: pointer;
+      transition: filter 0.2s, opacity 0.2s;
     }
+    .btn-submit:hover:not(:disabled) { filter: brightness(1.06); }
+    .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+    /* 黑金風格表單內嵌狀態提示 */
+    .form-feedback {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      border: 1px solid transparent;
+    }
+    .form-feedback.show { display: block; }
+    .form-feedback.is-success {
+      background: linear-gradient(135deg, rgba(229, 193, 88, 0.16), rgba(166, 124, 35, 0.08));
+      border-color: var(--gold-border);
+      color: var(--accent-light);
+      box-shadow: inset 3px 0 0 var(--accent);
+    }
+    .form-feedback.is-error {
+      background: linear-gradient(135deg, rgba(127, 29, 29, 0.34), rgba(24, 14, 14, 0.75));
+      border-color: rgba(212, 175, 55, 0.45);
+      color: #FDE68A;
+      box-shadow: inset 3px 0 0 #D97706;
+    }
+
     .lightbox img { max-width: 92%; max-height: 85vh; object-fit: contain; border-radius: 8px; }
     .lightbox-caption { position: absolute; bottom: 1.25rem; color: var(--text-muted); font-size: 0.9rem; }
 
@@ -603,6 +637,7 @@
           <textarea id="req-remark" rows="3" placeholder="例如：需要提供 2D CAD 圖紙與 5pcs 樣品測試"></textarea>
         </div>
         <button type="submit" class="btn-submit" data-i18n="modal_submit">立即送出申請</button>
+        <div class="form-feedback" id="form-feedback" role="status" aria-live="polite"></div>
       </form>
     </div>
   </div>
@@ -668,6 +703,10 @@
         t4_h: "24 小時極速打樣", t4_p: "擁有充裕端子備料與快速排產機制，提供研發團隊 24 小時內快速反應與寄樣。",
         modal_h: "索取樣品 / CAD 圖紙", modal_l1: "需求 Pin 數與合高", modal_l2: "貴公司名稱 / 聯絡人",
         modal_l3: "聯絡電話 / 電子郵件", modal_l4: "具體需求備註（選填）", modal_submit: "立即送出申請",
+        msg_submitting: "提交中...",
+        msg_missing_key: "尚未設定 EmailJS 金鑰，請先填入 PUBLIC_KEY、SERVICE_ID 與 TEMPLATE_ID。",
+        msg_success: "✓ 申請已送出！工程專員將於 24 小時內與您聯繫。",
+        msg_error: "送出失敗，請稍後再試，或直接撥打 0769-85410081／加微信 18929444965 聯繫。",
         footer_desc: "東莞市嘉訊科電子科技有限公司，深耕精密 BTB 板對板連接器超過 25 年，專注高密度、高精度與高可靠度產品研發製造。",
         footer_nav: "快速導覽", footer_contact: "聯絡資訊",
         footer_tel1: "電話：0769-85410081", footer_tel2: "電話：0769-85410082",
@@ -703,6 +742,10 @@
         t4_h: "24 小时极速打样", t4_p: "拥有充裕端子备料与快速排产机制，提供研发团队 24 小时内快速反应与寄样。",
         modal_h: "索取样品 / CAD 图纸", modal_l1: "需求 Pin 数与合高", modal_l2: "贵公司名称 / 联络人",
         modal_l3: "联络电话 / 电子邮件", modal_l4: "具体需求备注（选填）", modal_submit: "立即送出申请",
+        msg_submitting: "提交中...",
+        msg_missing_key: "尚未设置 EmailJS 密钥，请先填入 PUBLIC_KEY、SERVICE_ID 与 TEMPLATE_ID。",
+        msg_success: "✓ 申请已送出！工程专员将于 24 小时内与您联系。",
+        msg_error: "送出失败，请稍后再试，或直接拨打 0769-85410081／加微信 18929444965 联系。",
         footer_desc: "东莞市嘉讯科电子科技有限公司，深耕精密 BTB 板对板连接器超过 25 年，专注高密度、高精度与高可靠度产品研发制造。",
         footer_nav: "快速导览", footer_contact: "联系信息",
         footer_tel1: "电话：0769-85410081", footer_tel2: "电话：0769-85410082",
@@ -738,6 +781,10 @@
         t4_h: "24-Hour Sample Turnaround", t4_p: "Ready inventory and fast scheduling for sample shipment within 24 hours.",
         modal_h: "Request Samples / CAD Drawings", modal_l1: "Required pin count & stack height", modal_l2: "Company / Contact person",
         modal_l3: "Phone / Email", modal_l4: "Notes (optional)", modal_submit: "Submit request",
+        msg_submitting: "Submitting...",
+        msg_missing_key: "EmailJS keys are not configured yet. Please set PUBLIC_KEY, SERVICE_ID, and TEMPLATE_ID.",
+        msg_success: "✓ Request submitted! Our engineering team will reach out within 24 hours.",
+        msg_error: "Submission failed. Please try again or call 0769-85410081 / WeChat 18929444965.",
         footer_desc: "Dongguan Jiaxunke Electronics Technology Co., Ltd. — 25+ years specializing in precision BTB board-to-board connectors.",
         footer_nav: "Quick Links", footer_contact: "Contact",
         footer_tel1: "Tel: 0769-85410081", footer_tel2: "Tel: 0769-85410082",
@@ -758,6 +805,13 @@
       emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
     }
 
+    function getCurrentPack() {
+      const lang = document.documentElement.lang === 'en'
+        ? 'en'
+        : (document.documentElement.lang === 'zh-CN' ? 'zh-Hans' : 'zh-Hant');
+      return window.JXK_PAGE_I18N[lang] || window.JXK_PAGE_I18N['zh-Hant'];
+    }
+
     function updateCounts() {
       const cards = Array.from(document.querySelectorAll('.product-card'));
       document.querySelectorAll('.category-count').forEach((badge) => {
@@ -768,8 +822,7 @@
       });
       const visible = cards.filter((c) => c.style.display !== 'none').length;
       const counter = document.getElementById('visible-counter');
-      const lang = document.documentElement.lang === 'en' ? 'en' : (document.documentElement.lang === 'zh-CN' ? 'zh-Hans' : 'zh-Hant');
-      const pack = window.JXK_PAGE_I18N[lang] || window.JXK_PAGE_I18N['zh-Hant'];
+      const pack = getCurrentPack();
       counter.dataset.n = String(visible);
       counter.textContent = (pack.show_count || '共顯示 {n} 個產品').replace('{n}', visible);
     }
@@ -798,13 +851,26 @@
 
     const modal = document.getElementById('sample-modal');
     const modalTitle = document.getElementById('modal-product-title');
+    const feedbackEl = document.getElementById('form-feedback');
+    const sampleForm = document.getElementById('sample-form');
     let selectedProduct = '';
+
+    function setFeedback(type, text) {
+      feedbackEl.className = 'form-feedback show ' + (type === 'success' ? 'is-success' : 'is-error');
+      feedbackEl.textContent = text;
+    }
+
+    function clearFeedback() {
+      feedbackEl.className = 'form-feedback';
+      feedbackEl.textContent = '';
+    }
 
     document.querySelectorAll('.btn-sample').forEach((btn) => {
       btn.addEventListener('click', () => {
         const card = btn.closest('.product-card');
         selectedProduct = card.dataset.productName || card.querySelector('h3').textContent.trim();
         modalTitle.textContent = `您正在諮詢：${selectedProduct}。請填寫您的需求資訊：`;
+        clearFeedback();
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
       });
@@ -817,15 +883,19 @@
     document.getElementById('modal-close').addEventListener('click', closeSampleModal);
     modal.addEventListener('click', (e) => { if (e.target === modal) closeSampleModal(); });
 
-    document.getElementById('sample-form').addEventListener('submit', async (e) => {
+    sampleForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
-        alert('尚未設定 EmailJS 金鑰，請先填入 PUBLIC_KEY / SERVICE_ID / TEMPLATE_ID。');
+      clearFeedback();
+      const pack = getCurrentPack();
+
+      if (typeof emailjs === 'undefined' || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+        setFeedback('error', pack.msg_missing_key);
         return;
       }
+
       const btn = e.target.querySelector('button[type="submit"]');
       btn.disabled = true;
-      btn.textContent = '提交中...';
+      btn.textContent = pack.msg_submitting;
       try {
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
           from_name: document.getElementById('req-company').value.trim(),
@@ -835,16 +905,14 @@
           detail: document.getElementById('req-remark').value.trim() || '無',
           time: new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
         });
-        alert('感謝您的申請！工程專員將於 24 小時內與您聯繫。');
-        closeSampleModal();
+        setFeedback('success', pack.msg_success);
         e.target.reset();
       } catch (err) {
         console.error(err);
-        alert('送出失敗，請直接撥打 0769-85410081 或加微信 18929444965 聯繫。');
+        setFeedback('error', pack.msg_error);
       } finally {
         btn.disabled = false;
-        const lang = document.documentElement.lang === 'en' ? 'en' : (document.documentElement.lang === 'zh-CN' ? 'zh-Hans' : 'zh-Hant');
-        btn.textContent = (window.JXK_PAGE_I18N[lang] || window.JXK_PAGE_I18N['zh-Hant']).modal_submit;
+        btn.textContent = getCurrentPack().modal_submit;
       }
     });
 
